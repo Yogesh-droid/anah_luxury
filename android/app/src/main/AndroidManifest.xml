@@ -3,7 +3,7 @@
    <application
         android:label="anah_luxury"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/anah_logo">
         <activity
             android:name=".MainActivity"
             android:exported="true"
