@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 
-class AnahSearchBar extends StatelessWidget {
-  const AnahSearchBar({super.key});
+class WishList extends StatelessWidget {
+  const WishList({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return const Center(
+      child: Text('THis is widhListPage'),
+    );
   }
 }

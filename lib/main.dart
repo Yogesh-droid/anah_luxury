@@ -1,5 +1,7 @@
 import 'package:anah_luxury/core/routes/routes.dart';
+import 'package:anah_luxury/features/dashboard/ui/controllers/cubit/bottom_nav_controller_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,12 +12,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      title: 'Anah Luxury',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      routerConfig: router,
-    );
+    return MultiBlocProvider(
+        providers: [
+          BlocProvider(create: (context) => BottomNavControllerCubit())
+        ],
+        child: MaterialApp.router(
+          title: 'Anah Luxury',
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+          ),
+          routerConfig: router,
+        ));
   }
 }

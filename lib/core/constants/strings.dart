@@ -1,0 +1,17 @@
+const String kHome = "Home";
+const String kBrowse = "Browse";
+const String kBag = "Bag";
+const String kWishList = "WishList";
+const String kMore = "More";
+const String kBrowseBy = "Browse By";
+const String kViewAll = "View All";
+const String kFeaturedResidence = "Featured Residence";
+const String kFeaturedCars = "Featured Cars";
+const String kNewResidence = "New Residence";
+const String kResidence = "Residence";
+const String kPopularCars = "Popular Cars";
+const String kCars = "Cars";
+const String kResults = "Results";
+const String kCategories = "Categories";
+const String kBrands = "Brands";
+const String kLocation = "Location";
