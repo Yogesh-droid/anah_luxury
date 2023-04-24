@@ -20,7 +20,7 @@ final GoRouter router = GoRouter(routes: [
     pageBuilder: (context, state) {
       return getTransition(
           child: const LoginPage(),
-          animationType: TransitionType.slide,
+          animationType: TransitionType.fade,
           duration: const Duration(milliseconds: 500));
     },
   ),

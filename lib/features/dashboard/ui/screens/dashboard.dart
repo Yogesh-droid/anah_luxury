@@ -1,3 +1,4 @@
+import 'package:anah_luxury/core/constants/assets.dart';
 import 'package:anah_luxury/features/browse/ui/screens/search_page.dart';
 import 'package:anah_luxury/features/cart/ui/screens/cart_page.dart';
 import 'package:anah_luxury/features/dashboard/ui/controllers/cubit/bottom_nav_controller_cubit.dart';
@@ -6,6 +7,7 @@ import 'package:anah_luxury/features/more/ui/screens/more.dart';
 import 'package:anah_luxury/features/wishlist/ui/screens/wishlist.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 import '../../../../core/constants/strings.dart';
 import '../widgets/anah_app_bar.dart';
 
@@ -63,26 +65,31 @@ class DashBoard extends StatelessWidget {
             onTap: (value) {
               context.read<BottomNavControllerCubit>().changeIndex(value);
             },
-            items: const [
+            items: [
               BottomNavigationBarItem(
-                  icon: Icon(Icons.home_outlined),
-                  activeIcon: Icon(Icons.home),
+                  icon: SvgPicture.asset(Assets.assetsBottomBarHome),
+                  activeIcon:
+                      SvgPicture.asset(Assets.assetsBottomBarHomeActive),
                   label: kHome),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.search),
-                  activeIcon: Icon(Icons.search_rounded),
+                  icon: SvgPicture.asset(Assets.assetsBottomBarCar),
+                  activeIcon:
+                      SvgPicture.asset(Assets.assetsBottomBarCarActivie),
                   label: kBrowse),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.shopping_bag_outlined),
-                  activeIcon: Icon(Icons.shopping_bag),
+                  icon: SvgPicture.asset(Assets.assetsBottomBarProperties),
+                  activeIcon:
+                      SvgPicture.asset(Assets.assetsBottomBarPropertiesActive),
                   label: kBag),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.favorite_border),
-                  activeIcon: Icon(Icons.favorite_rounded),
+                  icon: SvgPicture.asset(Assets.assetsBottomBarSaved),
+                  activeIcon:
+                      SvgPicture.asset(Assets.assetsBottomBarSaveAcitive),
                   label: kWishList),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.menu),
-                  activeIcon: Icon(Icons.menu),
+                  icon: SvgPicture.asset(Assets.assetsBottomBarMenu),
+                  activeIcon:
+                      SvgPicture.asset(Assets.assetsBottomBarMenuActive),
                   label: kMore),
             ]);
       },

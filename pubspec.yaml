@@ -18,6 +18,8 @@ dependencies:
   go_router: ^6.5.6
   shimmer: ^2.0.0
   carousel_slider: ^4.2.1
+  flutter_svg: ^2.0.5
+  cached_network_image: ^3.2.3
 
 dev_dependencies:
   flutter_test:
@@ -32,6 +34,7 @@ flutter:
     - assets/welcome_page/
     - assets/login/
     - assets/home_page/
+    - assets/bottom_bar/
 
 flutter_assets:
   assets_path: assets/

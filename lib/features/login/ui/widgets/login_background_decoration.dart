@@ -1,4 +1,6 @@
+import 'package:anah_luxury/features/login/ui/controllers/cubit/banner_text_controller_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/constants/assets.dart';
 
@@ -20,18 +22,24 @@ class _LoginBackgroundDecorationState extends State<LoginBackgroundDecoration>
   @override
   void initState() {
     super.initState();
-    animationController =
-        AnimationController(vsync: this, duration: const Duration(seconds: 2))
-          ..repeat();
+    animationController = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 1500))
+      ..repeat();
     animationController.forward();
     animation =
         Tween<double>(begin: 0.0, end: 1.0).animate(animationController);
     animationController.addListener(() {
       if (animationController.isCompleted) {
-        animationController.reverse();
+        Future.delayed(const Duration(seconds: 3), () {
+          animationController.reverse();
+          context.read<BannerTextControllerCubit>().changeText("Luxury Cars");
+        });
       }
       if (animationController.isDismissed) {
-        animationController.forward();
+        Future.delayed(const Duration(seconds: 3), () {
+          animationController.forward();
+          context.read<BannerTextControllerCubit>().changeText("Luxury Homes");
+        });
       }
     });
   }

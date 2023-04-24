@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:anah_luxury/core/constants/assets.dart';
 import 'package:flutter/material.dart';
 
 class CategoryContainer extends StatelessWidget {
@@ -31,9 +32,10 @@ class CategoryContainer extends StatelessWidget {
           image: backgroundImage != null
               ? DecorationImage(
                   fit: BoxFit.cover,
-                  image: NetworkImage(
-                    backgroundImage!,
-                  ))
+                  image: FadeInImage.assetNetwork(
+                    placeholder: Assets.assetsHomePageImageLoading,
+                    image: backgroundImage!,
+                  ).image)
               : null),
       child: Container(
         color: shadeColor != null
