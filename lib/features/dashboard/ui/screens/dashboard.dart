@@ -1,10 +1,10 @@
 import 'package:anah_luxury/core/constants/assets.dart';
-import 'package:anah_luxury/features/browse/ui/screens/search_page.dart';
-import 'package:anah_luxury/features/cart/ui/screens/cart_page.dart';
+import 'package:anah_luxury/features/cars/ui/screens/cars_page.dart';
+import 'package:anah_luxury/features/properties/ui/screens/properties_page.dart';
 import 'package:anah_luxury/features/dashboard/ui/controllers/cubit/bottom_nav_controller_cubit.dart';
 import 'package:anah_luxury/features/home/ui/screens/home_page.dart';
-import 'package:anah_luxury/features/more/ui/screens/more.dart';
-import 'package:anah_luxury/features/wishlist/ui/screens/wishlist.dart';
+import 'package:anah_luxury/features/menu/ui/screens/more.dart';
+import 'package:anah_luxury/features/saved/ui/screens/wishlist.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -29,7 +29,12 @@ class DashBoard extends StatelessWidget {
         padding: EdgeInsets.all(8.0),
         child: Icon(
           Icons.notifications_outlined,
-          color: Colors.black,
+        ),
+      ),
+      Padding(
+        padding: EdgeInsets.all(8.0),
+        child: Icon(
+          Icons.search,
         ),
       ),
     ]);
@@ -38,14 +43,17 @@ class DashBoard extends StatelessWidget {
   Widget getPages() {
     const List<Widget> _pageList = [
       HomePage(),
-      SearchPage(),
-      Cart(),
+      CarsPage(),
+      PropertiesPage(),
       WishList(),
       More()
     ];
     return BlocBuilder<BottomNavControllerCubit, int>(
         builder: (context, state) {
-      return _pageList[state];
+      return IndexedStack(
+        index: state,
+        children: _pageList,
+      );
     });
   }
 
@@ -75,22 +83,22 @@ class DashBoard extends StatelessWidget {
                   icon: SvgPicture.asset(Assets.assetsBottomBarCar),
                   activeIcon:
                       SvgPicture.asset(Assets.assetsBottomBarCarActivie),
-                  label: kBrowse),
+                  label: kCars),
               BottomNavigationBarItem(
                   icon: SvgPicture.asset(Assets.assetsBottomBarProperties),
                   activeIcon:
                       SvgPicture.asset(Assets.assetsBottomBarPropertiesActive),
-                  label: kBag),
+                  label: kProperties),
               BottomNavigationBarItem(
                   icon: SvgPicture.asset(Assets.assetsBottomBarSaved),
                   activeIcon:
                       SvgPicture.asset(Assets.assetsBottomBarSaveAcitive),
-                  label: kWishList),
+                  label: kSaved),
               BottomNavigationBarItem(
                   icon: SvgPicture.asset(Assets.assetsBottomBarMenu),
                   activeIcon:
                       SvgPicture.asset(Assets.assetsBottomBarMenuActive),
-                  label: kMore),
+                  label: kMenu),
             ]);
       },
     );

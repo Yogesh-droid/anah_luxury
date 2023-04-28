@@ -1,3 +1,4 @@
+import 'package:anah_luxury/core/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class AnahAuthButton extends StatelessWidget {
@@ -25,25 +26,20 @@ class AnahAuthButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-        onTap: onTap,
-        child: Container(
-            height: height ?? 44,
-            width: width ?? MediaQuery.of(context).size.width - 100,
-            decoration: BoxDecoration(
-              color: fillColor,
-              border:
-                  borderColor != null ? Border.all(color: borderColor!) : null,
-            ),
-            child: title != null
-                ? Center(
-                    child: Text(
-                      title ?? '',
-                      style: TextStyle(
-                          color:
-                              isFilled != null ? Colors.black : Colors.white),
-                    ),
-                  )
-                : const SizedBox()));
+    return SizedBox(
+      height: height ?? 44,
+      width: width ?? MediaQuery.of(context).size.width - 100,
+      child: OutlinedButton(
+        onPressed: onTap,
+        style: Theme.of(context).outlinedButtonTheme.style!.copyWith(
+            backgroundColor:
+                MaterialStateProperty.all(fillColor ?? transparent),
+            textStyle: MaterialStateProperty.all(const TextStyle().copyWith(
+                foreground: Paint()..color = isFilled != null ? black : white)),
+            side: MaterialStateProperty.all(
+                BorderSide(color: borderColor ?? transparent))),
+        child: Text(title ?? ''),
+      ),
+    );
   }
 }

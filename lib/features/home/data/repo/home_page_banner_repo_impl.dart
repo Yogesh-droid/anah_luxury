@@ -20,7 +20,6 @@ class HomePageBannerRepoImpl implements HomePageBannerRepo {
     try {
       Response? response = await networkManager.makeNetworkRequest(params);
       if (response != null) {
-        debugPrint(response.data.toString());
         if (response.statusCode == 200) {
           final value = HomePageBannerResponseModel.fromJson(response.data);
           return DataSuccess(data: value.data!.homePageBanners);

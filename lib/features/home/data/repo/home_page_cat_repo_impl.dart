@@ -20,7 +20,6 @@ class HomePageCatRepoImpl implements HomePageCatRepo {
     try {
       response = await networkManager.makeNetworkRequest(params);
       if (response != null) {
-        debugPrint(response.data.toString());
         if (response.statusCode == 200) {
           final value = HomePageCategoryResModel.fromJson(response.data);
           return DataSuccess(data: value.data!.categories);

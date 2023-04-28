@@ -28,6 +28,8 @@ class CategoryContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: width,
+      height: height,
       decoration: BoxDecoration(
           image: backgroundImage != null
               ? DecorationImage(
@@ -42,14 +44,16 @@ class CategoryContainer extends StatelessWidget {
             ? shadeColor!.withOpacity(shadeOpacity ?? 0.5)
             : null,
         child: Center(
-            child: Text(
-          title,
-          style: textStyle ??
-              const TextStyle(
-                  color: Colors.white,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w500),
-        )),
+          child: Text(
+            title,
+            textAlign: TextAlign.center,
+            style: textStyle ??
+                const TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w500),
+          ),
+        ),
       ),
     );
   }
