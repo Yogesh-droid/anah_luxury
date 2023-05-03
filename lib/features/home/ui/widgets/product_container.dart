@@ -37,6 +37,7 @@ class ProductContainer extends StatelessWidget {
           if (backgroundImage != null)
             SizedBox(
               width: width,
+              height: height,
               child: FadeInImage(
                   fit: BoxFit.cover,
                   placeholder:

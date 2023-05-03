@@ -18,7 +18,7 @@ class NewResidenceListWidget extends StatelessWidget {
         );
       } else if (state is FeaturedLuxuryResidenceResState) {
         return SizedBox(
-          height: MediaQuery.of(context).size.height * 0.355,
+          height: MediaQuery.of(context).size.height * 0.295,
           child: ListView(
             scrollDirection: Axis.horizontal,
             shrinkWrap: true,

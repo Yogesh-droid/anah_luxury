@@ -2,7 +2,6 @@ import 'package:anah_luxury/core/constants/spaces.dart';
 import 'package:anah_luxury/features/home/ui/widgets/product_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../controllers/featured_luxury_residence/featured_lusxury_residence_bloc_bloc.dart';
 
 class FeaturedResidenceListWidget extends StatelessWidget {
@@ -18,7 +17,7 @@ class FeaturedResidenceListWidget extends StatelessWidget {
         );
       } else if (state is FeaturedLuxuryResidenceResState) {
         return SizedBox(
-          height: MediaQuery.of(context).size.height * 0.355,
+          height: MediaQuery.of(context).size.height * 0.295,
           child: ListView(
             padding: const EdgeInsets.only(
                 left: appListViewHorizontalPadding,

@@ -18,6 +18,7 @@ class PropertiesCategoryList extends StatelessWidget {
         } else if (state is PropertiesCategorySuccess) {
           return GridView.builder(
               shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   childAspectRatio: 1.6,

@@ -18,7 +18,7 @@ class PopularCarsList extends StatelessWidget {
         );
       } else if (state is FeaturedLuxuryCarsREsState) {
         return SizedBox(
-          height: MediaQuery.of(context).size.height * 0.355,
+          height: MediaQuery.of(context).size.height* 0.295,
           child: ListView(
             padding: const EdgeInsets.symmetric(
                 horizontal: appListViewHorizontalPadding),

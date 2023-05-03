@@ -18,7 +18,7 @@ class FeaturedCarListWidget extends StatelessWidget {
         );
       } else if (state is FeaturedLuxuryCarsREsState) {
         return SizedBox(
-          height: MediaQuery.of(context).size.height * 0.355,
+         height: MediaQuery.of(context).size.height * 0.295,
           child: ListView(
             padding: const EdgeInsets.symmetric(
                 horizontal: appListViewHorizontalPadding),
@@ -31,6 +31,7 @@ class FeaturedCarListWidget extends StatelessWidget {
                       backgroundImage: e.uploadedFiles![0].fileUrl,
                       currency: e.currency![0].currencyName,
                       netPrice: e.salePrice.toString(),
+                      height: MediaQuery.of(context).size.height * 0.185,
                       width: MediaQuery.of(context).size.width / 2.1,
                     ))
                 .toList(),

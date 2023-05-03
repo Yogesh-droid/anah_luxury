@@ -21,6 +21,10 @@ import 'package:anah_luxury/features/home/ui/controllers/featured_luxury_cars/fe
 import 'package:anah_luxury/features/home/ui/controllers/featured_luxury_residence/featured_lusxury_residence_bloc_bloc.dart';
 import 'package:anah_luxury/features/home/ui/controllers/home_page_banners_bloc/bloc/home_page_banner_bloc_bloc.dart';
 import 'package:anah_luxury/features/home/ui/controllers/home_page_category_bloc/bloc/home_page_category_bloc_bloc.dart';
+import 'package:anah_luxury/features/product_listing/data/repo/product_list_repo_impl.dart';
+import 'package:anah_luxury/features/product_listing/domain/repo/product_list_repo.dart';
+import 'package:anah_luxury/features/product_listing/domain/usecases/product_list_usecase.dart';
+import 'package:anah_luxury/features/product_listing/ui/controllers/product_list/product_list_bloc.dart';
 import 'package:anah_luxury/features/properties/ui/controllers/properties_bloc/properties_category_bloc.dart';
 import 'package:get_it/get_it.dart';
 
@@ -87,4 +91,13 @@ void setup() {
   getIt
       .registerFactory<BrandsUsecase>(() => BrandsUsecase(brandsRepo: getIt()));
   getIt.registerFactory<BrandsBloc>(() => BrandsBloc(brandsUsecase: getIt()));
+
+
+  ////   For Getting product listing clicking on view all btn //////
+  
+  getIt.registerFactory<ProductListRepo>(() => ProductListRepoImpl(networkManager: getIt()));
+  getIt.registerFactory<ProductListUsecase>(() => ProductListUsecase(productListRepo: getIt()));
+  getIt.registerFactory<ProductListBloc>(() => ProductListBloc(productListUsecase: getIt()));
+
+
 }

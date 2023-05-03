@@ -9,6 +9,7 @@ class NetworkManager {
     Response response;
     switch (requestParams.apiMethods) {
       case ApiMethods.get:
+      
         response = await _dio.get(requestParams.url);
         return response;
 

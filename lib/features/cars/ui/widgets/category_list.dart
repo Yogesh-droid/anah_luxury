@@ -17,6 +17,7 @@ class CategoryList extends StatelessWidget {
         } else if (state is CategoryCarsSuccessState) {
           return GridView.builder(
               shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   childAspectRatio: 1.6,

@@ -4,14 +4,9 @@ import 'package:anah_luxury/features/properties/ui/controllers/properties_bloc/p
 import 'package:anah_luxury/features/properties/ui/widgets/properties_category_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../../core/constants/spaces.dart';
 import '../../../../core/constants/strings.dart';
-import '../../../cars/ui/widgets/category_list.dart';
 import '../../../home/ui/widgets/app_title_list_widget.dart';
-import '../../../home/ui/widgets/featured_car_list_widget.dart';
-import '../../../home/ui/widgets/popular_car_list.dart';
-
 class PropertiesPage extends StatefulWidget {
   const PropertiesPage({super.key});
 

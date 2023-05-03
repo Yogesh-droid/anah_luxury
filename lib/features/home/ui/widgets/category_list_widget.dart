@@ -20,6 +20,7 @@ class CategoryListWidget extends StatelessWidget {
           );
         } else if (state is HomePageCategoryResultState) {
           return GridView(
+            physics: const NeverScrollableScrollPhysics(),
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 childAspectRatio: 4 / 3,

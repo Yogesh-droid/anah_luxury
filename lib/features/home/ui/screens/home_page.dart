@@ -12,6 +12,7 @@ import 'package:anah_luxury/features/home/ui/widgets/featured_residence_list_wid
 import 'package:anah_luxury/features/home/ui/widgets/home_page_banner_widget.dart';
 import 'package:anah_luxury/features/home/ui/widgets/new_residence_list_widget.dart';
 import 'package:anah_luxury/features/home/ui/widgets/popular_car_list.dart';
+import 'package:anah_luxury/features/product_listing/ui/controllers/product_list/product_list_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -57,7 +58,10 @@ class _HomePageState extends State<HomePage> {
           const SizedBox(height: appWidgetGap),
           AppTitleAndListWidget(
             title: kFeaturedResidence,
-            onViewAllTapped: () {},
+            onViewAllTapped: () {
+              print('Ontap');
+              context.read<ProductListBloc>().add(GetProductListEvent(query: "category=cars"));
+            },
             categoryBody: const FeaturedResidenceListWidget(),
           ),
           const SizedBox(height: appWidgetGap),
