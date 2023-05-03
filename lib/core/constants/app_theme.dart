@@ -1,4 +1,5 @@
 import 'package:anah_luxury/core/constants/app_colors.dart';
+import 'package:anah_luxury/core/constants/text_tyles.dart';
 import 'package:flutter/material.dart';
 
 class AppTheme {
@@ -33,6 +34,13 @@ class AppTheme {
                     MaterialStateProperty.resolveWith((states) => states.contains(MaterialState.pressed) ? const BorderSide(color: hover) : const BorderSide(color: black)),
                 backgroundColor: MaterialStateProperty.resolveWith((states) => states.contains(MaterialState.pressed) ? hover : black),
                 textStyle: MaterialStateProperty.all<TextStyle>(const TextStyle().copyWith(foreground: Paint()..color = white, fontSize: 15, fontWeight: FontWeight.w400)),
-                padding: MaterialStateProperty.all(const EdgeInsets.symmetric(vertical: 15, horizontal: 20)))));
+                padding: MaterialStateProperty.all(const EdgeInsets.symmetric(vertical: 15, horizontal: 20)))),
+                
+                appBarTheme: AppBarTheme(
+                  iconTheme: IconThemeData().copyWith(color: black),
+                  titleTextStyle: sec_med_15.copyWith(fontFamily: "PlayfairDisplay",fontSize: 16,fontWeight: FontWeight.w500)
+                )
+                
+                );
   }
 }

@@ -25,3 +25,25 @@ class AnahAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }
+
+class AnahSecondaryAppBar extends StatelessWidget implements PreferredSizeWidget {
+  const AnahSecondaryAppBar({super.key, this.actions, this.title});
+  final List<Widget>? actions;
+  final String? title;
+
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      actions: actions,
+      title: Text(title ?? ''),
+      automaticallyImplyLeading: true,
+      
+      leadingWidth: 100,
+    );
+  }
+
+  @override
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+}

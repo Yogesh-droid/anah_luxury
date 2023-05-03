@@ -2,12 +2,10 @@ import 'package:anah_luxury/core/constants/api_constants.dart';
 import 'package:anah_luxury/core/resource/data_state/data_state.dart';
 import 'package:anah_luxury/core/resource/request_params/request_params.dart';
 import 'package:bloc/bloc.dart';
-import 'package:dio/dio.dart';
 import 'package:meta/meta.dart';
 
 import '../../../domain/entities/product_list_entity.dart';
 import '../../../domain/usecases/product_list_usecase.dart';
-
 part 'product_list_event.dart';
 part 'product_list_state.dart';
 

@@ -7,10 +7,12 @@ class NetworkManager {
 
   Future<Response?> makeNetworkRequest(RequestParams requestParams) async {
     Response response;
+    Options options = Options(headers: requestParams.header);
     switch (requestParams.apiMethods) {
       case ApiMethods.get:
+      print(requestParams.url);
       
-        response = await _dio.get(requestParams.url);
+        response = await _dio.get(requestParams.url,options: options);
         return response;
 
       default:

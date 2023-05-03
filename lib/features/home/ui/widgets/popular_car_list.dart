@@ -27,7 +27,7 @@ class PopularCarsList extends StatelessWidget {
             children: state.luxuryCarsList
                 .map((e) => ProductContainer(
                       productName: e.title ?? '',
-                      onProductTapped: () {},
+                      onProductTapped: (id) {},
                       backgroundImage: e.uploadedFiles![0].fileUrl,
                       currency: e.currency![0].currencyName,
                       netPrice: e.salePrice.toString(),

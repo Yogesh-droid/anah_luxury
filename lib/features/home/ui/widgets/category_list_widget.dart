@@ -3,6 +3,7 @@ import 'package:anah_luxury/core/constants/spaces.dart';
 import 'package:anah_luxury/core/constants/text_tyles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import '../controllers/home_page_category_bloc/bloc/home_page_category_bloc_bloc.dart';
 import 'category_container.dart';
@@ -40,7 +41,11 @@ class CategoryListWidget extends StatelessWidget {
                         fontFamily: 'PlayfairDisplay',
                         color: white,
                       ),
-                      onCategoryTapped: () {},
+                      slug: e.slug,
+                      name: e.name,
+                      onCategoryTapped: (value,name) {
+                        context.pushNamed('productListPage',queryParams: {"query":"country=60c9a6428729de2bf7ad0ebe&category=$value","name":name});
+                      },
                       shadeColor: Colors.black,
                       backgroundImage: e.imgPath ??
                           'https://images.pexels.com/photos/3786092/pexels-photo-3786092.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',

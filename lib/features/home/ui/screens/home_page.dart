@@ -12,9 +12,9 @@ import 'package:anah_luxury/features/home/ui/widgets/featured_residence_list_wid
 import 'package:anah_luxury/features/home/ui/widgets/home_page_banner_widget.dart';
 import 'package:anah_luxury/features/home/ui/widgets/new_residence_list_widget.dart';
 import 'package:anah_luxury/features/home/ui/widgets/popular_car_list.dart';
-import 'package:anah_luxury/features/product_listing/ui/controllers/product_list/product_list_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -59,27 +59,32 @@ class _HomePageState extends State<HomePage> {
           AppTitleAndListWidget(
             title: kFeaturedResidence,
             onViewAllTapped: () {
-              print('Ontap');
-              context.read<ProductListBloc>().add(GetProductListEvent(query: "category=cars"));
+              context.pushNamed('productListPage',queryParams: {"query":"country=60c9a6428729de2bf7ad0ebe&category=real-estate&featureType=isFeatured","name":kFeaturedResidence});
             },
             categoryBody: const FeaturedResidenceListWidget(),
           ),
           const SizedBox(height: appWidgetGap),
           AppTitleAndListWidget(
             title: kFeaturedCars,
-            onViewAllTapped: () {},
+            onViewAllTapped: () {
+              context.pushNamed('productListPage',queryParams: {"query":"country=60c9a6428729de2bf7ad0ebe&category=cars&featureType=isFeatured","name":kFeaturedCars});
+            },
             categoryBody: const FeaturedCarListWidget(),
           ),
           const SizedBox(height: appWidgetGap),
           AppTitleAndListWidget(
             title: kNewResidence,
-            onViewAllTapped: () {},
+            onViewAllTapped: () {
+              context.pushNamed('productListPage',queryParams: {"query":"country=60c9a6428729de2bf7ad0ebe&category=real-estate&featureType=isNew","name":kNewResidence});
+            },
             categoryBody: const NewResidenceListWidget(),
           ),
           const SizedBox(height: appWidgetGap),
           AppTitleAndListWidget(
               title: kPopularCars,
-              onViewAllTapped: () {},
+              onViewAllTapped: () {
+                context.pushNamed('productListPage',queryParams: {"query":"country=60c9a6428729de2bf7ad0ebe&category=cars&featureType=isPopular","name":kPopularCars});
+              },
               categoryBody: const PopularCarsList())
         ],
       )),

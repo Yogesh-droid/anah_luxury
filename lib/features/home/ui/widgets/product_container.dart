@@ -15,10 +15,10 @@ class ProductContainer extends StatelessWidget {
     this.specifications,
     this.currency,
     this.discount,
-    this.netPrice,
+    this.netPrice, this.wishListIcon, this.onWishListTapped,
   }) : super(key: key);
   final String productName;
-  final Function() onProductTapped;
+  final Function(String? id) onProductTapped;
   final String? backgroundImage;
   final double? height;
   final double? width;
@@ -26,6 +26,8 @@ class ProductContainer extends StatelessWidget {
   final String? currency;
   final String? discount;
   final String? netPrice;
+  final bool? wishListIcon;
+  final Function(String? id)? onWishListTapped;
 
   @override
   Widget build(BuildContext context) {

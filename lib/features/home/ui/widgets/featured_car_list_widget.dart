@@ -27,7 +27,7 @@ class FeaturedCarListWidget extends StatelessWidget {
             children: state.featuredCarsList
                 .map((e) => ProductContainer(
                       productName: e.title ?? '',
-                      onProductTapped: () {},
+                      onProductTapped: (id) {},
                       backgroundImage: e.uploadedFiles![0].fileUrl,
                       currency: e.currency![0].currencyName,
                       netPrice: e.salePrice.toString(),
