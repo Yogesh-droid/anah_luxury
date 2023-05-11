@@ -1,5 +1,10 @@
+import 'package:anah_luxury/core/constants/app_colors.dart';
+import 'package:anah_luxury/core/constants/strings.dart';
+import 'package:anah_luxury/core/constants/text_tyles.dart';
 import 'package:anah_luxury/features/dashboard/ui/widgets/anah_app_bar.dart';
 import 'package:anah_luxury/features/home/ui/widgets/product_container.dart';
+import 'package:anah_luxury/features/product_listing/ui/widgets/filter_screen.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -10,7 +15,6 @@ class ProductListPage extends StatefulWidget {
   final String query;
   final String name;
 
-  
   @override
   State<ProductListPage> createState() => _ProductListPageState();
 }
@@ -35,38 +39,88 @@ class _ProductListPageState extends State<ProductListPage> {
           IconButton(onPressed: () {}, icon: const Icon(Icons.menu))
         ],
       ),
-      body: BlocBuilder<ProductListBloc, ProductListState>(
-        builder: (context, state) {
-          if (state is ProductListInitial) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          } else if (state is ProductListFinal) {
-            return GridView.builder(
-                shrinkWrap: true,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                     crossAxisCount: 2),
-                itemCount: state.productList.length,
-                itemBuilder: (context, index) {
-                  var product = state.productList[index];
-                  return ProductContainer(
-                    productName: product.brand!.name ?? '',
-                    onProductTapped: (id) {},
-                    onWishListTapped: (id) {},
-                    backgroundImage: product.uploadedFiles![0].fileUrl,
-                    netPrice: product.price.toString(),
-                    currency: product.prodCurrency!.currencyName ?? '',
-                    height: MediaQuery.of(context).size.height * 0.185,
+      body: SafeArea(
+        bottom: true,
+        child: BlocBuilder<ProductListBloc, ProductListState>(
+          builder: (context, state) {
+            if (state is ProductListInitial) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            } else if (state is ProductListFinal) {
+              return GridView.builder(
+                  shrinkWrap: true,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      childAspectRatio: 0.9, crossAxisCount: 2),
+                  itemCount: state.productList.length,
+                  itemBuilder: (context, index) {
+                    var product = state.productList[index];
+                    return ProductContainer(
+                      productName: product.brand!.name ?? '',
+                      onProductTapped: (id) {},
+                      onWishListTapped: (id) {},
+                      backgroundImage: product.uploadedFiles![0].fileUrl,
+                      netPrice: product.price.toString(),
+                      currency: product.prodCurrency!.currencyName ?? '',
+                      height: MediaQuery.of(context).size.height * 0.182,
                       width: MediaQuery.of(context).size.width / 2,
-                  );
-                });
-          } else if (state is ProductListError) {
-            return Center(
-              child: Text(state.exception.toString()),
-            );
-          }
-          return const Center(child: Text("Something went wrong"));
-        },
+                    );
+                  });
+            } else if (state is ProductListError) {
+              return Center(
+                child: Text(state.exception.toString()),
+              );
+            }
+            return const Center(child: Text("Something went wrong"));
+          },
+        ),
+      ),
+      bottomNavigationBar: Container(
+        decoration: const BoxDecoration(color: white, boxShadow: [
+          BoxShadow(color: grey5, offset: Offset(0, -5), blurRadius: 10)
+        ]),
+        height: 56,
+        child: Row(children: [
+          Expanded(
+            child: TextButton.icon(
+                onPressed: () {
+                  showModalBottomSheet(
+                      context: context,
+                      builder: (_) {
+                        return Container();
+                      });
+                },
+                label: const Text(kSortBy, style: sec_med_18),
+                icon: const Icon(
+                  CupertinoIcons.arrow_up_arrow_down,
+                  color: black,
+                  size: 18,
+                )),
+          ),
+          Expanded(
+            child: TextButton.icon(
+                onPressed: () {
+                  showModalBottomSheet(
+                      enableDrag: true,
+                      isScrollControlled: true,
+                      context: context,
+                      builder: (_) {
+                        return SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.8,
+                            child: const FilterScreen());
+                      });
+                },
+                label: const Text(
+                  kFilterBy,
+                  style: sec_med_18,
+                ),
+                icon: const Icon(
+                  CupertinoIcons.line_horizontal_3_decrease,
+                  color: black,
+                  size: 18,
+                )),
+          )
+        ]),
       ),
     );
   }

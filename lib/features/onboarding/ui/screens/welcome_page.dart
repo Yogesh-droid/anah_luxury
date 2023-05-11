@@ -1,3 +1,7 @@
+//**
+// This is where we show Anah logo having wavy shimmer
+// */
+
 import 'package:anah_luxury/core/constants/assets.dart';
 import 'package:anah_luxury/core/routes/routes.dart';
 import 'package:flutter/material.dart';
@@ -32,6 +36,6 @@ class _WelcomePageState extends State<WelcomePage> {
 
   Future<void> appStartUp(BuildContext context) async {
     await Future.delayed(
-        const Duration(seconds: 2), () => context.go(loginPageRoute));
+        const Duration(seconds: 2), () => context.go(landingPageRoute));
   }
 }

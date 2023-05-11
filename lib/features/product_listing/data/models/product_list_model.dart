@@ -1,3 +1,4 @@
+import 'package:anah_luxury/features/product_listing/domain/entities/filter_entity.dart';
 import 'package:anah_luxury/features/product_listing/domain/entities/product_list_entity.dart';
 
 class ProductListModel {
@@ -86,8 +87,8 @@ class Products extends ProductListEntity {
             uploadedFiles: uploadedFiles);
 
   factory Products.fromJson(Map<String, dynamic> json) {
-    List<AllowCountries> allowCountries1=[];
-    List<UploadedFiles>uploadedFiles1 = [];
+    List<AllowCountries> allowCountries1 = [];
+    List<UploadedFiles> uploadedFiles1 = [];
 
     if (json['allowCountries'] != null) {
       json['allowCountries'].forEach((v) {
@@ -101,34 +102,33 @@ class Products extends ProductListEntity {
       });
     }
     return Products(
-      cars : json['cars'] != null ? Cars.fromJson(json['cars']) : null,
-    realEstates : json['realEstates'] != null
-        ? RealEstates.fromJson(json['realEstates'])
-        : null,
-    allowCountries : allowCountries1,
-    customerType : json['customerType'],
-    productType : json['productType'],
-    sId : json['_id'],
-    title : json['title'],
-    slug : json['slug'],
-    price : json['price'],
-    uploadedFiles : uploadedFiles1,
-    brand : json['brand'] != null ? Brand.fromJson(json['brand']) : null,
-    sku : json['sku'],
-    prodCurrency : json['prodCurrency'] != null
-        ? AllowCountries.fromJson(json['prodCurrency'])
-        : null,
-    salePrice : json['salePrice'],
-    quantity : json['quantity'],
-    isFeatured : json['isFeatured'],
-    isnew : json['isnew'],
-    isPopular : json['isPopular'],
-    id : json['id'],
-    stockStatus : json['stockStatus'],
-    countryId : json['country_id'],
-    productId : json['product_id'],
-    isDefault : json['isDefault']
-    );
+        cars: json['cars'] != null ? Cars.fromJson(json['cars']) : null,
+        realEstates: json['realEstates'] != null
+            ? RealEstates.fromJson(json['realEstates'])
+            : null,
+        allowCountries: allowCountries1,
+        customerType: json['customerType'],
+        productType: json['productType'],
+        sId: json['_id'],
+        title: json['title'],
+        slug: json['slug'],
+        price: json['price'],
+        uploadedFiles: uploadedFiles1,
+        brand: json['brand'] != null ? Brand.fromJson(json['brand']) : null,
+        sku: json['sku'],
+        prodCurrency: json['prodCurrency'] != null
+            ? AllowCountries.fromJson(json['prodCurrency'])
+            : null,
+        salePrice: json['salePrice'],
+        quantity: json['quantity'],
+        isFeatured: json['isFeatured'],
+        isnew: json['isnew'],
+        isPopular: json['isPopular'],
+        id: json['id'],
+        stockStatus: json['stockStatus'],
+        countryId: json['country_id'],
+        productId: json['product_id'],
+        isDefault: json['isDefault']);
   }
 
   Map<String, dynamic> toJson() {
@@ -301,45 +301,91 @@ class Brand {
   }
 }
 
-class Filters {
-  List<Brands>? brands;
-  List<Brands>? cmakers;
-  List<Brands>? cmodels;
-  FeatureType? featureType;
-  PropertyType? propertyType;
-
+class Filters extends FilterEntity {
   Filters(
-      {this.brands,
-      this.cmakers,
-      this.cmodels,
-      this.featureType,
-      this.propertyType});
+      {List<Brands>? brands,
+      List<Brands>? cmakers,
+      List<Brands>? cmodels,
+      List<Brands>? categories,
+      List<Brands>? sellers,
+      Price? price,
+      Price? kmDriven,
+      Price? year,
+      Price? rooms,
+      Price? buildArea,
+      FeatureType? featureType,
+      PropertyType? propertyType})
+      : super(
+            brands: brands,
+            buildArea: buildArea,
+            categories: categories,
+            cmakers: cmakers,
+            cmodels: cmodels,
+            featureType: featureType,
+            kmDriven: kmDriven,
+            price: price,
+            propertyType: propertyType,
+            rooms: rooms,
+            sellers: sellers,
+            year: year);
 
-  Filters.fromJson(Map<String, dynamic> json) {
+  factory Filters.fromJson(Map<String, dynamic> json) {
+    List<Brands>? brands1 = [];
+    List<Brands>? cmakers1 = [];
+    List<Brands>? cmodels1 = [];
+    List<Brands>? categories1 = [];
+    List<Brands>? sellers1 = [];
+
     if (json['brands'] != null) {
-      brands = <Brands>[];
       json['brands'].forEach((v) {
-        brands!.add(Brands.fromJson(v));
+        brands1.add(Brands.fromJson(v));
       });
     }
+
     if (json['cmakers'] != null) {
-      cmakers = <Brands>[];
       json['cmakers'].forEach((v) {
-        cmakers!.add(Brands.fromJson(v));
+        cmakers1.add(Brands.fromJson(v));
       });
     }
+
     if (json['cmodels'] != null) {
-      cmodels = <Brands>[];
       json['cmodels'].forEach((v) {
-        cmodels!.add(Brands.fromJson(v));
+        cmodels1.add(Brands.fromJson(v));
       });
     }
-    featureType = json['featureType'] != null
-        ? FeatureType.fromJson(json['featureType'])
-        : null;
-    propertyType = json['propertyType'] != null
-        ? PropertyType.fromJson(json['propertyType'])
-        : null;
+
+    if (json['categories'] != null) {
+      json['categories'].forEach((v) {
+        categories1.add(Brands.fromJson(v));
+      });
+    }
+
+    if (json['sellers'] != null) {
+      json['sellers'].forEach((v) {
+        sellers1.add(Brands.fromJson(v));
+      });
+    }
+
+    return Filters(
+        brands: brands1,
+        categories: categories1,
+        cmakers: cmakers1,
+        cmodels: cmodels1,
+        sellers: sellers1,
+        price: json['price'] != null ? Price.fromJson(json['price']) : null,
+        year: json['year'] != null ? Price.fromJson(json['year']) : null,
+        kmDriven:
+            json['kmDriven'] != null ? Price.fromJson(json['kmDriven']) : null,
+        rooms: json['room'] != null ? Price.fromJson(json['room']) : null,
+        buildArea: json['buildArea'] != null
+            ? Price.fromJson(json['buildArea'])
+            : null,
+        featureType: json['featureType'] != null
+            ? FeatureType.fromJson(json['featureType'])
+            : null,
+        propertyType: json['propertyType'] != null
+            ? PropertyType.fromJson(json['propertyType'])
+            : null);
   }
 
   Map<String, dynamic> toJson() {
@@ -426,5 +472,16 @@ class PropertyType {
     data['Semi-Furnished'] = semiFurnished;
     data['UnFurnished'] = unFurnished;
     return data;
+  }
+}
+
+class Price {
+  int? start;
+  int? end;
+  Price({this.end, this.start});
+
+  Price.fromJson(Map<String, dynamic> json) {
+    start = json["start"];
+    end = json["end"];
   }
 }

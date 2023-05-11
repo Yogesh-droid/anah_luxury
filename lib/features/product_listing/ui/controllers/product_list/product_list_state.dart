@@ -7,8 +7,9 @@ class ProductListInitial extends ProductListState {}
 
 class ProductListFinal extends ProductListState{
   final List<ProductListEntity> productList;
+  final FilterEntity filtersList;
 
-  ProductListFinal({required this.productList});
+  ProductListFinal({required this.productList,required this.filtersList});
 }
 
 class ProductListError extends ProductListState{

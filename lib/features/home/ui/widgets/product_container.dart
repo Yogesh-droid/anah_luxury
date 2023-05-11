@@ -50,6 +50,8 @@ class ProductContainer extends StatelessWidget {
           SizedBox(
             width: width,
             child: Text(productName,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis ,
                 style: sec_med_15.copyWith(
                     fontFamily: 'PlayfairDIsplay',
                     fontWeight: FontWeight.w600)),

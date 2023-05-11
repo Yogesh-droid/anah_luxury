@@ -1,11 +1,13 @@
+import 'package:anah_luxury/features/auth/login/ui/screens/login_screen.dart';
 import 'package:anah_luxury/features/dashboard/ui/screens/dashboard.dart';
-import 'package:anah_luxury/features/login/ui/screens/login_page.dart';
+import 'package:anah_luxury/features/landing/ui/screens/landing_page.dart';
 import 'package:anah_luxury/features/onboarding/ui/screens/welcome_page.dart';
 import 'package:anah_luxury/features/product_listing/ui/screens/product_list_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 const String welcomePageRoute = '/';
+const String landingPageRoute = '/landingPage';
 const String loginPageRoute = '/loginPage';
 const String dashBoardRoute = '/dashBoard';
 const String productListRoute = '/productList';
@@ -18,10 +20,10 @@ final GoRouter router = GoRouter(routes: [
     },
   ),
   GoRoute(
-    path: loginPageRoute,
+    path: landingPageRoute,
     pageBuilder: (context, state) {
       return getTransition(
-          child: const LoginPage(),
+          child: const LandingPage(),
           animationType: TransitionType.fade,
           duration: const Duration(milliseconds: 500));
     },
@@ -36,13 +38,24 @@ final GoRouter router = GoRouter(routes: [
     },
   ),
   GoRoute(
+    path: loginPageRoute,
+    pageBuilder: (context, state) {
+      return getTransition(
+          child: const LoginScreen(),
+          animationType: TransitionType.fade,
+          duration: const Duration(milliseconds: 500));
+    },
+  ),
+  GoRoute(
     path: productListRoute,
     name: "productListPage",
     pageBuilder: (context, state) {
       return getTransition(
-          child: ProductListPage(query: state.queryParams['query']!,name:state.queryParams['name'] ?? '' ),
+          child: ProductListPage(
+              query: state.queryParams['query']!,
+              name: state.queryParams['name'] ?? ''),
           animationType: TransitionType.slide,
-          duration: const Duration(milliseconds: 500));
+          duration: const Duration(milliseconds: 200));
     },
   ),
 ]);
@@ -53,7 +66,7 @@ Page<dynamic> getTransition(
     TransitionType? animationType}) {
   return CustomTransitionPage(
       child: child,
-      transitionDuration: const Duration(seconds: 1),
+      transitionDuration: duration ?? const Duration(seconds: 1),
       transitionsBuilder: (BuildContext context, Animation<double> animation,
           Animation<double> secondaryAnimation, Widget child) {
         switch (animationType) {

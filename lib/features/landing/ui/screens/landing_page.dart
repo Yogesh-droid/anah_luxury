@@ -1,14 +1,19 @@
-import 'package:anah_luxury/core/constants/assets.dart';
-import 'package:anah_luxury/features/login/ui/controllers/cubit/banner_text_controller_cubit.dart';
-import 'package:anah_luxury/features/login/ui/widgets/auth_button_views.dart';
-import 'package:anah_luxury/features/login/ui/widgets/login_background_decoration.dart';
-import 'package:flutter/material.dart';
-import 'dart:math' as math;
+//**
+// This page is landing page where we display login and create account options to user
 
+// */
+
+import 'package:anah_luxury/core/constants/app_colors.dart';
+import 'package:anah_luxury/core/constants/assets.dart';
+import 'package:anah_luxury/core/constants/text_tyles.dart';
+import 'package:anah_luxury/features/landing/ui/controllers/cubit/banner_text_controller_cubit.dart';
+import 'package:anah_luxury/features/landing/ui/widgets/auth_button_views.dart';
+import 'package:anah_luxury/features/landing/ui/widgets/login_background_decoration.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+class LandingPage extends StatelessWidget {
+  const LandingPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,8 +22,8 @@ class LoginPage extends StatelessWidget {
         child: Stack(
           children: [
             background(context),
-            const LoginBackground(),
-            const LoginForeground()
+            const LandingBackground(),
+            const LandingForeground()
           ],
         ),
       ),
@@ -30,14 +35,14 @@ class LoginPage extends StatelessWidget {
   }
 }
 
-class LoginForeground extends StatefulWidget {
-  const LoginForeground({super.key});
+class LandingForeground extends StatefulWidget {
+  const LandingForeground({super.key});
 
   @override
-  State<LoginForeground> createState() => _LoginForegroundState();
+  State<LandingForeground> createState() => _LandingForegroundState();
 }
 
-class _LoginForegroundState extends State<LoginForeground>
+class _LandingForegroundState extends State<LandingForeground>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<Offset> _animation;
@@ -69,6 +74,8 @@ class _LoginForegroundState extends State<LoginForeground>
               child: Image.asset(
                 Assets.assetsWelcomePageAnah,
                 color: Colors.white,
+                height: 50,
+                width: 120,
               ),
             ),
             const SizedBox(
@@ -87,18 +94,29 @@ class _LoginForegroundState extends State<LoginForeground>
                           key: const ValueKey<String>("Homes"),
                           state,
                           textAlign: TextAlign.start,
-                          style: const TextStyle(
-                              color: Colors.white, fontSize: 48),
-                        )
+                          style: sec_med_36.copyWith(
+                              fontFamily: "PlayfairDisplay",
+                              color: white,
+                              fontWeight: FontWeight.w600))
                       : Text(
                           key: const ValueKey<String>("Cars"),
                           state,
                           textAlign: TextAlign.start,
-                          style: const TextStyle(
-                              color: Colors.white, fontSize: 48),
+                          style: sec_med_36.copyWith(
+                              fontFamily: "PlayfairDisplay",
+                              color: white,
+                              fontWeight: FontWeight.w600),
                         ),
                 );
               },
+            ),
+            SizedBox(
+              width: MediaQuery.of(context).size.width / 1.5,
+              child: Text(
+                '''Discover new collection from all over the globe everyday with ANAH''',
+                style: sec_med_15.copyWith(color: white),
+                textAlign: TextAlign.center,
+              ),
             ),
             const Spacer(),
             Align(
@@ -115,14 +133,14 @@ class _LoginForegroundState extends State<LoginForeground>
   }
 }
 
-class LoginBackground extends StatefulWidget {
-  const LoginBackground({super.key});
+class LandingBackground extends StatefulWidget {
+  const LandingBackground({super.key});
 
   @override
-  State<LoginBackground> createState() => _LoginBackgroundState();
+  State<LandingBackground> createState() => _LandingBackgroundState();
 }
 
-class _LoginBackgroundState extends State<LoginBackground>
+class _LandingBackgroundState extends State<LandingBackground>
     with SingleTickerProviderStateMixin {
   late Animation<Offset> _animation;
   late AnimationController _controller;

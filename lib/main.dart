@@ -7,7 +7,9 @@ import 'package:anah_luxury/features/home/ui/controllers/featured_luxury_cars/fe
 import 'package:anah_luxury/features/home/ui/controllers/featured_luxury_residence/featured_lusxury_residence_bloc_bloc.dart';
 import 'package:anah_luxury/features/home/ui/controllers/home_page_banners_bloc/bloc/home_page_banner_bloc_bloc.dart';
 import 'package:anah_luxury/features/home/ui/controllers/home_page_category_bloc/bloc/home_page_category_bloc_bloc.dart';
-import 'package:anah_luxury/features/login/ui/controllers/cubit/banner_text_controller_cubit.dart';
+import 'package:anah_luxury/features/landing/ui/controllers/cubit/banner_text_controller_cubit.dart';
+import 'package:anah_luxury/features/product_listing/ui/controllers/cubit/filter_cubit.dart';
+import 'package:anah_luxury/features/product_listing/ui/controllers/cubit/range_slider_cubit.dart';
 import 'package:anah_luxury/features/product_listing/ui/controllers/product_list/product_list_bloc.dart';
 import 'package:anah_luxury/features/properties/ui/controllers/properties_bloc/properties_category_bloc.dart';
 import 'package:flutter/material.dart';
@@ -41,8 +43,12 @@ class MyApp extends StatelessWidget {
               create: (context) => BrandsBloc(brandsUsecase: getIt())),
           BlocProvider<PropertiesCategoryBloc>(
               create: (context) => PropertiesCategoryBloc(getIt())),
-
-              BlocProvider<ProductListBloc>(create: (context)=>ProductListBloc(productListUsecase: getIt()))
+          BlocProvider<ProductListBloc>(
+              create: (context) =>
+                  ProductListBloc(productListUsecase: getIt())),
+          BlocProvider<FilterCubit>(create: (context) => FilterCubit()),
+          BlocProvider<RangeSliderCubit>(
+              create: (context) => RangeSliderCubit()),
         ],
         child: MaterialApp.router(
           title: 'Anah Luxury',

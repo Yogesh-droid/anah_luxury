@@ -50,3 +50,5 @@ class ProductListEntity {
       this.productId,
       this.isDefault});
 }
+
+

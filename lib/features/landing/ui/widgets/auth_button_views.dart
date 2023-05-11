@@ -1,5 +1,5 @@
 import 'package:anah_luxury/core/routes/routes.dart';
-import 'package:anah_luxury/features/login/ui/widgets/anah_auth_button.dart';
+import 'package:anah_luxury/features/landing/ui/widgets/anah_auth_button.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -17,7 +17,8 @@ class AuthButtonViews extends StatelessWidget {
             title: 'LOG IN',
             borderColor: Colors.white,
             onTap: () {
-              context.push(dashBoardRoute);
+              //context.push(dashBoardRoute);
+              context.push(loginPageRoute);
             },
           ),
           const SizedBox(
