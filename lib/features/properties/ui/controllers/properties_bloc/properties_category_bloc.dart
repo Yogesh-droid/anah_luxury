@@ -1,8 +1,6 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:bloc/bloc.dart';
-import 'package:flutter/material.dart';
-import 'package:meta/meta.dart';
 import 'package:anah_luxury/features/cars/domain/usecases/category_usecase.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/constants/api_constants.dart';
 import '../../../../../core/resource/data_state/data_state.dart';
 import '../../../../../core/resource/request_params/request_params.dart';
@@ -22,7 +20,7 @@ class PropertiesCategoryBloc
       if (event is GetPropertiesCategoryEvent) {
         try {
           final DataState<List<CategoryEntity>> categorylist =
-              await categoryUsecase.call(const RequestParams(
+              await categoryUsecase.call(RequestParams(
                   url: "${baseUrl}get-children/real-estate",
                   apiMethods: ApiMethods.get));
           for (var category in categorylist.data!) {

@@ -4,6 +4,7 @@ import 'package:anah_luxury/core/resource/request_params/request_params.dart';
 import 'package:anah_luxury/core/resource/data_state/data_state.dart';
 import 'package:anah_luxury/features/product_listing/domain/repo/product_list_repo.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 
 class ProductListRepoImpl implements ProductListRepo {
   final NetworkManager networkManager;
@@ -30,6 +31,7 @@ class ProductListRepoImpl implements ProductListRepo {
             exception: Exception("Data is not received from server"));
       }
     } on Exception catch (e) {
+      debugPrint(e.toString());
       return DataError(exception: Exception("Some Server Error"));
     }
   }

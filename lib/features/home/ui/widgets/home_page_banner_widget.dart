@@ -17,7 +17,11 @@ class HomePagebannerWidget extends StatelessWidget {
         );
       } else if (state is HomePageBannerResultState) {
         if (state.bannerList.isNotEmpty) {
-          return HomeCarousel(bannerList: state.bannerList);
+          List<String> bannerList = [];
+          for (var element in state.bannerList) {
+            bannerList.add(element.image ?? '');
+          }
+          return HomeCarousel(bannerList: bannerList);
         }
       }
       return const Text('Some Err');

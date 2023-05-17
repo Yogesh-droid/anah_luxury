@@ -1,6 +1,4 @@
-import 'package:anah_luxury/core/constants/app_colors.dart';
 import 'package:flutter/material.dart';
-
 import '../../data/models/product_list_model.dart';
 
 class ListFilter extends StatelessWidget {

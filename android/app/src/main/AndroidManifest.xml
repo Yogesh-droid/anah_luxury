@@ -5,7 +5,10 @@
    <application
         android:label="anah_luxury"
         android:name="${applicationName}"
-        android:icon="@mipmap/anah_logo">
+        android:icon="@mipmap/anah_logo"
+        android:enableOnBackInvokedCallback="true"
+        >
+        
         <activity
             android:name=".MainActivity"
             android:exported="true"

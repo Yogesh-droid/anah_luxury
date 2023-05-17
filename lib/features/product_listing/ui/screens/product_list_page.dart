@@ -57,13 +57,14 @@ class _ProductListPageState extends State<ProductListPage> {
                     var product = state.productList[index];
                     return ProductContainer(
                       productName: product.brand!.name ?? '',
-                      onProductTapped: (id) {},
+                      onProductTapped: (slug) {},
                       onWishListTapped: (id) {},
                       backgroundImage: product.uploadedFiles![0].fileUrl,
                       netPrice: product.price.toString(),
                       currency: product.prodCurrency!.currencyName ?? '',
                       height: MediaQuery.of(context).size.height * 0.182,
                       width: MediaQuery.of(context).size.width / 2,
+                      slug: product.slug,
                     );
                   });
             } else if (state is ProductListError) {
@@ -90,7 +91,7 @@ class _ProductListPageState extends State<ProductListPage> {
                         return Container();
                       });
                 },
-                label: const Text(kSortBy, style: sec_med_18),
+                label: const Text(kSortBy, style: secMed18),
                 icon: const Icon(
                   CupertinoIcons.arrow_up_arrow_down,
                   color: black,
@@ -112,7 +113,7 @@ class _ProductListPageState extends State<ProductListPage> {
                 },
                 label: const Text(
                   kFilterBy,
-                  style: sec_med_18,
+                  style: secMed18,
                 ),
                 icon: const Icon(
                   CupertinoIcons.line_horizontal_3_decrease,

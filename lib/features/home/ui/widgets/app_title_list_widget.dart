@@ -24,7 +24,7 @@ class AppTitleAndListWidget extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: appPadding),
               child: Text(
                 title,
-                style: sec_med_15,
+                style: secMed15,
               ),
             ),
             if (onViewAllTapped != null)

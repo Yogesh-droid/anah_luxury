@@ -35,12 +35,6 @@ class AppTheme {
                 backgroundColor: MaterialStateProperty.resolveWith((states) => states.contains(MaterialState.pressed) ? hover : black),
                 textStyle: MaterialStateProperty.all<TextStyle>(const TextStyle().copyWith(foreground: Paint()..color = white, fontSize: 15, fontWeight: FontWeight.w400)),
                 padding: MaterialStateProperty.all(const EdgeInsets.symmetric(vertical: 15, horizontal: 20)))),
-                
-                appBarTheme: AppBarTheme(
-                  iconTheme: IconThemeData().copyWith(color: black),
-                  titleTextStyle: sec_med_15.copyWith(fontFamily: "PlayfairDisplay",fontSize: 16,fontWeight: FontWeight.w500)
-                )
-                
-                );
+        appBarTheme: AppBarTheme(iconTheme: const IconThemeData().copyWith(color: black), titleTextStyle: secMed15.copyWith(fontFamily: "PlayfairDisplay", fontSize: 16, fontWeight: FontWeight.w500)));
   }
 }

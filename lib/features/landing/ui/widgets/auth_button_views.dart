@@ -1,3 +1,4 @@
+import 'package:anah_luxury/core/constants/strings.dart';
 import 'package:anah_luxury/core/routes/routes.dart';
 import 'package:anah_luxury/features/landing/ui/widgets/anah_auth_button.dart';
 import 'package:flutter/material.dart';
@@ -14,26 +15,26 @@ class AuthButtonViews extends StatelessWidget {
       child: Column(
         children: [
           AnahAuthButton(
-            title: 'LOG IN',
+            title: kLogin.toUpperCase(),
             borderColor: Colors.white,
             onTap: () {
-              //context.push(dashBoardRoute);
               context.push(loginPageRoute);
             },
           ),
           const SizedBox(
             height: 20,
           ),
-          const AnahAuthButton(
-            title: 'CREATE ACCOUNT',
+          AnahAuthButton(
+            title: kCreateAcc.toUpperCase(),
             isFilled: true,
             fillColor: Colors.white,
+            onTap: () => context.push(signPageRoute),
           ),
           const SizedBox(
             height: 30,
           ),
           const Text(
-            'Continue with',
+            kContinueWith,
             style: TextStyle(color: Colors.white),
           ),
           Row(

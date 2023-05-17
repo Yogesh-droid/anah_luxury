@@ -1,7 +1,10 @@
+import 'package:anah_luxury/core/constants/hive/local_storage.dart';
 import 'package:anah_luxury/features/auth/login/ui/screens/login_screen.dart';
+import 'package:anah_luxury/features/auth/sign_up/ui/screens/sign_up_screen.dart';
 import 'package:anah_luxury/features/dashboard/ui/screens/dashboard.dart';
 import 'package:anah_luxury/features/landing/ui/screens/landing_page.dart';
 import 'package:anah_luxury/features/onboarding/ui/screens/welcome_page.dart';
+import 'package:anah_luxury/features/product_details/ui/screen/car_detail_page.dart';
 import 'package:anah_luxury/features/product_listing/ui/screens/product_list_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -9,56 +12,101 @@ import 'package:go_router/go_router.dart';
 const String welcomePageRoute = '/';
 const String landingPageRoute = '/landingPage';
 const String loginPageRoute = '/loginPage';
+const String signPageRoute = '/signUpPage';
 const String dashBoardRoute = '/dashBoard';
 const String productListRoute = '/productList';
+const String carDetailRoute = '/carDetailPage';
 
-final GoRouter router = GoRouter(routes: [
-  GoRoute(
-    path: '/',
-    pageBuilder: (context, state) {
-      return const MaterialPage(child: WelcomePage());
+const String productListPageName = "productListPage";
+const String carDetailPageName = "carDetailPage";
+
+final token = LocalStorage().getToken();
+String tokenValue = '';
+
+final GoRouter router = GoRouter(
+    initialLocation: welcomePageRoute,
+    redirect: (_, state) {
+      if (state.subloc == welcomePageRoute ||
+          state.subloc == landingPageRoute) {
+        token.then((value) {
+          tokenValue = value;
+        });
+        if (tokenValue.isEmpty) {
+          return welcomePageRoute;
+        } else {
+          return dashBoardRoute;
+        }
+      }
+      return null;
     },
-  ),
-  GoRoute(
-    path: landingPageRoute,
-    pageBuilder: (context, state) {
-      return getTransition(
-          child: const LandingPage(),
-          animationType: TransitionType.fade,
-          duration: const Duration(milliseconds: 500));
-    },
-  ),
-  GoRoute(
-    path: dashBoardRoute,
-    pageBuilder: (context, state) {
-      return getTransition(
-          child: const DashBoard(),
-          animationType: TransitionType.fade,
-          duration: const Duration(milliseconds: 500));
-    },
-  ),
-  GoRoute(
-    path: loginPageRoute,
-    pageBuilder: (context, state) {
-      return getTransition(
-          child: const LoginScreen(),
-          animationType: TransitionType.fade,
-          duration: const Duration(milliseconds: 500));
-    },
-  ),
-  GoRoute(
-    path: productListRoute,
-    name: "productListPage",
-    pageBuilder: (context, state) {
-      return getTransition(
-          child: ProductListPage(
-              query: state.queryParams['query']!,
-              name: state.queryParams['name'] ?? ''),
-          animationType: TransitionType.slide,
-          duration: const Duration(milliseconds: 200));
-    },
-  ),
-]);
+    routes: [
+      GoRoute(
+        path: '/',
+        pageBuilder: (context, state) {
+          return const MaterialPage(child: WelcomePage());
+        },
+      ),
+      GoRoute(
+        path: landingPageRoute,
+        pageBuilder: (context, state) {
+          return getTransition(
+              child: const LandingPage(),
+              animationType: TransitionType.fade,
+              duration: const Duration(milliseconds: 500));
+        },
+      ),
+      GoRoute(
+        path: dashBoardRoute,
+        pageBuilder: (context, state) {
+          return getTransition(
+              child: const DashBoard(),
+              animationType: TransitionType.fade,
+              duration: const Duration(milliseconds: 500));
+        },
+      ),
+      GoRoute(
+        path: loginPageRoute,
+        pageBuilder: (context, state) {
+          return getTransition(
+              child: const LoginScreen(),
+              animationType: TransitionType.fade,
+              duration: const Duration(milliseconds: 500));
+        },
+      ),
+      GoRoute(
+        path: signPageRoute,
+        pageBuilder: (context, state) {
+          return getTransition(
+              child: const SignUpScreen(),
+              animationType: TransitionType.fade,
+              duration: const Duration(milliseconds: 500));
+        },
+      ),
+      GoRoute(
+        path: productListRoute,
+        name: "productListPage",
+        pageBuilder: (context, state) {
+          return getTransition(
+              child: ProductListPage(
+                  query: state.queryParams['query']!,
+                  name: state.queryParams['name'] ?? ''),
+              animationType: TransitionType.slide,
+              duration: const Duration(milliseconds: 200));
+        },
+      ),
+      GoRoute(
+        path: carDetailRoute,
+        name: carDetailPageName,
+        pageBuilder: (context, state) {
+          return getTransition(
+              child: CarDetailPage(
+                slug: state.queryParams['slug']!,
+              ),
+              animationType: TransitionType.fade,
+              duration: const Duration(milliseconds: 200));
+        },
+      ),
+    ]);
 
 Page<dynamic> getTransition(
     {required Widget child,

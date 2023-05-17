@@ -16,13 +16,13 @@ class HomePageCategoryBlocBloc
       : super(HomePageCategoryBlocInitial()) {
     on<HomePageCategoryBlocEvent>((event, emit) async {
       if (event is GetHomePageCatEvent) {
-        DataState<List<HomePageCatResEntity>> _catState = await catUsecase.call(
-            const RequestParams(
+        DataState<List<HomePageCatResEntity>> catState = await catUsecase.call(
+            RequestParams(
                 url: "${baseUrl}client/homepage-categories",
                 apiMethods: ApiMethods.get));
 
-        if (_catState.data != null) {
-          for (var element in _catState.data!) {
+        if (catState.data != null) {
+          for (var element in catState.data!) {
             categoryList.add(element);
           }
         }

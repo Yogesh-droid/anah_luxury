@@ -1,9 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:anah_luxury/core/constants/api_constants.dart';
 import 'package:anah_luxury/core/resource/request_params/request_params.dart';
-import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
-
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:anah_luxury/core/resource/data_state/data_state.dart';
 import 'package:anah_luxury/features/cars/domain/entity/brands_entity.dart';
 import 'package:anah_luxury/features/cars/domain/usecases/brands_usecase.dart';
@@ -19,7 +18,7 @@ class BrandsBloc extends Bloc<BrandsEvent, BrandsState> {
       if (event is GetBrandsEvent) {
         try {
           final DataState<List<BrandsEntity>> brands = await brandsUsecase.call(
-              const RequestParams(
+              RequestParams(
                   url: "${baseUrl}client/brandsLogo",
                   apiMethods: ApiMethods.get));
 

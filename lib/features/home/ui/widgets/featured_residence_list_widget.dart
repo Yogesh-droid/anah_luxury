@@ -27,12 +27,13 @@ class FeaturedResidenceListWidget extends StatelessWidget {
             children: state.featuredApartments
                 .map((e) => ProductContainer(
                       productName: e.title ?? '',
-                      onProductTapped: (id) {},
+                      onProductTapped: (slug) {},
                       backgroundImage: e.uploadedFiles![0].fileUrl,
                       currency: e.currency![0].currencyName,
                       netPrice: e.salePrice.toString(),
                       height: MediaQuery.of(context).size.height * 0.185,
                       width: MediaQuery.of(context).size.width / 2,
+                      slug: e.slug,
                     ))
                 .toList(),
           ),

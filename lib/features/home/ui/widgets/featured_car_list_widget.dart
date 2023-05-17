@@ -1,7 +1,9 @@
 import 'package:anah_luxury/core/constants/spaces.dart';
+import 'package:anah_luxury/core/routes/routes.dart';
 import 'package:anah_luxury/features/home/ui/widgets/product_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import '../controllers/featured_luxury_cars/featured_luxury_cars_bloc_bloc.dart';
 
@@ -18,7 +20,7 @@ class FeaturedCarListWidget extends StatelessWidget {
         );
       } else if (state is FeaturedLuxuryCarsREsState) {
         return SizedBox(
-         height: MediaQuery.of(context).size.height * 0.295,
+          height: MediaQuery.of(context).size.height * 0.295,
           child: ListView(
             padding: const EdgeInsets.symmetric(
                 horizontal: appListViewHorizontalPadding),
@@ -27,12 +29,16 @@ class FeaturedCarListWidget extends StatelessWidget {
             children: state.featuredCarsList
                 .map((e) => ProductContainer(
                       productName: e.title ?? '',
-                      onProductTapped: (id) {},
+                      onProductTapped: (slug) {
+                        context.pushNamed(carDetailPageName,
+                            queryParams: {"slug": slug});
+                      },
                       backgroundImage: e.uploadedFiles![0].fileUrl,
                       currency: e.currency![0].currencyName,
                       netPrice: e.salePrice.toString(),
                       height: MediaQuery.of(context).size.height * 0.185,
                       width: MediaQuery.of(context).size.width / 2.1,
+                      slug: e.slug,
                     ))
                 .toList(),
           ),

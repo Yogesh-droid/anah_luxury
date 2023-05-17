@@ -1,4 +1,8 @@
 import 'package:anah_luxury/core/resource/network/network_manager.dart';
+import 'package:anah_luxury/features/auth/login/data/repo/login_repo_impl.dart';
+import 'package:anah_luxury/features/auth/login/domain/repo/login_repo.dart';
+import 'package:anah_luxury/features/auth/login/domain/usecases/login_response_usecase.dart';
+import 'package:anah_luxury/features/auth/login/ui/controllers/login_bloc/login_bloc.dart';
 import 'package:anah_luxury/features/cars/data/repo/brands_repo_impl.dart';
 import 'package:anah_luxury/features/cars/data/repo/category_repo_impl.dart';
 import 'package:anah_luxury/features/cars/domain/repo/brands_repo.dart';
@@ -21,6 +25,10 @@ import 'package:anah_luxury/features/home/ui/controllers/featured_luxury_cars/fe
 import 'package:anah_luxury/features/home/ui/controllers/featured_luxury_residence/featured_lusxury_residence_bloc_bloc.dart';
 import 'package:anah_luxury/features/home/ui/controllers/home_page_banners_bloc/bloc/home_page_banner_bloc_bloc.dart';
 import 'package:anah_luxury/features/home/ui/controllers/home_page_category_bloc/bloc/home_page_category_bloc_bloc.dart';
+import 'package:anah_luxury/features/product_details/data/repo/car_detail_repo_impl.dart';
+import 'package:anah_luxury/features/product_details/domain/repo/car_detail_repo.dart';
+import 'package:anah_luxury/features/product_details/domain/usecases/car_details_usecase.dart';
+import 'package:anah_luxury/features/product_details/ui/controllers/bloc/product_detail_bloc.dart';
 import 'package:anah_luxury/features/product_listing/data/repo/product_list_repo_impl.dart';
 import 'package:anah_luxury/features/product_listing/domain/repo/product_list_repo.dart';
 import 'package:anah_luxury/features/product_listing/domain/usecases/product_list_usecase.dart';
@@ -92,12 +100,30 @@ void setup() {
       .registerFactory<BrandsUsecase>(() => BrandsUsecase(brandsRepo: getIt()));
   getIt.registerFactory<BrandsBloc>(() => BrandsBloc(brandsUsecase: getIt()));
 
-
   ////   For Getting product listing clicking on view all btn //////
-  
-  getIt.registerFactory<ProductListRepo>(() => ProductListRepoImpl(networkManager: getIt()));
-  getIt.registerFactory<ProductListUsecase>(() => ProductListUsecase(productListRepo: getIt()));
-  getIt.registerFactory<ProductListBloc>(() => ProductListBloc(productListUsecase: getIt()));
 
+  getIt.registerFactory<ProductListRepo>(
+      () => ProductListRepoImpl(networkManager: getIt()));
+  getIt.registerFactory<ProductListUsecase>(
+      () => ProductListUsecase(productListRepo: getIt()));
+  getIt.registerFactory<ProductListBloc>(
+      () => ProductListBloc(productListUsecase: getIt()));
 
+  ////   Login //////
+
+  getIt
+      .registerFactory<LoginRepo>(() => LoginRepoImpl(networkManager: getIt()));
+  getIt.registerFactory<LoginResponseUsecase>(
+      () => LoginResponseUsecase(loginRepo: getIt()));
+  getIt.registerFactory<LoginBloc>(
+      () => LoginBloc(loginResponseUsecase: getIt()));
+
+  ///  Car Details  ////
+
+  getIt.registerFactory<CarDetailRepo>(
+      () => CarDetailRepoImpl(networkManager: getIt()));
+  getIt.registerFactory<CarDetailUsecase>(
+      () => CarDetailUsecase(carDetailRepo: getIt()));
+  getIt.registerFactory<ProductDetailBloc>(
+      () => ProductDetailBloc(carDetailUsecase: getIt()));
 }

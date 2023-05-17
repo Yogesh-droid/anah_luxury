@@ -8,4 +8,9 @@ const double appViewAllPadding = 8.0; // used for view All button
 const double appListViewHorizontalPadding =
     8.0; // used for list view horizontal padding
 
-const double appTitleCategoryGap = 10.0;  /// this is used for gap between title(Feature cars etc..) and its list widget
+const double appTitleCategoryGap = 10.0;
+
+/// this is used for gap between title(Feature cars etc..) and its list widget
+
+const double appFormFieldGap = 12.0;   /// used for gap between two textfield 
+

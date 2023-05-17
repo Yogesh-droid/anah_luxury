@@ -24,8 +24,7 @@ class CategoryWidget extends StatelessWidget {
       child: Center(
         child: Text(
           title ?? '',
-          style:
-              sec_med_15.copyWith(fontFamily: 'PlayfairDisplay', color: white),
+          style: secMed15.copyWith(fontFamily: 'PlayfairDisplay', color: white),
         ),
       ),
     );

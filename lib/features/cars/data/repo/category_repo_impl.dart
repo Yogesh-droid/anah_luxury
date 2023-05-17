@@ -32,6 +32,7 @@ class CategoryRepoImpl implements CategoryRepo {
       } else {
         return DataError(exception: Exception("Some Error From Server"));
       }
+      // ignore: unused_catch_clause
     } on Exception catch (e) {
       return DataError(
           exception:

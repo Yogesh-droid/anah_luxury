@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/routes/routes.dart';
 import '../controllers/home_page_category_bloc/bloc/home_page_category_bloc_bloc.dart';
 import 'category_container.dart';
 
@@ -36,15 +37,19 @@ class CategoryListWidget extends StatelessWidget {
                       width: MediaQuery.of(context).size.width / 2.5,
                       height: MediaQuery.of(context).size.height * 0.15,
                       title: e.name ?? ''.toUpperCase(),
-                      textStyle: sec_med_18.copyWith(
+                      textStyle: secMed18.copyWith(
                         fontWeight: FontWeight.bold,
                         fontFamily: 'PlayfairDisplay',
                         color: white,
                       ),
                       slug: e.slug,
                       name: e.name,
-                      onCategoryTapped: (value,name) {
-                        context.pushNamed('productListPage',queryParams: {"query":"country=60c9a6428729de2bf7ad0ebe&category=$value","name":name});
+                      onCategoryTapped: (value, name) {
+                        context.pushNamed(productListPageName, queryParams: {
+                          "query":
+                              "country=60c9a6428729de2bf7ad0ebe&category=$value",
+                          "name": name
+                        });
                       },
                       shadeColor: Colors.black,
                       backgroundImage: e.imgPath ??

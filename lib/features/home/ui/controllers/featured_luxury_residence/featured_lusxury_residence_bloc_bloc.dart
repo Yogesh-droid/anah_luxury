@@ -4,8 +4,8 @@ import 'package:anah_luxury/core/resource/request_params/request_params.dart';
 import 'package:anah_luxury/features/home/domain/entities/featured_luxury_residence_res_entity.dart';
 import 'package:anah_luxury/features/home/domain/repo/featured_luxury_residence_repo.dart';
 import 'package:anah_luxury/features/home/domain/usecase/featured_luxury_residence_usecase.dart';
-import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'featured_lusxury_residence_bloc_event.dart';
 part 'featured_lusxury_residence_bloc_state.dart';
@@ -22,13 +22,12 @@ class FeaturedLusxuryResidenceBlocBloc extends Bloc<
       if (event is GetFeaturedLuxuryResidenceEvent) {
         DataState<
                 Map<ResidenceCategory, List<FeaturedLuxuryResidenceResEntity>>>
-            _value = await featuredLuxuryResidenceUsecase.call(
-                const RequestParams(
-                    url: "$baseUrl/client/luxuryRealEstate",
-                    apiMethods: ApiMethods.get));
-        if (_value.data != null) {
-          featuredApartments = _value.data![ResidenceCategory.feature]!;
-          luxuryApartment = _value.data![ResidenceCategory.luxury]!;
+            value = await featuredLuxuryResidenceUsecase.call(RequestParams(
+                url: "$baseUrl/client/luxuryRealEstate",
+                apiMethods: ApiMethods.get));
+        if (value.data != null) {
+          featuredApartments = value.data![ResidenceCategory.feature]!;
+          luxuryApartment = value.data![ResidenceCategory.luxury]!;
 
           emit(FeaturedLuxuryResidenceResState(
               featuredApartments: featuredApartments,

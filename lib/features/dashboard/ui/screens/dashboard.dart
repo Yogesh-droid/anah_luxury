@@ -41,7 +41,7 @@ class DashBoard extends StatelessWidget {
   }
 
   Widget getPages() {
-    const List<Widget> _pageList = [
+    const List<Widget> pageList = [
       HomePage(),
       CarsPage(),
       PropertiesPage(),
@@ -52,7 +52,7 @@ class DashBoard extends StatelessWidget {
         builder: (context, state) {
       return IndexedStack(
         index: state,
-        children: _pageList,
+        children: pageList,
       );
     });
   }

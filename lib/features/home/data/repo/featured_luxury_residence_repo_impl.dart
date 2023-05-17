@@ -5,6 +5,7 @@ import 'package:anah_luxury/features/home/data/models/featured_luxury_residence_
 import 'package:anah_luxury/features/home/domain/entities/featured_luxury_residence_res_entity.dart';
 import 'package:anah_luxury/features/home/domain/repo/featured_luxury_residence_repo.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 
 class FeaturedLuxuryResidenceRepoImpl implements FeaturedLuxuryResidenceRepo {
   final NetworkManager networkManager;
@@ -35,6 +36,7 @@ class FeaturedLuxuryResidenceRepoImpl implements FeaturedLuxuryResidenceRepo {
         return DataError(exception: Exception("No Response From server"));
       }
     } on Exception catch (e) {
+      debugPrint(e.toString());
       return response != null
           ? DataError(
               exception:

@@ -20,6 +20,10 @@ dependencies:
   carousel_slider: ^4.2.1
   flutter_svg: ^2.0.5
   cached_network_image: ^3.2.3
+  hive: ^2.2.3
+  flutter_secure_storage: ^8.0.0
+  flutter_dotenv: ^5.0.2
+  path_provider: ^2.0.15
 
 dev_dependencies:
   flutter_test:
@@ -48,6 +52,7 @@ flutter:
   #       - asset: fonts/Inter-Regular.tff
     
   assets:
+    - .env
     - assets/
     - assets/welcome_page/
     - assets/login/

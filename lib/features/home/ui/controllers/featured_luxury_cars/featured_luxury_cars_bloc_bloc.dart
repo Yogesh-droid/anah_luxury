@@ -4,8 +4,8 @@ import 'package:anah_luxury/core/resource/request_params/request_params.dart';
 import 'package:anah_luxury/features/home/domain/entities/featured_luxury_cars_entity.dart';
 import 'package:anah_luxury/features/home/domain/repo/featured_luxury_cars_repo.dart';
 import 'package:anah_luxury/features/home/domain/usecase/featured_luxury_cars_usecase.dart';
-import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'featured_luxury_cars_bloc_event.dart';
 part 'featured_luxury_cars_bloc_state.dart';
@@ -20,7 +20,7 @@ class FeaturedLuxuryCarsBlocBloc
     on<FeaturedLuxuryCarsBlocEvent>((event, emit) async {
       if (event is GetFeaturedLuxuryCarsEvent) {
         DataState<Map<CarsCategory, List<FeaturedLuxuryCarsEntity>>> map =
-            await featuredLuxuryCarsUsecase.call(const RequestParams(
+            await featuredLuxuryCarsUsecase.call(RequestParams(
                 url: "${baseUrl}client/luxuryCars",
                 apiMethods: ApiMethods.get));
 

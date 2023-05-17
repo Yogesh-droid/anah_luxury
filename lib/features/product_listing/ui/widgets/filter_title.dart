@@ -23,8 +23,8 @@ class FilterTitle extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: Text(
             title,
-            style: sec_med_15.copyWith(
-                fontFamily: 'PlayfairDisplay', color: black),
+            style:
+                secMed15.copyWith(fontFamily: 'PlayfairDisplay', color: black),
           ),
         ),
       ),

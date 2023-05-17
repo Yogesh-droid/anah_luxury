@@ -94,7 +94,7 @@ class _LandingForegroundState extends State<LandingForeground>
                           key: const ValueKey<String>("Homes"),
                           state,
                           textAlign: TextAlign.start,
-                          style: sec_med_36.copyWith(
+                          style: secMed36.copyWith(
                               fontFamily: "PlayfairDisplay",
                               color: white,
                               fontWeight: FontWeight.w600))
@@ -102,7 +102,7 @@ class _LandingForegroundState extends State<LandingForeground>
                           key: const ValueKey<String>("Cars"),
                           state,
                           textAlign: TextAlign.start,
-                          style: sec_med_36.copyWith(
+                          style: secMed36.copyWith(
                               fontFamily: "PlayfairDisplay",
                               color: white,
                               fontWeight: FontWeight.w600),
@@ -114,7 +114,7 @@ class _LandingForegroundState extends State<LandingForeground>
               width: MediaQuery.of(context).size.width / 1.5,
               child: Text(
                 '''Discover new collection from all over the globe everyday with ANAH''',
-                style: sec_med_15.copyWith(color: white),
+                style: secMed15.copyWith(color: white),
                 textAlign: TextAlign.center,
               ),
             ),

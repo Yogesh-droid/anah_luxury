@@ -1,13 +1,13 @@
-import 'package:anah_luxury/features/home/domain/entities/home_page_banner_res_entity.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/constants/assets.dart';
 
 class HomeCarousel extends StatelessWidget {
-  const HomeCarousel({super.key, required this.bannerList});
+  const HomeCarousel({super.key, required this.bannerList, this.height});
 
-  final List<HomePageBannerResEntity> bannerList;
+  final List<String> bannerList;
+  final double? height;
 
   @override
   Widget build(BuildContext context) {
@@ -18,10 +18,10 @@ class HomeCarousel extends StatelessWidget {
               fadeInCurve: Curves.slowMiddle,
               fit: BoxFit.fill,
               placeholder: const AssetImage(Assets.assetsHomePageImageLoading),
-              image: NetworkImage(bannerList[index].image ?? ''));
+              image: NetworkImage(bannerList[index]));
         },
         options: CarouselOptions(
-          height: 300,
+          height: height ?? 300,
           disableCenter: true,
           aspectRatio: 1,
           viewportFraction: 1,

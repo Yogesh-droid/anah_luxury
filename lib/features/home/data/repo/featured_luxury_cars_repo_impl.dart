@@ -6,6 +6,7 @@ import 'package:anah_luxury/features/home/data/models/feature_luxury_cars_model.
 import 'package:anah_luxury/features/home/domain/entities/featured_luxury_cars_entity.dart';
 import 'package:anah_luxury/features/home/domain/repo/featured_luxury_cars_repo.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 
 class FeaturedLuxuryCarsRepoImpl extends FeaturedLuxuryCarsRepo {
   final NetworkManager networkManager;
@@ -34,6 +35,7 @@ class FeaturedLuxuryCarsRepoImpl extends FeaturedLuxuryCarsRepo {
         return DataError(exception: Exception("No Response from server"));
       }
     } on Exception catch (e) {
+      debugPrint(e.toString());
       return DataError(exception: Exception("Some server error"));
     }
   }

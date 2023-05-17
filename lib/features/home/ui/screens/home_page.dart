@@ -1,5 +1,6 @@
 import 'package:anah_luxury/core/constants/spaces.dart';
 import 'package:anah_luxury/core/constants/strings.dart';
+import 'package:anah_luxury/core/routes/routes.dart';
 import 'package:anah_luxury/features/home/ui/controllers/featured_luxury_cars/featured_luxury_cars_bloc_bloc.dart';
 import 'package:anah_luxury/features/home/ui/controllers/featured_luxury_residence/featured_lusxury_residence_bloc_bloc.dart';
 import 'package:anah_luxury/features/home/ui/controllers/home_page_banners_bloc/bloc/home_page_banner_bloc_bloc.dart';
@@ -59,7 +60,11 @@ class _HomePageState extends State<HomePage> {
           AppTitleAndListWidget(
             title: kFeaturedResidence,
             onViewAllTapped: () {
-              context.pushNamed('productListPage',queryParams: {"query":"country=60c9a6428729de2bf7ad0ebe&category=real-estate&featureType=isFeatured","name":kFeaturedResidence});
+              context.pushNamed(productListPageName, queryParams: {
+                "query":
+                    "country=60c9a6428729de2bf7ad0ebe&category=real-estate&featureType=isFeatured",
+                "name": kFeaturedResidence
+              });
             },
             categoryBody: const FeaturedResidenceListWidget(),
           ),
@@ -67,7 +72,11 @@ class _HomePageState extends State<HomePage> {
           AppTitleAndListWidget(
             title: kFeaturedCars,
             onViewAllTapped: () {
-              context.pushNamed('productListPage',queryParams: {"query":"country=60c9a6428729de2bf7ad0ebe&category=cars&featureType=isFeatured","name":kFeaturedCars});
+              context.pushNamed(productListPageName, queryParams: {
+                "query":
+                    "country=60c9a6428729de2bf7ad0ebe&category=cars&featureType=isFeatured",
+                "name": kFeaturedCars
+              });
             },
             categoryBody: const FeaturedCarListWidget(),
           ),
@@ -75,7 +84,11 @@ class _HomePageState extends State<HomePage> {
           AppTitleAndListWidget(
             title: kNewResidence,
             onViewAllTapped: () {
-              context.pushNamed('productListPage',queryParams: {"query":"country=60c9a6428729de2bf7ad0ebe&category=real-estate&featureType=isNew","name":kNewResidence});
+              context.pushNamed(productListPageName, queryParams: {
+                "query":
+                    "country=60c9a6428729de2bf7ad0ebe&category=real-estate&featureType=isNew",
+                "name": kNewResidence
+              });
             },
             categoryBody: const NewResidenceListWidget(),
           ),
@@ -83,7 +96,11 @@ class _HomePageState extends State<HomePage> {
           AppTitleAndListWidget(
               title: kPopularCars,
               onViewAllTapped: () {
-                context.pushNamed('productListPage',queryParams: {"query":"country=60c9a6428729de2bf7ad0ebe&category=cars&featureType=isPopular","name":kPopularCars});
+                context.pushNamed(productListPageName, queryParams: {
+                  "query":
+                      "country=60c9a6428729de2bf7ad0ebe&category=cars&featureType=isPopular",
+                  "name": kPopularCars
+                });
               },
               categoryBody: const PopularCarsList())
         ],

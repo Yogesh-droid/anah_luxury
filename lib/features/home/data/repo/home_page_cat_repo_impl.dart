@@ -6,7 +6,7 @@ import 'package:anah_luxury/features/home/data/models/home_page_cat_res_model.da
 import 'package:anah_luxury/features/home/domain/entities/home_page_cat_res_entity.dart';
 import 'package:anah_luxury/features/home/domain/repo/home_page_cat_repo.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 
 class HomePageCatRepoImpl implements HomePageCatRepo {
   final NetworkManager networkManager;
@@ -32,6 +32,7 @@ class HomePageCatRepoImpl implements HomePageCatRepo {
                 "Some Internal Error Occured ${response!.statusMessage}"));
       }
     } on Exception catch (e) {
+      debugPrint(e.toString());
       return DataError(exception: Exception(response!.statusMessage));
     }
   }

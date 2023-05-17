@@ -3,8 +3,8 @@ import 'package:anah_luxury/core/resource/data_state/data_state.dart';
 import 'package:anah_luxury/core/resource/request_params/request_params.dart';
 import 'package:anah_luxury/features/home/domain/entities/home_page_banner_res_entity.dart';
 import 'package:anah_luxury/features/home/domain/usecase/home_page_banner_usecase.dart';
-import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'home_page_banner_bloc_event.dart';
 part 'home_page_banner_bloc_state.dart';
@@ -18,12 +18,12 @@ class HomePageBannerBlocBloc
       : super(HomePageBannerBlocInitial()) {
     on<HomePageBannerBlocEvent>((event, emit) async {
       if (event is GetHomePageBannersEvent) {
-        DataState<List<HomePageBannerResEntity>> _bannerList =
-            await homePageBannerUsecase.call(const RequestParams(
+        DataState<List<HomePageBannerResEntity>> bannerList1 =
+            await homePageBannerUsecase.call(RequestParams(
                 url: "${baseUrl}app/homepage", apiMethods: ApiMethods.get));
 
-        if (_bannerList.data != null) {
-          for (var banner in _bannerList.data!) {
+        if (bannerList1.data != null) {
+          for (var banner in bannerList1.data!) {
             bannerList.add(banner);
           }
         }

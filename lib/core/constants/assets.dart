@@ -45,6 +45,10 @@ class Assets {
   /// assets/home_page/image_loading.png
   static const String assetsHomePageImageLoading = "assets/home_page/image_loading.png";
 
+  /// Assets for assetsLoginAppleIcon
+  /// assets/login/apple_icon.svg
+  static const String assetsLoginAppleIcon = "assets/login/apple_icon.svg";
+
   /// Assets for assetsLoginBg1
   /// assets/login/bg1.png
   static const String assetsLoginBg1 = "assets/login/bg1.png";
@@ -52,6 +56,14 @@ class Assets {
   /// Assets for assetsLoginBg2
   /// assets/login/bg2.png
   static const String assetsLoginBg2 = "assets/login/bg2.png";
+
+  /// Assets for assetsLoginFacebookIcon
+  /// assets/login/facebook_icon.svg
+  static const String assetsLoginFacebookIcon = "assets/login/facebook_icon.svg";
+
+  /// Assets for assetsLoginGoogleIcon
+  /// assets/login/google_icon.svg
+  static const String assetsLoginGoogleIcon = "assets/login/google_icon.svg";
 
   /// Assets for assetsWelcomePageAnah
   /// assets/welcome_page/anah.png
