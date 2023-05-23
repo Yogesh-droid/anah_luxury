@@ -1,10 +1,10 @@
-import 'package:anah_luxury/features/properties/ui/controllers/properties_bloc/properties_category_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/constants/spaces.dart';
 import '../../../cars/domain/entity/category_entity.dart';
 import '../../../cars/ui/widgets/category_widget.dart';
+import '../controllers/properties_bloc/properties_category_bloc.dart';
 
 class PropertiesCategoryList extends StatelessWidget {
   const PropertiesCategoryList({super.key});

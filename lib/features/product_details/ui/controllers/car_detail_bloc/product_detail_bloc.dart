@@ -19,8 +19,7 @@ class ProductDetailBloc extends Bloc<ProductDetailEvent, ProductDetailState> {
           final DataState<CarDetailEntity> dataState =
               await carDetailUsecase.call(RequestParams(
                   url:
-                      // "${baseUrl}v1/app/products/carProductBySlug/${event.slug}?country=60c9a6428729de2bf7ad0ebe",
-                      "${baseUrl}v1/app/products/carProductBySlug/vis-test-fet-now?country=60c9a6428729de2bf7ad0ebe",
+                      "${baseUrl}v1/app/products/carProductBySlug/${event.slug}?country=60c9a6428729de2bf7ad0ebe",
                   apiMethods: ApiMethods.get));
 
           if (dataState.data != null) {

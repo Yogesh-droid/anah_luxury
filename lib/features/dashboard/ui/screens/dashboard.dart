@@ -1,6 +1,5 @@
 import 'package:anah_luxury/core/constants/assets.dart';
 import 'package:anah_luxury/features/cars/ui/screens/cars_page.dart';
-import 'package:anah_luxury/features/properties/ui/screens/properties_page.dart';
 import 'package:anah_luxury/features/dashboard/ui/controllers/cubit/bottom_nav_controller_cubit.dart';
 import 'package:anah_luxury/features/home/ui/screens/home_page.dart';
 import 'package:anah_luxury/features/menu/ui/screens/more.dart';
@@ -9,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../../../core/constants/strings.dart';
+import '../../../properties_tab/ui/screens/properties_page.dart';
 import '../widgets/anah_app_bar.dart';
 
 class DashBoard extends StatelessWidget {

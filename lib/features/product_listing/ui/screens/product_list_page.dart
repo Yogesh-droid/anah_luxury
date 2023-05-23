@@ -7,13 +7,19 @@ import 'package:anah_luxury/features/product_listing/ui/widgets/filter_screen.da
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'package:go_router/go_router.dart';
+import '../../../../core/routes/routes.dart';
 import '../controllers/product_list/product_list_bloc.dart';
 
 class ProductListPage extends StatefulWidget {
-  const ProductListPage({super.key, required this.query, required this.name});
+  const ProductListPage(
+      {super.key,
+      required this.query,
+      required this.name,
+      required this.category});
   final String query;
   final String name;
+  final String category;
 
   @override
   State<ProductListPage> createState() => _ProductListPageState();
@@ -56,14 +62,23 @@ class _ProductListPageState extends State<ProductListPage> {
                   itemBuilder: (context, index) {
                     var product = state.productList[index];
                     return ProductContainer(
-                      productName: product.brand!.name ?? '',
-                      onProductTapped: (slug) {},
+                      productName: product.title ?? '',
+                      onProductTapped: (category, slug) {
+                        if (category == kCars) {
+                          context.pushNamed(carDetailPageName,
+                              queryParams: {"slug": slug});
+                        } else {
+                          context.pushNamed(propertyDetailPageName,
+                              queryParams: {"slug": slug});
+                        }
+                      },
                       onWishListTapped: (id) {},
                       backgroundImage: product.uploadedFiles![0].fileUrl,
                       netPrice: product.price.toString(),
                       currency: product.prodCurrency!.currencyName ?? '',
                       height: MediaQuery.of(context).size.height * 0.182,
                       width: MediaQuery.of(context).size.width / 2,
+                      category: widget.category,
                       slug: product.slug,
                     );
                   });

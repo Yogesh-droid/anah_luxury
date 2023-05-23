@@ -6,16 +6,15 @@ import '../../../../core/constants/spaces.dart';
 import '../../../../core/constants/strings.dart';
 import 'product_image_category.dart';
 
-class ProductImageTypeListView extends StatefulWidget {
-  const ProductImageTypeListView({super.key, required this.carDetailEntity});
+class CarImageTypeListView extends StatefulWidget {
+  const CarImageTypeListView({super.key, required this.carDetailEntity});
   final CarDetailEntity carDetailEntity;
 
   @override
-  State<ProductImageTypeListView> createState() =>
-      _ProductImageTypeListViewState();
+  State<CarImageTypeListView> createState() => _CarImageTypeListViewState();
 }
 
-class _ProductImageTypeListViewState extends State<ProductImageTypeListView> {
+class _CarImageTypeListViewState extends State<CarImageTypeListView> {
   @override
   void initState() {
     context

@@ -1,8 +1,10 @@
 import 'package:anah_luxury/features/home/ui/widgets/product_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../core/constants/spaces.dart';
+import '../../../../core/routes/routes.dart';
 import '../controllers/featured_luxury_residence/featured_lusxury_residence_bloc_bloc.dart';
 
 class NewResidenceListWidget extends StatelessWidget {
@@ -27,13 +29,16 @@ class NewResidenceListWidget extends StatelessWidget {
             children: state.luxuryApartment
                 .map((e) => ProductContainer(
                       productName: e.title ?? '',
-                      onProductTapped: (slig) {},
+                      onProductTapped: (category, slug) {
+                        context.pushNamed(propertyDetailPageName,
+                            queryParams: {"slug": slug});
+                      },
                       backgroundImage: e.uploadedFiles![0].fileUrl,
                       currency: e.currency![0].currencyName,
                       netPrice: e.salePrice.toString(),
                       height: MediaQuery.of(context).size.height * 0.185,
                       width: MediaQuery.of(context).size.width / 2,
-                      slug: e.sId,
+                      slug: e.slug,
                     ))
                 .toList(),
           ),

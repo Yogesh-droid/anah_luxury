@@ -4,7 +4,7 @@ import 'package:anah_luxury/core/constants/text_tyles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-
+import '../../../../core/constants/strings.dart';
 import '../../../../core/routes/routes.dart';
 import '../controllers/home_page_category_bloc/bloc/home_page_category_bloc_bloc.dart';
 import 'category_container.dart';
@@ -48,7 +48,9 @@ class CategoryListWidget extends StatelessWidget {
                         context.pushNamed(productListPageName, queryParams: {
                           "query":
                               "country=60c9a6428729de2bf7ad0ebe&category=$value",
-                          "name": name
+                          "name": name,
+                          "category":
+                              value == 'real-estate' ? kProperties : kCars
                         });
                       },
                       shadeColor: Colors.black,

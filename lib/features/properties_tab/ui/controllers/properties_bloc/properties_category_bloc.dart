@@ -5,7 +5,6 @@ import '../../../../../core/constants/api_constants.dart';
 import '../../../../../core/resource/data_state/data_state.dart';
 import '../../../../../core/resource/request_params/request_params.dart';
 import '../../../../cars/domain/entity/category_entity.dart';
-
 part 'properties_category_event.dart';
 part 'properties_category_state.dart';
 

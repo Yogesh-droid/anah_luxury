@@ -1,8 +1,10 @@
 import 'package:anah_luxury/features/home/ui/widgets/product_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../core/constants/spaces.dart';
+import '../../../../core/routes/routes.dart';
 import '../controllers/featured_luxury_cars/featured_luxury_cars_bloc_bloc.dart';
 
 class PopularCarsList extends StatelessWidget {
@@ -27,7 +29,10 @@ class PopularCarsList extends StatelessWidget {
             children: state.luxuryCarsList
                 .map((e) => ProductContainer(
                     productName: e.title ?? '',
-                    onProductTapped: (slug) {},
+                    onProductTapped: (category, slug) {
+                      context.pushNamed(carDetailPageName,
+                          queryParams: {"slug": slug});
+                    },
                     backgroundImage: e.uploadedFiles![0].fileUrl,
                     currency: e.currency![0].currencyName,
                     netPrice: e.salePrice.toString(),

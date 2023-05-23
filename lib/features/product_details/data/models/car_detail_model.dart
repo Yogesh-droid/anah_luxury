@@ -10,8 +10,9 @@ class CarDetailModel extends CarDetailEntity {
       List<All>? interior,
       List<All>? wheel,
       List<All>? engine,
-      CarOverView? carOverView,
-      CarSpecification? carSpecification,
+      String? bookingPrice,
+      List<OverviewType>? carOverView,
+      List<OverviewType>? carSpecification,
       List<UploadedFiles>? uploadedFiles,
       String? seller})
       : super(
@@ -26,16 +27,21 @@ class CarDetailModel extends CarDetailEntity {
             success: success,
             title: title,
             uploadedFiles: uploadedFiles,
+            bookingPrice: bookingPrice,
             wheel: wheel);
 
   factory CarDetailModel.fromJson(Map<String, dynamic> json) {
     return CarDetailModel(
       carOverView: json["carOverView"] == null
           ? null
-          : CarOverView.fromJson(json["carOverView"]),
+          : (json["carOverView"] as List)
+              .map((e) => OverviewType.fromJson(e))
+              .toList(),
       carSpecification: json["carSpecification"] == null
           ? null
-          : CarSpecification.fromJson(json["carSpecification"]),
+          : (json["carSpecification"] as List)
+              .map((e) => OverviewType.fromJson(e))
+              .toList(),
       all: json["all"] == null
           ? null
           : (json["all"] as List).map((e) => All.fromJson(e)).toList(),
@@ -51,6 +57,7 @@ class CarDetailModel extends CarDetailEntity {
       wheel: json["wheel"] == null
           ? null
           : (json["wheel"] as List).map((e) => All.fromJson(e)).toList(),
+      bookingPrice: json["booking_price"],
       price: json["price"],
       seller: json["seller"],
       success: json["success"],
@@ -98,34 +105,49 @@ class CarSpecification {
 }
 
 class CarOverView {
-  int? purchaseYear;
-  String? location;
-  int? milesDriven;
-  String? isInsured;
-  String? insuredTill;
-  String? warranty;
-  String? transmission;
-  String? fuelType;
+  // int? purchaseYear;
+  // String? location;
+  // int? milesDriven;
+  // String? isInsured;
+  // String? insuredTill;
+  // String? warranty;
+  // String? transmission;
+  // String? fuelType;
+  List<OverviewType>? overViewType;
 
-  CarOverView(
-      {this.purchaseYear,
-      this.location,
-      this.milesDriven,
-      this.isInsured,
-      this.insuredTill,
-      this.warranty,
-      this.transmission,
-      this.fuelType});
+  CarOverView({this.overViewType
+      //   this.purchaseYear,
+      // this.location,
+      // this.milesDriven,
+      // this.isInsured,
+      // this.insuredTill,
+      // this.warranty,
+      // this.transmission,
+      // this.fuelType
+      });
 
   CarOverView.fromJson(Map<String, dynamic> json) {
-    purchaseYear = json["purchaseYear"];
-    location = json["location"];
-    milesDriven = json["miles_driven"];
-    isInsured = json["isInsured"];
-    insuredTill = json["insured_till"];
-    warranty = json["warranty"];
-    transmission = json["transmission"];
-    fuelType = json["fuel_type"];
+    overViewType = json[''];
+    // purchaseYear = json["purchaseYear"];
+    // location = json["location"];
+    // milesDriven = json["miles_driven"];
+    // isInsured = json["isInsured"];
+    // insuredTill = json["insured_till"];
+    // warranty = json["warranty"];
+    // transmission = json["transmission"];
+    // fuelType = json["fuel_type"];
+  }
+}
+
+class OverviewType {
+  String? title;
+  dynamic value;
+
+  OverviewType({this.title, this.value});
+
+  OverviewType.fromJson(Map<String, dynamic> json) {
+    title = json['title'];
+    value = json['value'];
   }
 }
 

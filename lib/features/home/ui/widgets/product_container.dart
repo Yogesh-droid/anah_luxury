@@ -18,10 +18,11 @@ class ProductContainer extends StatelessWidget {
       this.netPrice,
       this.wishListIcon,
       this.onWishListTapped,
-      this.slug})
+      this.slug,
+      this.category})
       : super(key: key);
   final String productName;
-  final Function(String? slug) onProductTapped;
+  final Function(String? category, String? slug) onProductTapped;
   final String? backgroundImage;
   final double? height;
   final double? width;
@@ -31,6 +32,7 @@ class ProductContainer extends StatelessWidget {
   final String? netPrice;
   final bool? wishListIcon;
   final Function(String? id)? onWishListTapped;
+  final String? category;
   final String? slug;
 
   @override
@@ -39,7 +41,7 @@ class ProductContainer extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: InkWell(
         onTap: () {
-          onProductTapped(slug);
+          onProductTapped(category, slug);
         },
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

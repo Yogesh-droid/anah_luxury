@@ -63,7 +63,8 @@ class _HomePageState extends State<HomePage> {
               context.pushNamed(productListPageName, queryParams: {
                 "query":
                     "country=60c9a6428729de2bf7ad0ebe&category=real-estate&featureType=isFeatured",
-                "name": kFeaturedResidence
+                "name": kFeaturedResidence,
+                "category": kProperties
               });
             },
             categoryBody: const FeaturedResidenceListWidget(),
@@ -75,7 +76,8 @@ class _HomePageState extends State<HomePage> {
               context.pushNamed(productListPageName, queryParams: {
                 "query":
                     "country=60c9a6428729de2bf7ad0ebe&category=cars&featureType=isFeatured",
-                "name": kFeaturedCars
+                "name": kFeaturedCars,
+                "category": kCars
               });
             },
             categoryBody: const FeaturedCarListWidget(),
@@ -87,7 +89,8 @@ class _HomePageState extends State<HomePage> {
               context.pushNamed(productListPageName, queryParams: {
                 "query":
                     "country=60c9a6428729de2bf7ad0ebe&category=real-estate&featureType=isNew",
-                "name": kNewResidence
+                "name": kNewResidence,
+                "category": kProperties
               });
             },
             categoryBody: const NewResidenceListWidget(),
@@ -99,7 +102,8 @@ class _HomePageState extends State<HomePage> {
                 context.pushNamed(productListPageName, queryParams: {
                   "query":
                       "country=60c9a6428729de2bf7ad0ebe&category=cars&featureType=isPopular",
-                  "name": kPopularCars
+                  "name": kPopularCars,
+                  "category": kCars
                 });
               },
               categoryBody: const PopularCarsList())

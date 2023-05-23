@@ -27,17 +27,20 @@ import 'package:anah_luxury/features/home/ui/controllers/home_page_banners_bloc/
 import 'package:anah_luxury/features/home/ui/controllers/home_page_category_bloc/bloc/home_page_category_bloc_bloc.dart';
 import 'package:anah_luxury/features/product_details/data/repo/car_detail_repo_impl.dart';
 import 'package:anah_luxury/features/product_details/domain/repo/car_detail_repo.dart';
+import 'package:anah_luxury/features/product_details/domain/repo/property_detail_repo.dart';
 import 'package:anah_luxury/features/product_details/domain/usecases/car_details_usecase.dart';
-import 'package:anah_luxury/features/product_details/ui/controllers/bloc/product_detail_bloc.dart';
+import 'package:anah_luxury/features/product_details/domain/usecases/property_detail_usecase.dart';
+import 'package:anah_luxury/features/product_details/ui/controllers/property_detail_bloc/property_detail_bloc.dart';
 import 'package:anah_luxury/features/product_listing/data/repo/product_list_repo_impl.dart';
 import 'package:anah_luxury/features/product_listing/domain/repo/product_list_repo.dart';
 import 'package:anah_luxury/features/product_listing/domain/usecases/product_list_usecase.dart';
 import 'package:anah_luxury/features/product_listing/ui/controllers/product_list/product_list_bloc.dart';
-import 'package:anah_luxury/features/properties/ui/controllers/properties_bloc/properties_category_bloc.dart';
 import 'package:get_it/get_it.dart';
-
 import '../../features/cars/ui/controllers/category_bloc/category_bloc.dart';
 import '../../features/home/domain/repo/featured_luxury_residence_repo.dart';
+import '../../features/product_details/data/repo/property_detail_repo_impl.dart';
+import '../../features/product_details/ui/controllers/car_detail_bloc/product_detail_bloc.dart';
+import '../../features/properties_tab/ui/controllers/properties_bloc/properties_category_bloc.dart';
 
 GetIt getIt = GetIt.I;
 void setup() {
@@ -126,4 +129,13 @@ void setup() {
       () => CarDetailUsecase(carDetailRepo: getIt()));
   getIt.registerFactory<ProductDetailBloc>(
       () => ProductDetailBloc(carDetailUsecase: getIt()));
+
+  /// Property Details ////
+
+  getIt.registerFactory<PropertyDetailRepo>(
+      () => PropertyDetailRepoImpl(networkManager: getIt()));
+  getIt.registerFactory<PropertyDetailUsecase>(
+      () => PropertyDetailUsecase(getIt()));
+  getIt.registerFactory<PropertyDetailBloc>(
+      () => PropertyDetailBloc(propertyDetailUsecase: getIt()));
 }

@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shimmer/shimmer.dart';
 
+import '../../../../core/constants/hive/local_storage.dart';
+
 class WelcomePage extends StatefulWidget {
   const WelcomePage({super.key});
 
@@ -35,7 +37,12 @@ class _WelcomePageState extends State<WelcomePage> {
   }
 
   Future<void> appStartUp(BuildContext context) async {
-    await Future.delayed(
-        const Duration(seconds: 2), () => context.go(landingPageRoute));
+    await LocalStorage().getToken().then((value) {
+      if (value.isEmpty) {
+        context.go(landingPageRoute);
+      } else {
+        context.go(dashBoardRoute);
+      }
+    });
   }
 }

@@ -1,3 +1,6 @@
+import 'package:anah_luxury/core/constants/app_colors.dart';
+import 'package:flutter/material.dart';
+
 const double appPadding =
     16.0; //  used for padding let from screen in whole app
 
@@ -12,5 +15,16 @@ const double appTitleCategoryGap = 10.0;
 
 /// this is used for gap between title(Feature cars etc..) and its list widget
 
-const double appFormFieldGap = 12.0;   /// used for gap between two textfield 
+const double appFormFieldGap = 12.0;
 
+/// used for gap between two textfield
+
+Widget appDivider() {
+  return Padding(
+    padding: const EdgeInsets.only(top: 16, bottom: 16),
+    child: Container(
+      height: 8,
+      color: lightBg,
+    ),
+  );
+}

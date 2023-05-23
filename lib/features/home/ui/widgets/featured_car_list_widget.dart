@@ -29,7 +29,7 @@ class FeaturedCarListWidget extends StatelessWidget {
             children: state.featuredCarsList
                 .map((e) => ProductContainer(
                       productName: e.title ?? '',
-                      onProductTapped: (slug) {
+                      onProductTapped: (category, slug) {
                         context.pushNamed(carDetailPageName,
                             queryParams: {"slug": slug});
                       },

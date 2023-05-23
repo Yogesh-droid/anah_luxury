@@ -1,12 +1,13 @@
 import 'package:anah_luxury/features/home/ui/widgets/featured_residence_list_widget.dart';
 import 'package:anah_luxury/features/home/ui/widgets/new_residence_list_widget.dart';
-import 'package:anah_luxury/features/properties/ui/controllers/properties_bloc/properties_category_bloc.dart';
-import 'package:anah_luxury/features/properties/ui/widgets/properties_category_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/constants/spaces.dart';
 import '../../../../core/constants/strings.dart';
 import '../../../home/ui/widgets/app_title_list_widget.dart';
+import '../controllers/properties_bloc/properties_category_bloc.dart';
+import '../widgets/properties_category_list.dart';
+
 class PropertiesPage extends StatefulWidget {
   const PropertiesPage({super.key});
 

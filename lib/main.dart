@@ -10,18 +10,19 @@ import 'package:anah_luxury/features/home/ui/controllers/featured_luxury_residen
 import 'package:anah_luxury/features/home/ui/controllers/home_page_banners_bloc/bloc/home_page_banner_bloc_bloc.dart';
 import 'package:anah_luxury/features/home/ui/controllers/home_page_category_bloc/bloc/home_page_category_bloc_bloc.dart';
 import 'package:anah_luxury/features/landing/ui/controllers/cubit/banner_text_controller_cubit.dart';
-import 'package:anah_luxury/features/product_details/ui/controllers/bloc/product_detail_bloc.dart';
 import 'package:anah_luxury/features/product_details/ui/controllers/product_image_switcher/product_image_switcher_cubit.dart';
+import 'package:anah_luxury/features/product_details/ui/controllers/property_detail_bloc/property_detail_bloc.dart';
 import 'package:anah_luxury/features/product_listing/ui/controllers/cubit/filter_cubit.dart';
 import 'package:anah_luxury/features/product_listing/ui/controllers/cubit/range_slider_cubit.dart';
 import 'package:anah_luxury/features/product_listing/ui/controllers/product_list/product_list_bloc.dart';
-import 'package:anah_luxury/features/properties/ui/controllers/properties_bloc/properties_category_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 import 'features/cars/ui/controllers/category_bloc/category_bloc.dart';
+import 'features/product_details/ui/controllers/car_detail_bloc/product_detail_bloc.dart';
+import 'features/properties_tab/ui/controllers/properties_bloc/properties_category_bloc.dart';
 
 Future<void> main() async {
   setup();
@@ -67,6 +68,9 @@ class MyApp extends StatelessWidget {
           BlocProvider<ProductDetailBloc>(
               create: (context) =>
                   ProductDetailBloc(carDetailUsecase: getIt())),
+          BlocProvider<PropertyDetailBloc>(
+              create: (context) =>
+                  PropertyDetailBloc(propertyDetailUsecase: getIt())),
           BlocProvider<ProductImageSwitcherCubit>(
               create: (context) => ProductImageSwitcherCubit())
         ],

@@ -9,11 +9,11 @@ class CarDetailEntity {
   final List<All>? interior;
   final List<All>? wheel;
   final List<All>? engine;
-  final CarOverView? carOverView;
-  final CarSpecification? carSpecification;
+  final List<OverviewType>? carOverView;
+  final List<OverviewType>? carSpecification;
   final List<UploadedFiles>? uploadedFiles;
   final String? seller;
-
+  final String? bookingPrice;
   CarDetailEntity(
       {this.success,
       this.title,
@@ -26,5 +26,6 @@ class CarDetailEntity {
       this.carOverView,
       this.carSpecification,
       this.uploadedFiles,
-      this.seller});
+      this.seller,
+      this.bookingPrice});
 }

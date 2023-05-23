@@ -17,6 +17,8 @@ class NetworkManager {
         return response;
 
       case ApiMethods.post:
+        debugPrint(requestParams.url);
+        debugPrint(requestParams.body.toString());
         response = await _dio.post(requestParams.url,
             data: requestParams.body, options: options);
         return response;

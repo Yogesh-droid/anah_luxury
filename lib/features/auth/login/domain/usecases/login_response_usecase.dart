@@ -9,6 +9,8 @@ class LoginResponseUsecase extends Usecase {
   LoginResponseUsecase({required this.loginRepo});
   @override
   Future<DataState<LoginResponseEntity>> call(params) async {
-    return await loginRepo.getLoginResponse(params);
+    DataState<LoginResponseEntity> dataState =
+        await loginRepo.getLoginResponse(params);
+    return dataState;
   }
 }

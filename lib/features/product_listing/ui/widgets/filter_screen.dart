@@ -1,4 +1,5 @@
 import 'package:anah_luxury/core/constants/strings.dart';
+import 'package:anah_luxury/features/product_listing/data/models/product_list_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../controllers/cubit/filter_cubit.dart';
@@ -25,48 +26,82 @@ class FilterScreen extends StatelessWidget {
                       return ListView(children: [
                         filters.price != null
                             ? FilterTitle(
-                                title: kPrice, isSelected: state == kPrice)
+                                title: kPrice,
+                                isSelected: state == kPrice,
+                                end: filters.price!.end ?? 0,
+                                start: filters.price!.start ?? 0,
+                              )
                             : const SizedBox(),
                         filters.brands != null && filters.brands!.isNotEmpty
                             ? FilterTitle(
-                                title: kBrands, isSelected: state == kBrands)
+                                title: kBrands,
+                                isSelected: state == kBrands,
+                                filterList: filters.brands,
+                              )
                             : const SizedBox(),
                         filters.cmakers != null && filters.cmakers!.isNotEmpty
                             ? FilterTitle(
-                                title: kSellers, isSelected: state == kSellers)
+                                title: kSellers,
+                                isSelected: state == kSellers,
+                                filterList: filters.cmakers,
+                              )
                             : const SizedBox(),
                         filters.categories != null &&
                                 filters.categories!.isNotEmpty
                             ? FilterTitle(
                                 title: kCategories,
-                                isSelected: state == kCategories)
+                                isSelected: state == kCategories,
+                                filterList: filters.categories,
+                              )
                             : const SizedBox(),
                         filters.kmDriven != null &&
                                 filters.kmDriven!.start != null
                             ? FilterTitle(
                                 title: kKmDriven,
-                                isSelected: state == kKmDriven)
+                                isSelected: state == kKmDriven,
+                                start: filters.kmDriven!.start ?? 0,
+                                end: filters.kmDriven!.end ?? 0)
                             : const SizedBox(),
                         filters.year != null && filters.year!.start != null
                             ? FilterTitle(
-                                title: kYears, isSelected: state == kYears)
+                                title: kYears,
+                                isSelected: state == kYears,
+                                start: filters.year!.start ?? 0,
+                                end: filters.year!.end ?? 0)
                             : const SizedBox(),
                         filters.rooms != null && filters.rooms!.start != null
                             ? FilterTitle(
                                 title: kLivingSpace,
-                                isSelected: state == kLivingSpace)
+                                isSelected: state == kLivingSpace,
+                                start: filters.rooms!.start ?? 0,
+                                end: filters.rooms!.end ?? 0,
+                              )
                             : const SizedBox(),
                         filters.buildArea != null &&
                                 filters.buildArea!.start != null
                             ? FilterTitle(
                                 title: kPropertyArea,
-                                isSelected: state == kPropertyArea)
+                                isSelected: state == kPropertyArea,
+                                start: filters.buildArea!.start ?? 0,
+                                end: filters.buildArea!.end,
+                              )
                             : const SizedBox(),
                         filters.propertyType != null &&
                                 filters.propertyType!.fullyFurnished != null
                             ? FilterTitle(
                                 title: kCondition,
-                                isSelected: state == kCondition)
+                                isSelected: state == kCondition,
+                                filterList: [
+                                  Brands(
+                                      name:
+                                          filters.propertyType!.fullyFurnished),
+                                  Brands(
+                                      name:
+                                          filters.propertyType!.semiFurnished),
+                                  Brands(
+                                      name: filters.propertyType!.unFurnished)
+                                ],
+                              )
                             : const SizedBox(),
                       ]);
                     },
@@ -112,7 +147,25 @@ class FilterScreen extends StatelessWidget {
                           rangeValue:
                               "${filters.year!.start} - ${filters.year!.end}",
                         );
-
+                      case kSellers:
+                        return FilterValues(
+                            filterType: FilterType.list,
+                            filterList: filters.sellers);
+                      case kLivingSpace:
+                        return FilterValues(
+                          filterType: FilterType.range,
+                          start: filters.buildArea!.start,
+                          end: filters.buildArea!.end,
+                        );
+                      case kCondition:
+                        return FilterValues(
+                            filterType: FilterType.list,
+                            filterList: [
+                              Brands(
+                                  name: filters.propertyType!.fullyFurnished),
+                              Brands(name: filters.propertyType!.semiFurnished),
+                              Brands(name: filters.propertyType!.unFurnished)
+                            ]);
                       default:
                         return const SizedBox();
                     }

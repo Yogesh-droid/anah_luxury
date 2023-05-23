@@ -10,3 +10,4 @@ const Color grey5 = Color(0xFFD9D9D9);
 const Color grey7 = Color(0xFFEFEFEF);
 const Color white = Color(0xFFFFFFFF);
 const Color transparent = Color.fromRGBO(0, 0, 0, 0);
+const Color lightBg = Color(0xFFF6F6F8);

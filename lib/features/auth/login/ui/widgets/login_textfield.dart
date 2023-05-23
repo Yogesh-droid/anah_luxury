@@ -52,7 +52,7 @@ class LoginTextField extends StatelessWidget {
       cursorColor: white,
       style: const TextStyle(color: white),
       textInputAction: textInputAction,
-      onChanged: onChange,
+      // onChanged: onChange,
       onFieldSubmitted: onDone,
       maxLength: maxLines,
       obscureText: isObscureText,

@@ -1,8 +1,8 @@
 import 'package:anah_luxury/features/dashboard/ui/widgets/anah_app_bar.dart';
-import 'package:anah_luxury/features/product_details/ui/controllers/bloc/product_detail_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../controllers/car_detail_bloc/product_detail_bloc.dart';
 import '../widgets/car_detail_widget.dart';
 
 class CarDetailPage extends StatefulWidget {

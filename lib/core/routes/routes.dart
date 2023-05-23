@@ -1,13 +1,15 @@
-import 'package:anah_luxury/core/constants/hive/local_storage.dart';
 import 'package:anah_luxury/features/auth/login/ui/screens/login_screen.dart';
 import 'package:anah_luxury/features/auth/sign_up/ui/screens/sign_up_screen.dart';
 import 'package:anah_luxury/features/dashboard/ui/screens/dashboard.dart';
 import 'package:anah_luxury/features/landing/ui/screens/landing_page.dart';
 import 'package:anah_luxury/features/onboarding/ui/screens/welcome_page.dart';
 import 'package:anah_luxury/features/product_details/ui/screen/car_detail_page.dart';
+import 'package:anah_luxury/features/product_details/ui/screen/property_detail_page.dart';
 import 'package:anah_luxury/features/product_listing/ui/screens/product_list_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+
+import '../../features/product_booking/ui/screens/product_booking_page.dart';
 
 const String welcomePageRoute = '/';
 const String landingPageRoute = '/landingPage';
@@ -16,27 +18,18 @@ const String signPageRoute = '/signUpPage';
 const String dashBoardRoute = '/dashBoard';
 const String productListRoute = '/productList';
 const String carDetailRoute = '/carDetailPage';
-
+const String propertyDetailRoute = '/propertyDetailPage';
 const String productListPageName = "productListPage";
 const String carDetailPageName = "carDetailPage";
-
-final token = LocalStorage().getToken();
-String tokenValue = '';
+const String propertyDetailPageName = "propertyDetailPage";
+const String bookNowPageName = "bookNowPageName";
+const String bookNowPageRoute = "/bookNowPageRoute";
 
 final GoRouter router = GoRouter(
     initialLocation: welcomePageRoute,
-    redirect: (_, state) {
+    redirect: (_, state) async {
       if (state.subloc == welcomePageRoute ||
-          state.subloc == landingPageRoute) {
-        token.then((value) {
-          tokenValue = value;
-        });
-        if (tokenValue.isEmpty) {
-          return welcomePageRoute;
-        } else {
-          return dashBoardRoute;
-        }
-      }
+          state.subloc == landingPageRoute) {}
       return null;
     },
     routes: [
@@ -84,12 +77,13 @@ final GoRouter router = GoRouter(
       ),
       GoRoute(
         path: productListRoute,
-        name: "productListPage",
+        name: productListPageName,
         pageBuilder: (context, state) {
           return getTransition(
               child: ProductListPage(
                   query: state.queryParams['query']!,
-                  name: state.queryParams['name'] ?? ''),
+                  name: state.queryParams['name'] ?? '',
+                  category: state.queryParams['category']!),
               animationType: TransitionType.slide,
               duration: const Duration(milliseconds: 200));
         },
@@ -102,6 +96,28 @@ final GoRouter router = GoRouter(
               child: CarDetailPage(
                 slug: state.queryParams['slug']!,
               ),
+              animationType: TransitionType.fade,
+              duration: const Duration(milliseconds: 200));
+        },
+      ),
+      GoRoute(
+        path: propertyDetailRoute,
+        name: propertyDetailPageName,
+        pageBuilder: (context, state) {
+          return getTransition(
+              child: PropertyDetailPage(
+                slug: state.queryParams['slug']!,
+              ),
+              animationType: TransitionType.fade,
+              duration: const Duration(milliseconds: 200));
+        },
+      ),
+      GoRoute(
+        path: bookNowPageRoute,
+        name: bookNowPageName,
+        pageBuilder: (context, state) {
+          return getTransition(
+              child: const ProductBookingPage(),
               animationType: TransitionType.fade,
               duration: const Duration(milliseconds: 200));
         },
