@@ -35,6 +35,17 @@ class _PropertyImageTypeListViewState extends State<PropertyImageTypeListView> {
           scrollDirection: Axis.horizontal,
           padding: const EdgeInsets.symmetric(horizontal: appPadding),
           children: [
+            widget.propertyDetailEntity.all!.isNotEmpty
+                ? ProductImagecategory(
+                    all: widget.propertyDetailEntity.all ?? [],
+                    title: kAll,
+                    onTap: () {
+                      context
+                          .read<ProductImageSwitcherCubit>()
+                          .switchImages(widget.propertyDetailEntity.all!);
+                    },
+                  )
+                : const SizedBox(),
             widget.propertyDetailEntity.hall!.isNotEmpty
                 ? ProductImagecategory(
                     all: widget.propertyDetailEntity.hall ?? [],
@@ -92,6 +103,16 @@ class _PropertyImageTypeListViewState extends State<PropertyImageTypeListView> {
                     onTap: () {
                       context.read<ProductImageSwitcherCubit>().switchImages(
                           widget.propertyDetailEntity.livingRoom!);
+                    })
+                : const SizedBox(),
+            widget.propertyDetailEntity.outside!.isNotEmpty
+                ? ProductImagecategory(
+                    all: widget.propertyDetailEntity.outside ?? [],
+                    title: kOutside,
+                    onTap: () {
+                      context
+                          .read<ProductImageSwitcherCubit>()
+                          .switchImages(widget.propertyDetailEntity.outside!);
                     })
                 : const SizedBox(),
           ],

@@ -37,19 +37,9 @@ flutter:
     - family: PlayfairDisplay
       fonts:
         - asset: fonts/PlayfairDisplay-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
     - family: Inter
       fonts:
         - asset: fonts/Inter-Regular.ttf
-
-  # fonts:
-  #   - family: Pacifico
-  #     fonts:
-  #       - asset: fonts/Pacifico.ttf
-  #   - family: Inter
-  #     fonts:
-  #       - asset: fonts/Inter-Regular.tff
     
   assets:
     - .env
@@ -58,6 +48,7 @@ flutter:
     - assets/login/
     - assets/home_page/
     - assets/bottom_bar/
+    - assets/booking/
 
 flutter_assets:
   assets_path: assets/

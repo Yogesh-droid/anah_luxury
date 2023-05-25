@@ -5,6 +5,7 @@ class PropertyDetailEntity {
   final String? title;
   final String? propertyType;
   final String? price;
+  final List<All>? all;
   final List<All>? bedroom;
   final List<All>? hall;
   final List<All>? kitchen;
@@ -22,6 +23,7 @@ class PropertyDetailEntity {
       this.title,
       this.propertyType,
       this.price,
+      this.all,
       this.bedroom,
       this.hall,
       this.kitchen,

@@ -6,8 +6,11 @@ import 'package:anah_luxury/features/product_details/ui/widgets/product_carousel
 import 'package:anah_luxury/features/product_details/ui/widgets/product_overview_widget.dart';
 import 'package:anah_luxury/features/product_details/ui/widgets/property_image_type_listview.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../core/constants/strings.dart';
+import '../../../../core/routes/routes.dart';
+import 'book_now_widget.dart';
 
 class PropertyDetailWidget extends StatelessWidget {
   const PropertyDetailWidget({super.key, required this.propertyDetailEntity});
@@ -48,6 +51,14 @@ class PropertyDetailWidget extends StatelessWidget {
         const ProductCarousel(),
         const SizedBox(height: appPadding),
         PropertyImageTypeListView(propertyDetailEntity: propertyDetailEntity),
+        appDivider(),
+        BookNowWidget(
+            bookingPrice: propertyDetailEntity.bookingPrice ?? 'Not Available',
+            onTap: () {
+              context.pushNamed(bookNowPageName,
+                  queryParams: {"category": kProperties});
+            }),
+        appDivider(),
         const SizedBox(height: appWidgetGap),
         const Padding(
           padding: EdgeInsets.symmetric(horizontal: appPadding),

@@ -22,7 +22,7 @@ class ProductListBloc extends Bloc<ProductListEvent, ProductListState> {
         if (event is GetProductListEvent) {
           final DataState<Map<ProductStateType, dynamic>> data =
               await productListUsecase.call(RequestParams(
-                  url: "${baseUrl}v1/getProducts?${event.query}",
+                  url: "${baseUrl}v1/app/getProducts?${event.query}",
                   apiMethods: ApiMethods.get,
                   header: {
                 "Authorization":

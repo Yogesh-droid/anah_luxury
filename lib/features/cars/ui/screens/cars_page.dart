@@ -6,6 +6,8 @@ import 'package:anah_luxury/features/home/ui/widgets/featured_car_list_widget.da
 import 'package:anah_luxury/features/home/ui/widgets/popular_car_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import '../../../../core/routes/routes.dart';
 import '../controllers/category_bloc/category_bloc.dart';
 import '../widgets/brands_list.dart';
 import '../widgets/category_list.dart';
@@ -48,13 +50,27 @@ class _CarsPageState extends State<CarsPage> {
         const SizedBox(height: appWidgetGap),
         AppTitleAndListWidget(
             title: kFeaturedCars,
-            onViewAllTapped: () {},
+            onViewAllTapped: () {
+              context.pushNamed(productListPageName, queryParams: {
+                "query":
+                    "country=60c9a6428729de2bf7ad0ebe&category=cars&featureType=isFeatured",
+                "name": kFeaturedCars,
+                "category": kCars
+              });
+            },
             categoryBody: const FeaturedCarListWidget()),
         const SizedBox(height: appWidgetGap),
         AppTitleAndListWidget(
           title: kPopularCars,
           categoryBody: const PopularCarsList(),
-          onViewAllTapped: () {},
+          onViewAllTapped: () {
+            context.pushNamed(productListPageName, queryParams: {
+              "query":
+                  "country=60c9a6428729de2bf7ad0ebe&category=cars&featureType=isPopular",
+              "name": kPopularCars,
+              "category": kCars
+            });
+          },
         ),
       ],
     ));

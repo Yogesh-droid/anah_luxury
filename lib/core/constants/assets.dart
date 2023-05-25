@@ -1,6 +1,14 @@
 class Assets {
   Assets._();
   
+  /// Assets for assetsBookingDriveIcon
+  /// assets/booking/drive_icon.png
+  static const String assetsBookingDriveIcon = "assets/booking/drive_icon.png";
+
+  /// Assets for assetsBookingHouseTourIcon
+  /// assets/booking/house_tour_icon.png
+  static const String assetsBookingHouseTourIcon = "assets/booking/house_tour_icon.png";
+
   /// Assets for assetsBottomBarCar
   /// assets/bottom_bar/car.svg
   static const String assetsBottomBarCar = "assets/bottom_bar/car.svg";

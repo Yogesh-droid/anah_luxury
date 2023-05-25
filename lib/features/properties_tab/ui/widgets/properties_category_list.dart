@@ -1,7 +1,10 @@
+import 'package:anah_luxury/core/constants/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../core/constants/spaces.dart';
+import '../../../../core/routes/routes.dart';
 import '../../../cars/domain/entity/category_entity.dart';
 import '../../../cars/ui/widgets/category_widget.dart';
 import '../controllers/properties_bloc/properties_category_bloc.dart';
@@ -32,7 +35,14 @@ class PropertiesCategoryList extends StatelessWidget {
                 return CategoryWidget(
                   id: list[index].sId,
                   image: list[index].imgPath,
-                  onTap: () {},
+                  onTap: () {
+                    context.pushNamed(productListPageName, queryParams: {
+                      "query":
+                          "country=60c9a6428729de2bf7ad0ebe&category=real-estate|${list[index].slug}",
+                      "name": list[index].name,
+                      "category": kResidence
+                    });
+                  },
                   title: list[index].name,
                   slug: list[index].slug,
                 );

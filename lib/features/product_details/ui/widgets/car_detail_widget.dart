@@ -7,8 +7,10 @@ import 'package:anah_luxury/features/product_details/ui/widgets/product_carousel
 import 'package:anah_luxury/features/product_details/ui/widgets/car_image_type_listview.dart';
 import 'package:anah_luxury/features/product_details/ui/widgets/product_overview_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../core/constants/strings.dart';
+import '../../../../core/routes/routes.dart';
 
 class CarDetailWidget extends StatelessWidget {
   const CarDetailWidget({super.key, required this.carDetailEntity});
@@ -52,7 +54,10 @@ class CarDetailWidget extends StatelessWidget {
         appDivider(),
         BookNowWidget(
             bookingPrice: carDetailEntity.bookingPrice ?? 'Not Available',
-            onTap: () {}),
+            onTap: () {
+              context
+                  .pushNamed(bookNowPageName, queryParams: {"category": kCars});
+            }),
         appDivider(),
         const Padding(
           padding: EdgeInsets.symmetric(horizontal: appPadding),

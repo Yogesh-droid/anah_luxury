@@ -14,17 +14,21 @@ class CategoryWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-          color: black,
-          image: DecorationImage(
-              fit: BoxFit.fill,
-              opacity: 0.2,
-              image: CachedNetworkImageProvider(image ?? ''))),
-      child: Center(
-        child: Text(
-          title ?? '',
-          style: secMed15.copyWith(fontFamily: 'PlayfairDisplay', color: white),
+    return InkWell(
+      onTap: () => onTap != null ? onTap!() : null,
+      child: Container(
+        decoration: BoxDecoration(
+            color: black,
+            image: DecorationImage(
+                fit: BoxFit.fill,
+                opacity: 0.2,
+                image: CachedNetworkImageProvider(image ?? ''))),
+        child: Center(
+          child: Text(
+            title ?? '',
+            style:
+                secMed15.copyWith(fontFamily: 'PlayfairDisplay', color: white),
+          ),
         ),
       ),
     );

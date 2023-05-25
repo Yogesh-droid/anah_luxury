@@ -15,7 +15,13 @@ import '../controllers/password_visibility/password_visibility_cubit.dart';
 import 'login_textfield.dart';
 
 mixin InputValidationMixin {
+  bool isNameValid(String name) => name.length > 3;
   bool isPasswordValid(String password) => password.length > 6;
+  bool isMobileValid(String mobileNo) {
+    RegExp regex = RegExp(r"^[0-9]");
+    return regex.hasMatch(mobileNo);
+  }
+
   bool isEmailValid(String email) {
     RegExp regex = RegExp(
         r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
@@ -33,7 +39,6 @@ class LoginForm extends StatelessWidget with InputValidationMixin {
 
   @override
   Widget build(BuildContext context) {
-    // print("Build");
     return Form(
       key: _formKey,
       child: Column(

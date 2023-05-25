@@ -67,3 +67,16 @@ const String kOtherFeatures = "Other Features";
 const String kBookNow = "Book Now";
 const String kRefundable = "Refundable";
 const String kTnC = "Terms and Conditions";
+const String kBooking = "Booking";
+const String kFullName = "Full Name*";
+const String kBookTestDrive = "Book Test Drive";
+const String kBookHouseTour = "Book House Tour";
+const String kGetBehindWheels = "Get behind the wheel & feel your dream luxury";
+const String kStepInsideHome =
+    "Step Inside and Fall in Love with Your dream luxury";
+const String kCountry = "Country";
+const String kMobileNo = "Mobile No. *";
+const String kNext = "Next";
+const String kPreferredTime = "Preferred Time Slot";
+const String kPrevious = "Previous";
+const String kBook = "Book";

@@ -117,7 +117,9 @@ final GoRouter router = GoRouter(
         name: bookNowPageName,
         pageBuilder: (context, state) {
           return getTransition(
-              child: const ProductBookingPage(),
+              child: ProductBookingPage(
+                category: state.queryParams['category']!,
+              ),
               animationType: TransitionType.fade,
               duration: const Duration(milliseconds: 200));
         },

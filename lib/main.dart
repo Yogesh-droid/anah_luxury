@@ -10,6 +10,8 @@ import 'package:anah_luxury/features/home/ui/controllers/featured_luxury_residen
 import 'package:anah_luxury/features/home/ui/controllers/home_page_banners_bloc/bloc/home_page_banner_bloc_bloc.dart';
 import 'package:anah_luxury/features/home/ui/controllers/home_page_category_bloc/bloc/home_page_category_bloc_bloc.dart';
 import 'package:anah_luxury/features/landing/ui/controllers/cubit/banner_text_controller_cubit.dart';
+import 'package:anah_luxury/features/product_booking/ui/controllers/booking_pagecontroller_index_cubit.dart';
+import 'package:anah_luxury/features/product_booking/ui/controllers/cubit/booking_timeslider_controller_cubit.dart';
 import 'package:anah_luxury/features/product_details/ui/controllers/product_image_switcher/product_image_switcher_cubit.dart';
 import 'package:anah_luxury/features/product_details/ui/controllers/property_detail_bloc/property_detail_bloc.dart';
 import 'package:anah_luxury/features/product_listing/ui/controllers/cubit/filter_cubit.dart';
@@ -72,7 +74,10 @@ class MyApp extends StatelessWidget {
               create: (context) =>
                   PropertyDetailBloc(propertyDetailUsecase: getIt())),
           BlocProvider<ProductImageSwitcherCubit>(
-              create: (context) => ProductImageSwitcherCubit())
+              create: (context) => ProductImageSwitcherCubit()),
+          BlocProvider<BookingTimesliderControllerCubit>(
+              create: (context) => BookingTimesliderControllerCubit()),
+          BlocProvider(create: (context) => BookingPageControllerIndexCubit())
         ],
         child: MaterialApp.router(
           title: 'Anah Luxury',

@@ -13,19 +13,17 @@ class ProductImagecategory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        onTap();
-      },
-      child: Padding(
-        padding: const EdgeInsets.only(right: appPadding),
-        child: Container(
-          width: 150,
-          decoration: BoxDecoration(border: Border.all(color: black, width: 5)),
-          child: CategoryWidget(
-            image: all[0].fileUrl,
-            title: title!.toUpperCase(),
-          ),
+    return Padding(
+      padding: const EdgeInsets.only(right: appPadding),
+      child: Container(
+        width: 150,
+        decoration: BoxDecoration(border: Border.all(color: black, width: 5)),
+        child: CategoryWidget(
+          image: all[0].fileUrl,
+          title: title!.toUpperCase(),
+          onTap: () {
+            onTap();
+          },
         ),
       ),
     );

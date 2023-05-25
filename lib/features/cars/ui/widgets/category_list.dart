@@ -1,8 +1,11 @@
+import 'package:anah_luxury/core/constants/strings.dart';
 import 'package:anah_luxury/features/cars/domain/entity/category_entity.dart';
 import 'package:anah_luxury/features/cars/ui/widgets/category_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import '../../../../core/constants/spaces.dart';
+import '../../../../core/routes/routes.dart';
 import '../controllers/category_bloc/category_bloc.dart';
 
 class CategoryList extends StatelessWidget {
@@ -31,7 +34,14 @@ class CategoryList extends StatelessWidget {
                 return CategoryWidget(
                   id: list[index].sId,
                   image: list[index].imgPath,
-                  onTap: () {},
+                  onTap: () {
+                    context.pushNamed(productListPageName, queryParams: {
+                      "query":
+                          "country=60c9a6428729de2bf7ad0ebe&category=cars|${list[index].slug}",
+                      "name": list[index].name,
+                      "category": kCars
+                    });
+                  },
                   title: list[index].name,
                   slug: list[index].slug,
                 );

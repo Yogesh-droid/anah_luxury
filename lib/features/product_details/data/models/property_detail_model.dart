@@ -7,6 +7,7 @@ class PropertyDetailModel extends PropertyDetailEntity {
       String? title,
       String? propertyType,
       String? price,
+      List<All>? all,
       List<All>? bedroom,
       List<All>? hall,
       List<All>? kitchen,
@@ -19,6 +20,7 @@ class PropertyDetailModel extends PropertyDetailEntity {
       List<String>? otherFeatures,
       String? seller})
       : super(
+            all: all,
             bedroom: bedroom,
             bookingPrice: bookingPrice,
             diningRoom: diningRoom,
@@ -41,6 +43,9 @@ class PropertyDetailModel extends PropertyDetailEntity {
         title: json["title"],
         propertyType: json["propertyType"],
         price: json["price"],
+        all: json["all"] == null
+            ? null
+            : (json["all"] as List).map((e) => All.fromJson(e)).toList(),
         bedroom: json["bedroom"] == null
             ? null
             : (json["bedroom"] as List).map((e) => All.fromJson(e)).toList(),
