@@ -1,3 +1,4 @@
+import 'package:anah_luxury/core/constants/app_colors.dart';
 import 'package:anah_luxury/core/constants/spaces.dart';
 import 'package:anah_luxury/core/constants/strings.dart';
 import 'package:anah_luxury/features/cars/ui/controllers/brands_bloc/brands_bloc.dart';
@@ -37,43 +38,46 @@ class _CarsPageState extends State<CarsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-        child: Column(
-      children: [
-        const SizedBox(
-          height: 40,
-        ),
-        const AppTitleAndListWidget(
-            title: kCategories, categoryBody: CategoryList()),
-        const SizedBox(height: appWidgetGap),
-        getBrandsLogo(),
-        const SizedBox(height: appWidgetGap),
-        AppTitleAndListWidget(
-            title: kFeaturedCars,
+    return Container(
+      color: white,
+      child: SingleChildScrollView(
+          child: Column(
+        children: [
+          const SizedBox(
+            height: 40,
+          ),
+          const AppTitleAndListWidget(
+              title: kCategories, categoryBody: CategoryList()),
+          const SizedBox(height: appWidgetGap),
+          getBrandsLogo(),
+          const SizedBox(height: appWidgetGap),
+          AppTitleAndListWidget(
+              title: kFeaturedCars,
+              onViewAllTapped: () {
+                context.pushNamed(productListPageName, queryParams: {
+                  "query":
+                      "country=60c9a6428729de2bf7ad0ebe&category=cars&featureType=isFeatured",
+                  "name": kFeaturedCars,
+                  "category": kCars
+                });
+              },
+              categoryBody: const FeaturedCarListWidget()),
+          const SizedBox(height: appWidgetGap),
+          AppTitleAndListWidget(
+            title: kPopularCars,
+            categoryBody: const PopularCarsList(),
             onViewAllTapped: () {
               context.pushNamed(productListPageName, queryParams: {
                 "query":
-                    "country=60c9a6428729de2bf7ad0ebe&category=cars&featureType=isFeatured",
-                "name": kFeaturedCars,
+                    "country=60c9a6428729de2bf7ad0ebe&category=cars&featureType=isPopular",
+                "name": kPopularCars,
                 "category": kCars
               });
             },
-            categoryBody: const FeaturedCarListWidget()),
-        const SizedBox(height: appWidgetGap),
-        AppTitleAndListWidget(
-          title: kPopularCars,
-          categoryBody: const PopularCarsList(),
-          onViewAllTapped: () {
-            context.pushNamed(productListPageName, queryParams: {
-              "query":
-                  "country=60c9a6428729de2bf7ad0ebe&category=cars&featureType=isPopular",
-              "name": kPopularCars,
-              "category": kCars
-            });
-          },
-        ),
-      ],
-    ));
+          ),
+        ],
+      )),
+    );
   }
 
   Widget getBrandsLogo() {

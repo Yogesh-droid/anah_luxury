@@ -24,6 +24,7 @@ dependencies:
   flutter_secure_storage: ^8.0.0
   flutter_dotenv: ^5.0.2
   path_provider: ^2.0.15
+  intl: ^0.18.1
 
 dev_dependencies:
   flutter_test:
@@ -49,6 +50,7 @@ flutter:
     - assets/home_page/
     - assets/bottom_bar/
     - assets/booking/
+    - assets/profile/
 
 flutter_assets:
   assets_path: assets/

@@ -5,12 +5,16 @@
 
 import 'package:anah_luxury/core/constants/app_colors.dart';
 import 'package:anah_luxury/core/constants/assets.dart';
+import 'package:anah_luxury/core/constants/strings.dart';
 import 'package:anah_luxury/core/constants/text_tyles.dart';
+import 'package:anah_luxury/core/routes/routes.dart';
+import 'package:anah_luxury/features/auth/login/ui/widgets/login_form.dart';
 import 'package:anah_luxury/features/landing/ui/controllers/cubit/banner_text_controller_cubit.dart';
 import 'package:anah_luxury/features/landing/ui/widgets/auth_button_views.dart';
 import 'package:anah_luxury/features/landing/ui/widgets/login_background_decoration.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class LandingPage extends StatelessWidget {
   const LandingPage({super.key});
@@ -63,71 +67,76 @@ class _LandingForegroundState extends State<LandingForeground>
 
   @override
   Widget build(BuildContext context) {
-    return Align(
-      alignment: Alignment.center,
-      child: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          children: [
-            Align(
-              alignment: Alignment.topLeft,
-              child: Image.asset(
+    return Padding(
+      padding: const EdgeInsets.all(20),
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Image.asset(
                 Assets.assetsWelcomePageAnah,
                 color: Colors.white,
                 height: 50,
                 width: 120,
               ),
+              TextButton(
+                onPressed: () {
+                  context.push(dashBoardRoute);
+                },
+                style: getLoginButtonStyle(context),
+                child: const Text(kSkip),
+              )
+            ],
+          ),
+          const SizedBox(
+            height: 200,
+          ),
+          BlocBuilder<BannerTextControllerCubit, String>(
+            builder: (context, state) {
+              return AnimatedSwitcher(
+                duration: const Duration(milliseconds: 1500),
+                transitionBuilder: (Widget child, Animation<double> animation) {
+                  return FadeTransition(opacity: animation, child: child);
+                },
+                child: state == "Luxury Homes"
+                    ? Text(
+                        key: const ValueKey<String>("Homes"),
+                        state,
+                        textAlign: TextAlign.start,
+                        style: secMed36.copyWith(
+                            fontFamily: "PlayfairDisplay",
+                            color: white,
+                            fontWeight: FontWeight.w600))
+                    : Text(
+                        key: const ValueKey<String>("Cars"),
+                        state,
+                        textAlign: TextAlign.start,
+                        style: secMed36.copyWith(
+                            fontFamily: "PlayfairDisplay",
+                            color: white,
+                            fontWeight: FontWeight.w600),
+                      ),
+              );
+            },
+          ),
+          SizedBox(
+            width: MediaQuery.of(context).size.width / 1.5,
+            child: Text(
+              '''Discover new collection from all over the globe everyday with ANAH''',
+              style: secMed15.copyWith(color: white),
+              textAlign: TextAlign.center,
             ),
-            const SizedBox(
-              height: 200,
+          ),
+          const Spacer(),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: SlideTransition(
+              position: _animation,
+              child: const AuthButtonViews(),
             ),
-            BlocBuilder<BannerTextControllerCubit, String>(
-              builder: (context, state) {
-                return AnimatedSwitcher(
-                  duration: const Duration(milliseconds: 1500),
-                  transitionBuilder:
-                      (Widget child, Animation<double> animation) {
-                    return FadeTransition(opacity: animation, child: child);
-                  },
-                  child: state == "Luxury Homes"
-                      ? Text(
-                          key: const ValueKey<String>("Homes"),
-                          state,
-                          textAlign: TextAlign.start,
-                          style: secMed36.copyWith(
-                              fontFamily: "PlayfairDisplay",
-                              color: white,
-                              fontWeight: FontWeight.w600))
-                      : Text(
-                          key: const ValueKey<String>("Cars"),
-                          state,
-                          textAlign: TextAlign.start,
-                          style: secMed36.copyWith(
-                              fontFamily: "PlayfairDisplay",
-                              color: white,
-                              fontWeight: FontWeight.w600),
-                        ),
-                );
-              },
-            ),
-            SizedBox(
-              width: MediaQuery.of(context).size.width / 1.5,
-              child: Text(
-                '''Discover new collection from all over the globe everyday with ANAH''',
-                style: secMed15.copyWith(color: white),
-                textAlign: TextAlign.center,
-              ),
-            ),
-            const Spacer(),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: SlideTransition(
-                position: _animation,
-                child: const AuthButtonViews(),
-              ),
-            )
-          ],
-        ),
+          )
+        ],
       ),
     );
   }

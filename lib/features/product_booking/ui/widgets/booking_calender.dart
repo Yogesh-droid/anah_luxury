@@ -2,10 +2,12 @@ import 'package:anah_luxury/core/constants/app_colors.dart';
 import 'package:anah_luxury/core/constants/spaces.dart';
 import 'package:anah_luxury/core/constants/strings.dart';
 import 'package:anah_luxury/core/constants/text_tyles.dart';
+import 'package:anah_luxury/features/product_booking/ui/controllers/cubit/book_product_cubit.dart';
 import 'package:anah_luxury/features/product_booking/ui/widgets/anah_calender.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:anah_luxury/features/product_booking/ui/controllers/cubit/booking_timeslider_controller_cubit.dart';
+import 'package:intl/intl.dart' as intl;
 
 class BookingCalender extends StatelessWidget {
   const BookingCalender({super.key});
@@ -19,7 +21,10 @@ class BookingCalender extends StatelessWidget {
           firstDate: DateTime.now(),
           currentDate: DateTime.now(),
           lastDate: DateTime.now().add(const Duration(days: 30)),
-          onDateChanged: (value) {},
+          onDateChanged: (value) {
+            context.read<BookProductCubit>().preferredDate =
+                intl.DateFormat("yyyy-MM-dd").format(value);
+          },
         ),
         const Spacer(),
         const Divider(),
@@ -51,6 +56,8 @@ class BookingCalender extends StatelessWidget {
                         context
                             .read<BookingTimesliderControllerCubit>()
                             .updateTime(value.toInt());
+                        context.read<BookProductCubit>().preferredTime =
+                            value.toInt();
                       }),
                 ),
                 Padding(

@@ -55,8 +55,11 @@ class PropertyDetailWidget extends StatelessWidget {
         BookNowWidget(
             bookingPrice: propertyDetailEntity.bookingPrice ?? 'Not Available',
             onTap: () {
-              context.pushNamed(bookNowPageName,
-                  queryParams: {"category": kProperties});
+              context.pushNamed(bookNowPageName, queryParams: {
+                "category": kProperties,
+                "categoryId": propertyDetailEntity.categoryId,
+                "productId": propertyDetailEntity.id
+              });
             }),
         appDivider(),
         const SizedBox(height: appWidgetGap),

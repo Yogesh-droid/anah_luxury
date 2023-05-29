@@ -14,18 +14,23 @@ class CarDetailEntity {
   final List<UploadedFiles>? uploadedFiles;
   final String? seller;
   final String? bookingPrice;
-  CarDetailEntity(
-      {this.success,
-      this.title,
-      this.price,
-      this.all,
-      this.exterior,
-      this.interior,
-      this.wheel,
-      this.engine,
-      this.carOverView,
-      this.carSpecification,
-      this.uploadedFiles,
-      this.seller,
-      this.bookingPrice});
+  final String? id;
+  final String? categoryId;
+  CarDetailEntity({
+    this.success,
+    this.title,
+    this.price,
+    this.all,
+    this.exterior,
+    this.interior,
+    this.wheel,
+    this.engine,
+    this.carOverView,
+    this.carSpecification,
+    this.uploadedFiles,
+    this.seller,
+    this.bookingPrice,
+    this.id,
+    this.categoryId,
+  });
 }

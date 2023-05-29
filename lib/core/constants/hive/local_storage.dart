@@ -1,11 +1,17 @@
 import 'dart:convert';
-
 import 'package:anah_luxury/core/constants/hive/storage_client.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:hive/hive.dart';
 
 class LocalStorage {
+  static final LocalStorage instance = LocalStorage._internal();
+  factory LocalStorage() {
+    return instance;
+  }
+  LocalStorage._internal();
+
+  String? token;
   final FlutterSecureStorage secureStorage =
       LocalStorageClient().flutterSecureStorage;
 
@@ -15,9 +21,16 @@ class LocalStorage {
     await enctriptedBox.put(dotenv.env['token_value'], token);
   }
 
+  Future<void> deleteToken() async {
+    final enctriptedBox = await getEnctriptedBox();
+    token = null;
+    await enctriptedBox.put(dotenv.env['token_value'], null);
+  }
+
   Future<String> getToken() async {
     final enctriptedBox = await getEnctriptedBox();
-    return enctriptedBox.get(dotenv.env['token_value']) ?? '';
+    token = await enctriptedBox.get(dotenv.env['token_value']) ?? '';
+    return token!;
   }
 
   Future<Box<E>> getEnctriptedBox<E>() async {

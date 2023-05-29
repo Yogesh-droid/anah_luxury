@@ -1,3 +1,4 @@
+import 'package:anah_luxury/core/constants/app_colors.dart';
 import 'package:anah_luxury/core/constants/spaces.dart';
 import 'package:anah_luxury/core/constants/strings.dart';
 import 'package:anah_luxury/core/routes/routes.dart';
@@ -39,76 +40,79 @@ class _HomePageState extends State<HomePage> {
     return SafeArea(
       bottom: true,
       maintainBottomViewPadding: true,
-      child: SingleChildScrollView(
-          child: Column(
-        children: [
-          const SizedBox(
-            height: 10,
-          ),
-          Padding(
-            padding: const EdgeInsets.all(18.0),
-            child: AnahSearchBar(onChange: (value) {}),
-          ),
-          const SizedBox(height: appPadding),
-          const HomePagebannerWidget(),
-          const SizedBox(height: appWidgetGap),
-          const AppTitleAndListWidget(
-            title: kBrowseBy,
-            categoryBody: CategoryListWidget(),
-          ),
-          const SizedBox(height: appWidgetGap),
-          AppTitleAndListWidget(
-            title: kFeaturedResidence,
-            onViewAllTapped: () {
-              context.pushNamed(productListPageName, queryParams: {
-                "query":
-                    "country=60c9a6428729de2bf7ad0ebe&category=real-estate&featureType=isFeatured",
-                "name": kFeaturedResidence,
-                "category": kProperties
-              });
-            },
-            categoryBody: const FeaturedResidenceListWidget(),
-          ),
-          const SizedBox(height: appWidgetGap),
-          AppTitleAndListWidget(
-            title: kFeaturedCars,
-            onViewAllTapped: () {
-              context.pushNamed(productListPageName, queryParams: {
-                "query":
-                    "country=60c9a6428729de2bf7ad0ebe&category=cars&featureType=isFeatured",
-                "name": kFeaturedCars,
-                "category": kCars
-              });
-            },
-            categoryBody: const FeaturedCarListWidget(),
-          ),
-          const SizedBox(height: appWidgetGap),
-          AppTitleAndListWidget(
-            title: kNewResidence,
-            onViewAllTapped: () {
-              context.pushNamed(productListPageName, queryParams: {
-                "query":
-                    "country=60c9a6428729de2bf7ad0ebe&category=real-estate&featureType=isNew",
-                "name": kNewResidence,
-                "category": kProperties
-              });
-            },
-            categoryBody: const NewResidenceListWidget(),
-          ),
-          const SizedBox(height: appWidgetGap),
-          AppTitleAndListWidget(
-              title: kPopularCars,
+      child: Container(
+        color: white,
+        child: SingleChildScrollView(
+            child: Column(
+          children: [
+            const SizedBox(
+              height: 10,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(18.0),
+              child: AnahSearchBar(onChange: (value) {}),
+            ),
+            const SizedBox(height: appPadding),
+            const HomePagebannerWidget(),
+            const SizedBox(height: appWidgetGap),
+            const AppTitleAndListWidget(
+              title: kBrowseBy,
+              categoryBody: CategoryListWidget(),
+            ),
+            const SizedBox(height: appWidgetGap),
+            AppTitleAndListWidget(
+              title: kFeaturedResidence,
               onViewAllTapped: () {
                 context.pushNamed(productListPageName, queryParams: {
                   "query":
-                      "country=60c9a6428729de2bf7ad0ebe&category=cars&featureType=isPopular",
-                  "name": kPopularCars,
+                      "country=60c9a6428729de2bf7ad0ebe&category=real-estate&featureType=isFeatured",
+                  "name": kFeaturedResidence,
+                  "category": kProperties
+                });
+              },
+              categoryBody: const FeaturedResidenceListWidget(),
+            ),
+            const SizedBox(height: appWidgetGap),
+            AppTitleAndListWidget(
+              title: kFeaturedCars,
+              onViewAllTapped: () {
+                context.pushNamed(productListPageName, queryParams: {
+                  "query":
+                      "country=60c9a6428729de2bf7ad0ebe&category=cars&featureType=isFeatured",
+                  "name": kFeaturedCars,
                   "category": kCars
                 });
               },
-              categoryBody: const PopularCarsList())
-        ],
-      )),
+              categoryBody: const FeaturedCarListWidget(),
+            ),
+            const SizedBox(height: appWidgetGap),
+            AppTitleAndListWidget(
+              title: kNewResidence,
+              onViewAllTapped: () {
+                context.pushNamed(productListPageName, queryParams: {
+                  "query":
+                      "country=60c9a6428729de2bf7ad0ebe&category=real-estate&featureType=isNew",
+                  "name": kNewResidence,
+                  "category": kProperties
+                });
+              },
+              categoryBody: const NewResidenceListWidget(),
+            ),
+            const SizedBox(height: appWidgetGap),
+            AppTitleAndListWidget(
+                title: kPopularCars,
+                onViewAllTapped: () {
+                  context.pushNamed(productListPageName, queryParams: {
+                    "query":
+                        "country=60c9a6428729de2bf7ad0ebe&category=cars&featureType=isPopular",
+                    "name": kPopularCars,
+                    "category": kCars
+                  });
+                },
+                categoryBody: const PopularCarsList())
+          ],
+        )),
+      ),
     );
   }
 

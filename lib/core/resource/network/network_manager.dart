@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:anah_luxury/core/resource/network/client.dart';
 import 'package:anah_luxury/core/resource/request_params/request_params.dart';
 import 'package:dio/dio.dart';
@@ -18,7 +20,8 @@ class NetworkManager {
 
       case ApiMethods.post:
         debugPrint(requestParams.url);
-        debugPrint(requestParams.body.toString());
+        debugPrint(requestParams.header.toString());
+        debugPrint(jsonEncode(requestParams.body));
         response = await _dio.post(requestParams.url,
             data: requestParams.body, options: options);
         return response;

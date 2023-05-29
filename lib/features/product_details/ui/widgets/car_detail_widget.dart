@@ -55,8 +55,11 @@ class CarDetailWidget extends StatelessWidget {
         BookNowWidget(
             bookingPrice: carDetailEntity.bookingPrice ?? 'Not Available',
             onTap: () {
-              context
-                  .pushNamed(bookNowPageName, queryParams: {"category": kCars});
+              context.pushNamed(bookNowPageName, queryParams: {
+                "category": kCars,
+                "categoryId": carDetailEntity.categoryId,
+                "productId": carDetailEntity.id
+              });
             }),
         appDivider(),
         const Padding(

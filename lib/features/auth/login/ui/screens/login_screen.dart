@@ -1,6 +1,8 @@
+import 'package:anah_luxury/core/constants/hive/local_storage.dart';
 import 'package:anah_luxury/core/routes/routes.dart';
 import 'package:anah_luxury/features/auth/login/ui/screens/login_background.dart';
 import 'package:anah_luxury/features/auth/login/ui/screens/login_foreground.dart';
+import 'package:anah_luxury/features/menu/ui/controllers/profile_bloc/profile_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -26,6 +28,11 @@ class LoginScreen extends StatelessWidget {
             ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(content: Text(state.exception.toString())));
           } else if (state is LoginSuccess) {
+            debugPrint("token is =>=>=>=>  ${state.token}");
+            LocalStorage.instance.token = state.token;
+            debugPrint(
+                "token from local storage is =>=>=>=>  ${LocalStorage.instance.token}");
+            context.read<ProfileBloc>().add(GetProfileEvent());
             context.push(dashBoardRoute);
           }
         },

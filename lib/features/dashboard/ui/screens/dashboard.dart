@@ -1,3 +1,4 @@
+import 'package:anah_luxury/core/constants/app_colors.dart';
 import 'package:anah_luxury/core/constants/assets.dart';
 import 'package:anah_luxury/features/cars/ui/screens/cars_page.dart';
 import 'package:anah_luxury/features/dashboard/ui/controllers/cubit/bottom_nav_controller_cubit.dart';
@@ -17,6 +18,7 @@ class DashBoard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: white,
       appBar: getAppBar(),
       body: getPages(),
       bottomNavigationBar: getBottomNavBar(),

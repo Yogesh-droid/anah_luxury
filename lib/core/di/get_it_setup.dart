@@ -25,6 +25,14 @@ import 'package:anah_luxury/features/home/ui/controllers/featured_luxury_cars/fe
 import 'package:anah_luxury/features/home/ui/controllers/featured_luxury_residence/featured_lusxury_residence_bloc_bloc.dart';
 import 'package:anah_luxury/features/home/ui/controllers/home_page_banners_bloc/bloc/home_page_banner_bloc_bloc.dart';
 import 'package:anah_luxury/features/home/ui/controllers/home_page_category_bloc/bloc/home_page_category_bloc_bloc.dart';
+import 'package:anah_luxury/features/menu/data/repo/profile_repo_impl.dart';
+import 'package:anah_luxury/features/menu/domain/repo/profile_repo.dart';
+import 'package:anah_luxury/features/menu/domain/usecases/profile_usecase.dart';
+import 'package:anah_luxury/features/menu/ui/controllers/profile_bloc/profile_bloc.dart';
+import 'package:anah_luxury/features/product_booking/data/repo/product_book_repo_impl.dart';
+import 'package:anah_luxury/features/product_booking/domain/repo/product_book_repo.dart';
+import 'package:anah_luxury/features/product_booking/domain/usecases/product_book_res_usecase.dart';
+import 'package:anah_luxury/features/product_booking/ui/controllers/cubit/book_product_cubit.dart';
 import 'package:anah_luxury/features/product_details/data/repo/car_detail_repo_impl.dart';
 import 'package:anah_luxury/features/product_details/domain/repo/car_detail_repo.dart';
 import 'package:anah_luxury/features/product_details/domain/repo/property_detail_repo.dart';
@@ -138,4 +146,21 @@ void setup() {
       () => PropertyDetailUsecase(getIt()));
   getIt.registerFactory<PropertyDetailBloc>(
       () => PropertyDetailBloc(propertyDetailUsecase: getIt()));
+
+  ///  Profile details  ////
+
+  getIt.registerFactory<ProfileRepo>(
+      () => ProfileRepoImapl(networkManager: getIt()));
+  getIt.registerFactory<ProfileUsecase>(
+      () => ProfileUsecase(profileRepo: getIt()));
+  getIt
+      .registerFactory<ProfileBloc>(() => ProfileBloc(profileUsecase: getIt()));
+
+  /// Product booking  ////
+
+  getIt.registerFactory<ProductBookRepo>(
+      () => ProductBookRepoImpl(networkManager: getIt()));
+  getIt.registerFactory<ProductBookResUsecase>(
+      () => ProductBookResUsecase(getIt()));
+  getIt.registerFactory<BookProductCubit>(() => BookProductCubit(getIt()));
 }

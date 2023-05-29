@@ -73,6 +73,14 @@ class Assets {
   /// assets/login/google_icon.svg
   static const String assetsLoginGoogleIcon = "assets/login/google_icon.svg";
 
+  /// Assets for assetsProfileLoggedOutUiBg
+  /// assets/profile/logged_out_ui_bg.png
+  static const String assetsProfileLoggedOutUiBg = "assets/profile/logged_out_ui_bg.png";
+
+  /// Assets for assetsProfilePersonIcon
+  /// assets/profile/person_icon.svg
+  static const String assetsProfilePersonIcon = "assets/profile/person_icon.svg";
+
   /// Assets for assetsWelcomePageAnah
   /// assets/welcome_page/anah.png
   static const String assetsWelcomePageAnah = "assets/welcome_page/anah.png";

@@ -18,7 +18,9 @@ class PropertyDetailModel extends PropertyDetailEntity {
       String? bookingPrice,
       List<OverviewType>? propertyOverView,
       List<String>? otherFeatures,
-      String? seller})
+      String? seller,
+      String? id,
+      String? categoryId})
       : super(
             all: all,
             bedroom: bedroom,
@@ -35,7 +37,9 @@ class PropertyDetailModel extends PropertyDetailEntity {
             propertyType: propertyType,
             seller: seller,
             success: success,
-            title: title);
+            title: title,
+            id: id,
+            categoryId: categoryId);
 
   factory PropertyDetailModel.fromJson(Map<String, dynamic> json) {
     return PropertyDetailModel(
@@ -76,6 +80,8 @@ class PropertyDetailModel extends PropertyDetailEntity {
         otherFeatures: json["otherFeatures"] == null
             ? null
             : List<String>.from(json["otherFeatures"]),
-        seller: json["seller"]);
+        seller: json["seller"],
+        id: json['id'],
+        categoryId: json['categories']);
   }
 }

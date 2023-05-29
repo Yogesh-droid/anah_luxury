@@ -119,6 +119,8 @@ final GoRouter router = GoRouter(
           return getTransition(
               child: ProductBookingPage(
                 category: state.queryParams['category']!,
+                categoryId: state.queryParams['categoryId']!,
+                productId: state.queryParams['productId']!,
               ),
               animationType: TransitionType.fade,
               duration: const Duration(milliseconds: 200));

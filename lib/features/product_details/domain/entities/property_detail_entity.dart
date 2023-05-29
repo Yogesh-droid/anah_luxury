@@ -17,9 +17,13 @@ class PropertyDetailEntity {
   final List<OverviewType>? propertyOverView;
   final List<String>? otherFeatures;
   final String? seller;
+  final String? id;
+  final String? categoryId;
 
   PropertyDetailEntity(
       {this.success,
+      this.id,
+      this.categoryId,
       this.title,
       this.propertyType,
       this.price,

@@ -22,6 +22,8 @@ mixin InputValidationMixin {
     return regex.hasMatch(mobileNo);
   }
 
+  bool isCountryCodeValid(String code) => code.isNotEmpty;
+
   bool isEmailValid(String email) {
     RegExp regex = RegExp(
         r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
@@ -149,21 +151,21 @@ class LoginForm extends StatelessWidget with InputValidationMixin {
       ),
     );
   }
+}
 
-  ButtonStyle getLoginButtonStyle(BuildContext context) {
-    return Theme.of(context).textButtonTheme.style!.copyWith(
-        padding: const MaterialStatePropertyAll<EdgeInsets>(
-            EdgeInsets.symmetric(horizontal: 8)),
-        textStyle: MaterialStateProperty.all(
-            secMed12.copyWith(foreground: Paint()..color = white)),
-        overlayColor: MaterialStateProperty.resolveWith((states) =>
-            states.contains(MaterialState.pressed)
-                ? white.withOpacity(0.10)
-                : Colors.transparent),
-        backgroundColor: MaterialStateProperty.resolveWith((states) =>
-            states.contains(MaterialState.pressed)
-                ? white.withOpacity(0.10)
-                : Colors.transparent),
-        splashFactory: NoSplash.splashFactory);
-  }
+ButtonStyle getLoginButtonStyle(BuildContext context) {
+  return Theme.of(context).textButtonTheme.style!.copyWith(
+      padding: const MaterialStatePropertyAll<EdgeInsets>(
+          EdgeInsets.symmetric(horizontal: 8)),
+      textStyle: MaterialStateProperty.all(
+          secMed12.copyWith(foreground: Paint()..color = white)),
+      overlayColor: MaterialStateProperty.resolveWith((states) =>
+          states.contains(MaterialState.pressed)
+              ? white.withOpacity(0.10)
+              : Colors.transparent),
+      backgroundColor: MaterialStateProperty.resolveWith((states) =>
+          states.contains(MaterialState.pressed)
+              ? white.withOpacity(0.10)
+              : Colors.transparent),
+      splashFactory: NoSplash.splashFactory);
 }

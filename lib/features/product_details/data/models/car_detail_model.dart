@@ -14,7 +14,9 @@ class CarDetailModel extends CarDetailEntity {
       List<OverviewType>? carOverView,
       List<OverviewType>? carSpecification,
       List<UploadedFiles>? uploadedFiles,
-      String? seller})
+      String? seller,
+      String? id,
+      String? categoryId})
       : super(
             all: all,
             carOverView: carOverView,
@@ -28,46 +30,49 @@ class CarDetailModel extends CarDetailEntity {
             title: title,
             uploadedFiles: uploadedFiles,
             bookingPrice: bookingPrice,
-            wheel: wheel);
+            wheel: wheel,
+            id: id,
+            categoryId: categoryId);
 
   factory CarDetailModel.fromJson(Map<String, dynamic> json) {
     return CarDetailModel(
-      carOverView: json["carOverView"] == null
-          ? null
-          : (json["carOverView"] as List)
-              .map((e) => OverviewType.fromJson(e))
-              .toList(),
-      carSpecification: json["carSpecification"] == null
-          ? null
-          : (json["carSpecification"] as List)
-              .map((e) => OverviewType.fromJson(e))
-              .toList(),
-      all: json["all"] == null
-          ? null
-          : (json["all"] as List).map((e) => All.fromJson(e)).toList(),
-      engine: json["engine"] == null
-          ? null
-          : (json["engine"] as List).map((e) => All.fromJson(e)).toList(),
-      exterior: json["exterior"] == null
-          ? null
-          : (json["exterior"] as List).map((e) => All.fromJson(e)).toList(),
-      interior: json["interior"] == null
-          ? null
-          : (json["interior"] as List).map((e) => All.fromJson(e)).toList(),
-      wheel: json["wheel"] == null
-          ? null
-          : (json["wheel"] as List).map((e) => All.fromJson(e)).toList(),
-      bookingPrice: json["booking_price"],
-      price: json["price"],
-      seller: json["seller"],
-      success: json["success"],
-      title: json["title"],
-      uploadedFiles: json["uploadedFiles"] == null
-          ? null
-          : (json["uploadedFiles"] as List)
-              .map((e) => UploadedFiles.fromJson(e))
-              .toList(),
-    );
+        carOverView: json["carOverView"] == null
+            ? null
+            : (json["carOverView"] as List)
+                .map((e) => OverviewType.fromJson(e))
+                .toList(),
+        carSpecification: json["carSpecification"] == null
+            ? null
+            : (json["carSpecification"] as List)
+                .map((e) => OverviewType.fromJson(e))
+                .toList(),
+        all: json["all"] == null
+            ? null
+            : (json["all"] as List).map((e) => All.fromJson(e)).toList(),
+        engine: json["engine"] == null
+            ? null
+            : (json["engine"] as List).map((e) => All.fromJson(e)).toList(),
+        exterior: json["exterior"] == null
+            ? null
+            : (json["exterior"] as List).map((e) => All.fromJson(e)).toList(),
+        interior: json["interior"] == null
+            ? null
+            : (json["interior"] as List).map((e) => All.fromJson(e)).toList(),
+        wheel: json["wheel"] == null
+            ? null
+            : (json["wheel"] as List).map((e) => All.fromJson(e)).toList(),
+        bookingPrice: json["booking_price"],
+        price: json["price"],
+        seller: json["seller"],
+        success: json["success"],
+        title: json["title"],
+        uploadedFiles: json["uploadedFiles"] == null
+            ? null
+            : (json["uploadedFiles"] as List)
+                .map((e) => UploadedFiles.fromJson(e))
+                .toList(),
+        id: json['id'],
+        categoryId: json['categories']);
   }
 }
 

@@ -10,7 +10,11 @@ import 'package:anah_luxury/features/home/ui/controllers/featured_luxury_residen
 import 'package:anah_luxury/features/home/ui/controllers/home_page_banners_bloc/bloc/home_page_banner_bloc_bloc.dart';
 import 'package:anah_luxury/features/home/ui/controllers/home_page_category_bloc/bloc/home_page_category_bloc_bloc.dart';
 import 'package:anah_luxury/features/landing/ui/controllers/cubit/banner_text_controller_cubit.dart';
+import 'package:anah_luxury/features/menu/ui/controllers/profile_bloc/profile_bloc.dart';
+import 'package:anah_luxury/features/product_booking/data/models/country_code_model.dart';
 import 'package:anah_luxury/features/product_booking/ui/controllers/booking_pagecontroller_index_cubit.dart';
+import 'package:anah_luxury/features/product_booking/ui/controllers/country_code_controller.dart';
+import 'package:anah_luxury/features/product_booking/ui/controllers/cubit/book_product_cubit.dart';
 import 'package:anah_luxury/features/product_booking/ui/controllers/cubit/booking_timeslider_controller_cubit.dart';
 import 'package:anah_luxury/features/product_details/ui/controllers/product_image_switcher/product_image_switcher_cubit.dart';
 import 'package:anah_luxury/features/product_details/ui/controllers/property_detail_bloc/property_detail_bloc.dart';
@@ -77,7 +81,12 @@ class MyApp extends StatelessWidget {
               create: (context) => ProductImageSwitcherCubit()),
           BlocProvider<BookingTimesliderControllerCubit>(
               create: (context) => BookingTimesliderControllerCubit()),
-          BlocProvider(create: (context) => BookingPageControllerIndexCubit())
+          BlocProvider(create: (context) => BookingPageControllerIndexCubit()),
+          BlocProvider(create: (context) => BookProductCubit(getIt())),
+          BlocProvider<ProfileBloc>(
+              create: (context) => ProfileBloc(profileUsecase: getIt())),
+          BlocProvider(
+              create: (context) => CountryCodeController(CountryCodeModel()))
         ],
         child: MaterialApp.router(
           title: 'Anah Luxury',

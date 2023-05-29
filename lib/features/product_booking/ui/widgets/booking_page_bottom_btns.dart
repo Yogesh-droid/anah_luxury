@@ -11,8 +11,10 @@ class BookingPageBottomBtns extends StatelessWidget {
       {super.key,
       required this.onNextTap,
       required this.onCancelTap,
-      required this.onPreviousTap});
+      required this.onPreviousTap,
+      required this.onBookTap});
   final Function() onNextTap;
+  final Function() onBookTap;
   final Function() onCancelTap;
   final Function() onPreviousTap;
 
@@ -45,7 +47,7 @@ class BookingPageBottomBtns extends StatelessWidget {
                   borderColor: black,
                   fillColor: black,
                   title: state == 1 ? kBook : kNext,
-                  onTap: () => onNextTap(),
+                  onTap: () => state == 1 ? onBookTap() : onNextTap(),
                   width: MediaQuery.of(context).size.width / 2.5,
                 );
               },

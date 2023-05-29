@@ -13,16 +13,20 @@ class BookingTextField extends StatelessWidget {
       this.onValidate,
       this.prefix,
       this.suffix,
-      this.textInputAction});
+      this.isEnabled,
+      this.textInputAction,
+      this.onChange});
   final String? hintText;
   final FocusNode? focusNode;
   final TextEditingController? textEditingController;
   final Function(String s)? onDone;
+  final Function(String s)? onChange;
   final TextInputType? textInputType;
   final int? maxLines;
   final String? Function(String? value)? onValidate;
   final Widget? prefix;
   final Widget? suffix;
+  final bool? isEnabled;
   final TextInputAction? textInputAction;
   @override
   Widget build(BuildContext context) {
@@ -31,6 +35,7 @@ class BookingTextField extends StatelessWidget {
       focusNode: focusNode,
       maxLength: maxLines,
       keyboardType: textInputType,
+      enabled: isEnabled,
       decoration: InputDecoration(
         border: const OutlineInputBorder(
             borderSide: BorderSide(color: black), gapPadding: 8),
@@ -40,6 +45,11 @@ class BookingTextField extends StatelessWidget {
             borderSide: BorderSide(color: black), gapPadding: 8),
         enabledBorder: const OutlineInputBorder(
             borderSide: BorderSide(color: black), gapPadding: 8),
+        errorBorder: const OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.red), gapPadding: 8),
+        errorStyle: const TextStyle(
+          color: Colors.red,
+        ),
         labelText: hintText,
         labelStyle: const TextStyle(color: black),
         prefix: prefix,
@@ -47,6 +57,7 @@ class BookingTextField extends StatelessWidget {
       ),
       onFieldSubmitted: onDone,
       validator: onValidate,
+      onChanged: onChange,
       enableIMEPersonalizedLearning: true,
     );
   }
