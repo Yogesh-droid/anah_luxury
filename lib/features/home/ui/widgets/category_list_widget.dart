@@ -21,45 +21,41 @@ class CategoryListWidget extends StatelessWidget {
             child: CircularProgressIndicator(),
           );
         } else if (state is HomePageCategoryResultState) {
-          return GridView(
-            physics: const NeverScrollableScrollPhysics(),
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 4 / 3,
-                mainAxisSpacing: 5.0),
-            padding: const EdgeInsets.symmetric(horizontal: appPadding),
-            shrinkWrap: true,
-            children: state.categoryList
-                .map(
-                  (e) => Padding(
-                    padding: const EdgeInsets.only(right: 4.0),
-                    child: CategoryContainer(
-                      width: MediaQuery.of(context).size.width / 2.5,
-                      height: MediaQuery.of(context).size.height * 0.15,
-                      title: e.name ?? ''.toUpperCase(),
-                      textStyle: secMed18.copyWith(
-                        fontWeight: FontWeight.bold,
-                        fontFamily: 'PlayfairDisplay',
-                        color: white,
+          return Container(
+            height: 140,
+            alignment: Alignment.centerLeft,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              padding: const EdgeInsets.symmetric(horizontal: appPadding),
+              shrinkWrap: true,
+              children: state.categoryList
+                  .map(
+                    (e) => Padding(
+                      padding: const EdgeInsets.only(right: appPadding),
+                      child: CategoryContainer(
+                        title: e.name ?? ''.toUpperCase(),
+                        textStyle: secMed14.copyWith(
+                          fontWeight: FontWeight.w500,
+                          color: black,
+                        ),
+                        slug: e.slug,
+                        name: e.name,
+                        onCategoryTapped: (value, name) {
+                          context.pushNamed(productListPageName, queryParams: {
+                            "query":
+                                "country=60c9a6428729de2bf7ad0ebe&category=$value",
+                            "name": name,
+                            "category":
+                                value == 'real-estate' ? kProperties : kCars
+                          });
+                        },
+                        backgroundImage: e.imgPath ??
+                            'https://images.pexels.com/photos/3786092/pexels-photo-3786092.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
                       ),
-                      slug: e.slug,
-                      name: e.name,
-                      onCategoryTapped: (value, name) {
-                        context.pushNamed(productListPageName, queryParams: {
-                          "query":
-                              "country=60c9a6428729de2bf7ad0ebe&category=$value",
-                          "name": name,
-                          "category":
-                              value == 'real-estate' ? kProperties : kCars
-                        });
-                      },
-                      shadeColor: Colors.black,
-                      backgroundImage: e.imgPath ??
-                          'https://images.pexels.com/photos/3786092/pexels-photo-3786092.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
                     ),
-                  ),
-                )
-                .toList(),
+                  )
+                  .toList(),
+            ),
           );
         }
         return const Center(

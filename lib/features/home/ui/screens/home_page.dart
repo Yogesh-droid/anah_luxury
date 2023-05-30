@@ -48,10 +48,10 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(
               height: 10,
             ),
-            Padding(
-              padding: const EdgeInsets.all(18.0),
-              child: AnahSearchBar(onChange: (value) {}),
-            ),
+            // Padding(
+            //   padding: const EdgeInsets.all(18.0),
+            //   child: AnahSearchBar(onChange: (value) {}),
+            // ),
             const SizedBox(height: appPadding),
             const HomePagebannerWidget(),
             const SizedBox(height: appWidgetGap),

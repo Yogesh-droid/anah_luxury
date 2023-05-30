@@ -1,6 +1,9 @@
+import 'package:anah_luxury/core/routes/routes.dart';
 import 'package:anah_luxury/features/product_booking/ui/controllers/booking_pagecontroller_index_cubit.dart';
+import 'package:anah_luxury/features/product_booking/ui/controllers/cubit/book_product_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/constants/spaces.dart';
 import '../../../../core/constants/strings.dart';
@@ -41,14 +44,31 @@ class BookingPageBottomBtns extends StatelessWidget {
                 );
               },
             ),
-            BlocBuilder<BookingPageControllerIndexCubit, int>(
+            BlocBuilder<BookProductCubit, BookProductState>(
               builder: (context, state) {
-                return AnahAuthButton(
-                  borderColor: black,
-                  fillColor: black,
-                  title: state == 1 ? kBook : kNext,
-                  onTap: () => state == 1 ? onBookTap() : onNextTap(),
-                  width: MediaQuery.of(context).size.width / 2.5,
+                print(state.toString());
+                if (state is ProductBookingInProgress) {
+                  return AnahAuthButton(
+                    borderColor: black,
+                    fillColor: black,
+                    title: "In Progress...",
+                    width: MediaQuery.of(context).size.width / 2.5,
+                  );
+                } else if (state is ProductBookedSuccessState) {
+                  // ScaffoldMessenger.of(context)
+                  //     .showSnackBar(SnackBar(content: Text(state.message)));
+                  context.pushReplacementNamed(savedPageName);
+                }
+                return BlocBuilder<BookingPageControllerIndexCubit, int>(
+                  builder: (context, state) {
+                    return AnahAuthButton(
+                      borderColor: black,
+                      fillColor: black,
+                      title: state == 1 ? kBook : kNext,
+                      onTap: () => state == 1 ? onBookTap() : onNextTap(),
+                      width: MediaQuery.of(context).size.width / 2.5,
+                    );
+                  },
                 );
               },
             )

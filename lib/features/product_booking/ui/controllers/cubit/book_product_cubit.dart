@@ -22,6 +22,7 @@ class BookProductCubit extends Cubit<BookProductState> {
   BookProductCubit(this.productBookResUsecase) : super(BookProductInitial());
 
   Future<void> bookProduct() async {
+    emit(ProductBookingInProgress());
     DataState<ProductBookResEntity> dataState =
         await productBookResUsecase.call(RequestParams(
             url: "${baseUrl}v1/client/bookTestDriveTour",
@@ -41,6 +42,9 @@ class BookProductCubit extends Cubit<BookProductState> {
         }));
     if (dataState.data != null) {
       emit(ProductBookedSuccessState(message: dataState.data!.message ?? ''));
+      Future.delayed(const Duration(seconds: 1), () {
+        emit(BookProductInitial());
+      });
     } else {
       emit(ProductBookedFailedState(
           exception: Exception("Something went wrong")));

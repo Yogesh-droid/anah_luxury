@@ -1,5 +1,7 @@
 import 'package:anah_luxury/core/constants/assets.dart';
 import 'package:anah_luxury/core/constants/spaces.dart';
+import 'package:anah_luxury/features/menu/domain/entities/profile_entity.dart';
+import 'package:anah_luxury/features/menu/ui/controllers/profile_bloc/profile_bloc.dart';
 import 'package:anah_luxury/features/product_booking/data/models/country_code_model.dart';
 import 'package:anah_luxury/features/product_booking/ui/controllers/country_code_controller.dart';
 import 'package:anah_luxury/features/product_booking/ui/widgets/booking_page_title_widget.dart';
@@ -10,8 +12,8 @@ import '../../../../core/constants/strings.dart';
 import '../../../auth/login/ui/widgets/login_form.dart';
 import 'booking_textfield.dart';
 
-class BookingWidget extends StatelessWidget with InputValidationMixin {
-  BookingWidget(
+class BookingWidget extends StatefulWidget {
+  const BookingWidget(
       {super.key,
       required this.category,
       required this.bookingFormKey,
@@ -25,7 +27,24 @@ class BookingWidget extends StatelessWidget with InputValidationMixin {
   final TextEditingController nameTextController;
   final TextEditingController mobileNoTextcontroller;
   final TextEditingController lastNameController;
+
+  @override
+  State<BookingWidget> createState() => _BookingWidgetState();
+}
+
+class _BookingWidgetState extends State<BookingWidget>
+    with InputValidationMixin {
   final TextEditingController searchController = TextEditingController();
+
+  @override
+  void initState() {
+    final ProfileEntity profileEntity =
+        context.read<ProfileBloc>().profileEntity;
+    widget.nameTextController.text = profileEntity.name ?? '';
+    widget.lastNameController.text = profileEntity.lastName ?? '';
+    widget.emailTextController.text = profileEntity.email ?? '';
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,23 +53,25 @@ class BookingWidget extends StatelessWidget with InputValidationMixin {
         mainAxisSize: MainAxisSize.min,
         children: [
           BookingPageTitleWidget(
-              assetsPath: category == kCars
+              assetsPath: widget.category == kCars
                   ? Assets.assetsBookingDriveIcon
                   : Assets.assetsBookingHouseTourIcon,
-              title: category == kCars ? kBookTestDrive : kBookHouseTour,
-              subtitle: category == kCars ? kGetBehindWheels : kStepInsideHome),
+              title: widget.category == kCars ? kBookTestDrive : kBookHouseTour,
+              subtitle: widget.category == kCars
+                  ? kGetBehindWheels
+                  : kStepInsideHome),
           const SizedBox(height: appWidgetGap),
           Padding(
               padding: const EdgeInsets.all(appPadding),
               child: Form(
-                  key: bookingFormKey,
+                  key: widget.bookingFormKey,
                   child: SingleChildScrollView(
                     child: Column(children: [
                       BookingTextField(
-                        textEditingController: nameTextController,
+                        textEditingController: widget.nameTextController,
                         hintText: kFirstName,
                         onDone: (value) {
-                          bookingFormKey.currentState!.validate();
+                          widget.bookingFormKey.currentState!.validate();
                         },
                         textInputType: TextInputType.name,
                         onValidate: (value) {
@@ -63,10 +84,10 @@ class BookingWidget extends StatelessWidget with InputValidationMixin {
                       ),
                       const SizedBox(height: appPadding),
                       BookingTextField(
-                        textEditingController: lastNameController,
+                        textEditingController: widget.lastNameController,
                         hintText: kLastName,
                         onDone: (value) {
-                          bookingFormKey.currentState!.validate();
+                          widget.bookingFormKey.currentState!.validate();
                         },
                         textInputType: TextInputType.name,
                         onValidate: (value) {
@@ -79,10 +100,10 @@ class BookingWidget extends StatelessWidget with InputValidationMixin {
                       ),
                       const SizedBox(height: appPadding),
                       BookingTextField(
-                        textEditingController: emailTextController,
+                        textEditingController: widget.emailTextController,
                         hintText: '$kEmailId*',
                         onDone: (value) {
-                          bookingFormKey.currentState!.validate();
+                          widget.bookingFormKey.currentState!.validate();
                         },
                         textInputType: TextInputType.emailAddress,
                         onValidate: (value) {
@@ -119,7 +140,8 @@ class BookingWidget extends StatelessWidget with InputValidationMixin {
                                       isEnabled: false,
                                       hintText: "Code*",
                                       onDone: (value) {
-                                        bookingFormKey.currentState!.validate();
+                                        widget.bookingFormKey.currentState!
+                                            .validate();
                                       },
                                       textInputType: TextInputType.number,
                                       onValidate: (value) {
@@ -137,10 +159,11 @@ class BookingWidget extends StatelessWidget with InputValidationMixin {
                           Expanded(
                             flex: 3,
                             child: BookingTextField(
-                              textEditingController: mobileNoTextcontroller,
+                              textEditingController:
+                                  widget.mobileNoTextcontroller,
                               hintText: kMobileNo,
                               onDone: (value) {
-                                bookingFormKey.currentState!.validate();
+                                widget.bookingFormKey.currentState!.validate();
                               },
                               textInputType: TextInputType.number,
                               onValidate: (value) {

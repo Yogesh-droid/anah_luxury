@@ -11,6 +11,8 @@ class ProductBookedSuccessState extends BookProductState {
   ProductBookedSuccessState({required this.message});
 }
 
+class ProductBookingInProgress extends BookProductState {}
+
 class ProductBookedFailedState extends BookProductState {
   final Exception exception;
 

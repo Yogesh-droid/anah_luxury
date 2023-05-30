@@ -6,6 +6,7 @@ import 'package:anah_luxury/features/onboarding/ui/screens/welcome_page.dart';
 import 'package:anah_luxury/features/product_details/ui/screen/car_detail_page.dart';
 import 'package:anah_luxury/features/product_details/ui/screen/property_detail_page.dart';
 import 'package:anah_luxury/features/product_listing/ui/screens/product_list_page.dart';
+import 'package:anah_luxury/features/saved/ui/screens/wishlist.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -24,6 +25,8 @@ const String carDetailPageName = "carDetailPage";
 const String propertyDetailPageName = "propertyDetailPage";
 const String bookNowPageName = "bookNowPageName";
 const String bookNowPageRoute = "/bookNowPageRoute";
+const String savedPageName = "savedPageName";
+const String savedPageRoute = "/savedPageRoute";
 
 final GoRouter router = GoRouter(
     initialLocation: welcomePageRoute,
@@ -84,6 +87,16 @@ final GoRouter router = GoRouter(
                   query: state.queryParams['query']!,
                   name: state.queryParams['name'] ?? '',
                   category: state.queryParams['category']!),
+              animationType: TransitionType.slide,
+              duration: const Duration(milliseconds: 200));
+        },
+      ),
+      GoRoute(
+        path: savedPageRoute,
+        name: savedPageName,
+        pageBuilder: (context, state) {
+          return getTransition(
+              child: const WishList(),
               animationType: TransitionType.slide,
               duration: const Duration(milliseconds: 200));
         },

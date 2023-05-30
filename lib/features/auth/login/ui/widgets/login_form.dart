@@ -15,7 +15,7 @@ import '../controllers/password_visibility/password_visibility_cubit.dart';
 import 'login_textfield.dart';
 
 mixin InputValidationMixin {
-  bool isNameValid(String name) => name.length > 3;
+  bool isNameValid(String name) => name.length > 2;
   bool isPasswordValid(String password) => password.length > 6;
   bool isMobileValid(String mobileNo) {
     RegExp regex = RegExp(r"^[0-9]");

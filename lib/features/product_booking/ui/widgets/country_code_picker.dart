@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:anah_luxury/core/constants/app_colors.dart';
 import 'package:anah_luxury/core/constants/spaces.dart';
 import 'package:anah_luxury/features/product_booking/ui/controllers/country_code_controller.dart';
 import 'package:flutter/material.dart';
@@ -19,83 +20,109 @@ class _CountryCodePickerState extends State<CountryCodePicker> {
   @override
   Widget build(BuildContext context) {
     return Dialog(
+      backgroundColor: transparent,
       insetPadding: const EdgeInsets.all(appPadding),
-      child: SizedBox(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height / 1.2,
+      child: SingleChildScrollView(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            TextField(
-                controller: searchController,
-                onChanged: (value) => loadCountry(),
-                decoration: const InputDecoration(
-                    contentPadding: EdgeInsets.symmetric(horizontal: 10),
-                    hintText: "Search by country name or code")),
-            FutureBuilder<List<CountryCodeModel>>(
-                future: loadCountry(),
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.done) {
-                    if (snapshot.hasData) {
-                      return Expanded(
-                        child: ListView.builder(
-                            shrinkWrap: true,
-                            itemCount: snapshot.data!.length,
-                            itemBuilder: (context, index) {
-                              return ListTile(
-                                onTap: () {
-                                  context
-                                      .read<CountryCodeController>()
-                                      .changeCountryCode(snapshot.data![index]);
-                                  Navigator.pop(context);
-                                },
-                                title: Text(snapshot.data![index].name!),
-                                trailing: Text(snapshot.data![index].dialCode!),
-                              );
-                            }),
-                      );
+            Container(
+              color: white,
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height / 1.3,
+              child: Column(
+                children: [
+                  TextField(
+                      controller: searchController,
+                      onChanged: (value) => loadCountry(),
+                      decoration: const InputDecoration(
+                          contentPadding: EdgeInsets.symmetric(horizontal: 10),
+                          hintText: "Search by country name or code")),
+                  FutureBuilder<List<CountryCodeModel>>(
+                      future: loadCountry(),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState == ConnectionState.done) {
+                          if (snapshot.hasData) {
+                            return Expanded(
+                              child: ListView.builder(
+                                  shrinkWrap: true,
+                                  itemCount: snapshot.data!.length,
+                                  itemBuilder: (context, index) {
+                                    return ListTile(
+                                      onTap: () {
+                                        context
+                                            .read<CountryCodeController>()
+                                            .changeCountryCode(
+                                                snapshot.data![index]);
+                                        Navigator.pop(context);
+                                      },
+                                      title: Text(snapshot.data![index].name!),
+                                      trailing:
+                                          Text(snapshot.data![index].dialCode!),
+                                    );
+                                  }),
+                            );
 
-                      /*  return DropdownButtonFormField(
-                          // items: snapshot.data!
-                          //     .map((e) => DropdownMenuItem(
-                          //           value: e.dialCode,
-                          //           child: Text(e.dialCode!),
-                          //         ))
-                          //     .toList(),
-                          items: [
-                            ...snapshot.data!
-                                .where((element) => element.dialCode!.contains(''))
-                                .map((e) => DropdownMenuItem(
-                                      value: e.dialCode,
-                                      child: Text(e.dialCode!),
-                                    ))
-                                .toList(),
-                          ],
-                          onChanged: (value) {},
-                          decoration: const InputDecoration(
-                            border: OutlineInputBorder(
-                                borderSide: BorderSide(color: black),
-                                gapPadding: 8),
-                            focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: black),
-                                gapPadding: 8),
-                            disabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: black),
-                                gapPadding: 8),
-                            enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: black),
-                                gapPadding: 8),
-                            labelText: kCountry,
-                            labelStyle: TextStyle(color: black),
-                          )); */
-                    } else {
-                      // print("No data inside");
-                      return Container();
-                    }
-                  } else {
-                    // print("No data outside");
-                    return Container();
-                  }
-                }),
+                            /*  return DropdownButtonFormField(
+                                // items: snapshot.data!
+                                //     .map((e) => DropdownMenuItem(
+                                //           value: e.dialCode,
+                                //           child: Text(e.dialCode!),
+                                //         ))
+                                //     .toList(),
+                                items: [
+                                  ...snapshot.data!
+                                      .where((element) => element.dialCode!.contains(''))
+                                      .map((e) => DropdownMenuItem(
+                                            value: e.dialCode,
+                                            child: Text(e.dialCode!),
+                                          ))
+                                      .toList(),
+                                ],
+                                onChanged: (value) {},
+                                decoration: const InputDecoration(
+                                  border: OutlineInputBorder(
+                                      borderSide: BorderSide(color: black),
+                                      gapPadding: 8),
+                                  focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(color: black),
+                                      gapPadding: 8),
+                                  disabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(color: black),
+                                      gapPadding: 8),
+                                  enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(color: black),
+                                      gapPadding: 8),
+                                  labelText: kCountry,
+                                  labelStyle: TextStyle(color: black),
+                                )); */
+                          } else {
+                            // print("No data inside");
+                            return Container();
+                          }
+                        } else {
+                          // print("No data outside");
+                          return Container();
+                        }
+                      }),
+                ],
+              ),
+            ),
+            const SizedBox(height: appPadding),
+            Container(
+                decoration:
+                    const BoxDecoration(color: grey2, shape: BoxShape.circle),
+                child: IconButton(
+                  splashColor: transparent,
+                  splashRadius: 10,
+                  visualDensity:
+                      const VisualDensity(horizontal: 1, vertical: 1),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: const Icon(Icons.close),
+                  color: grey5,
+                )),
           ],
         ),
       ),
