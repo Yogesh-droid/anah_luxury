@@ -105,15 +105,6 @@ class UploadedFiles {
     fileUrl = json["fileUrl"];
     imageType = json["imageType"];
   }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> _data = <String, dynamic>{};
-    _data["_id"] = id;
-    _data["mimetype"] = mimetype;
-    _data["fileUrl"] = fileUrl;
-    _data["imageType"] = imageType;
-    return _data;
-  }
 }
 
 class SubCategory {
@@ -126,13 +117,6 @@ class SubCategory {
     id = json["_id"];
     name = json["name"];
   }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> _data = <String, dynamic>{};
-    _data["_id"] = id;
-    _data["name"] = name;
-    return _data;
-  }
 }
 
 class RealEstates {
@@ -143,12 +127,6 @@ class RealEstates {
   RealEstates.fromJson(Map<String, dynamic> json) {
     propertyType = json["propertyType"];
   }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> _data = <String, dynamic>{};
-    _data["propertyType"] = propertyType;
-    return _data;
-  }
 }
 
 class Cars {
@@ -158,11 +136,5 @@ class Cars {
 
   Cars.fromJson(Map<String, dynamic> json) {
     mileage = json["mileage"];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> _data = <String, dynamic>{};
-    _data["mileage"] = mileage;
-    return _data;
   }
 }

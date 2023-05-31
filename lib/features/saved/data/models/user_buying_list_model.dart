@@ -1,3 +1,5 @@
+import '../../domain/entities/buying_list_entity.dart';
+
 class UserBuyingListModel {
   bool? success;
   List<CartF>? cartF;
@@ -9,15 +11,6 @@ class UserBuyingListModel {
     cartF = json["cartF"] == null
         ? null
         : (json["cartF"] as List).map((e) => CartF.fromJson(e)).toList();
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> _data = <String, dynamic>{};
-    _data["success"] = success;
-    if (cartF != null) {
-      _data["cartF"] = cartF?.map((e) => e.toJson()).toList();
-    }
-    return _data;
   }
 }
 
@@ -46,25 +39,6 @@ class CartF {
     productCountryAttributes = json["productCountryAttributes"] ?? [];
     quantity = json["quantity"];
     id = json["_id"];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> _data = <String, dynamic>{};
-    if (product != null) {
-      _data["product"] = product?.toJson();
-    }
-    if (country != null) {
-      _data["country"] = country?.toJson();
-    }
-    if (user != null) {
-      _data["user"] = user?.toJson();
-    }
-    if (productCountryAttributes != null) {
-      _data["productCountryAttributes"] = productCountryAttributes;
-    }
-    _data["quantity"] = quantity;
-    _data["_id"] = id;
-    return _data;
   }
 }
 
@@ -140,33 +114,6 @@ class User {
     dob = json["dob"];
     id = json["id"];
   }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> _data = <String, dynamic>{};
-    _data["last_name"] = lastName;
-    _data["mobile"] = mobile;
-    _data["source"] = source;
-    _data["type"] = type;
-    _data["status"] = status;
-    _data["gender"] = gender;
-    _data["profilePic"] = profilePic;
-    _data["country"] = country;
-    _data["language"] = language;
-    _data["isVerified"] = isVerified;
-    _data["_id"] = id;
-    _data["name"] = name;
-    _data["email"] = email;
-    _data["tier"] = tier;
-    _data["guestUser"] = guestUser;
-    _data["password"] = password;
-    _data["createdAt"] = createdAt;
-    _data["updatedAt"] = updatedAt;
-    _data["__v"] = v;
-    _data["tokens"] = tokens;
-    _data["dob"] = dob;
-    _data["id"] = id;
-    return _data;
-  }
 }
 
 class Country {
@@ -205,88 +152,53 @@ class Country {
     updatedAt = json["updatedAt"];
     v = json["__v"];
   }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> _data = <String, dynamic>{};
-    _data["status"] = status;
-    _data["_id"] = id;
-    _data["name"] = name;
-    _data["code"] = code;
-    _data["flag"] = flag;
-    _data["currencyName"] = currencyName;
-    _data["currencySymbol"] = currencySymbol;
-    _data["createdAt"] = createdAt;
-    _data["updatedAt"] = updatedAt;
-    _data["__v"] = v;
-    return _data;
-  }
 }
 
-class Product {
-  String? title;
-  String? uploadedFiles;
-  String? description;
-  String? slug;
-  String? id;
-  int? price;
-  int? salePrice;
-  List<dynamic>? productCountryAttributes;
-  String? brand;
-  String? categories;
-  String? subCategory;
-  int? kmDriven;
-  List<dynamic>? addedAttributes;
+class Product extends BuyingListEntity {
+  Product({
+    String? title,
+    String? uploadedFiles,
+    String? description,
+    String? slug,
+    String? id,
+    int? price,
+    int? salePrice,
+    List<dynamic>? productCountryAttributes,
+    String? brand,
+    String? categories,
+    String? subCategory,
+    int? kmDriven,
+    List<dynamic>? addedAttributes,
+  }) : super(
+            addedAttributes: addedAttributes,
+            brand: brand,
+            categories: categories,
+            description: description,
+            id: id,
+            kmDriven: kmDriven,
+            price: price,
+            productCountryAttributes: productCountryAttributes,
+            salePrice: salePrice,
+            slug: slug,
+            subCategory: subCategory,
+            title: title,
+            uploadedFiles: uploadedFiles);
 
-  Product(
-      {this.title,
-      this.uploadedFiles,
-      this.description,
-      this.slug,
-      this.id,
-      this.price,
-      this.salePrice,
-      this.productCountryAttributes,
-      this.brand,
-      this.categories,
-      this.subCategory,
-      this.kmDriven,
-      this.addedAttributes});
-
-  Product.fromJson(Map<String, dynamic> json) {
-    title = json["title"];
-    uploadedFiles = json["uploadedFiles"];
-    description = json["description"];
-    slug = json["slug"];
-    id = json["_id"];
-    price = json["price"];
-    salePrice = json["salePrice"];
-    productCountryAttributes = json["ProductCountryAttributes"] ?? [];
-    brand = json["brand"];
-    categories = json["categories"];
-    subCategory = json["subCategory"];
-    kmDriven = json["kmDriven"];
-    addedAttributes = json["addedAttributes"] ?? [];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> _data = <String, dynamic>{};
-    _data["title"] = title;
-    _data["uploadedFiles"] = uploadedFiles;
-    _data["description"] = description;
-    _data["slug"] = slug;
-    _data["_id"] = id;
-    _data["price"] = price;
-    _data["salePrice"] = salePrice;
-    if (productCountryAttributes != null) {
-      _data["ProductCountryAttributes"] = productCountryAttributes;
-    }
-    _data["brand"] = brand;
-    _data["categories"] = categories;
-    _data["subCategory"] = subCategory;
-    _data["kmDriven"] = kmDriven;
-    if (addedAttributes != null) {
-      _data["addedAttributes"] = addedAttributes;
-    }
-    return _data;
+  factory Product.fromJson(Map<String, dynamic> json) {
+    return Product(
+      title: json["title"],
+      uploadedFiles: json["uploadedFiles"],
+      description: json["description"],
+      slug: json["slug"],
+      id: json["_id"],
+      price: json["price"],
+      salePrice: json["salePrice"],
+      productCountryAttributes: json["ProductCountryAttributes"] ?? [],
+      brand: json["brand"],
+      categories: json["categories"],
+      subCategory: json["subCategory"],
+      kmDriven: json["kmDriven"],
+      addedAttributes: json["addedAttributes"] ?? [],
+    );
   }
 }

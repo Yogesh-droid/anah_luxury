@@ -6,7 +6,6 @@ import 'package:anah_luxury/features/home/ui/controllers/featured_luxury_cars/fe
 import 'package:anah_luxury/features/home/ui/controllers/featured_luxury_residence/featured_lusxury_residence_bloc_bloc.dart';
 import 'package:anah_luxury/features/home/ui/controllers/home_page_banners_bloc/bloc/home_page_banner_bloc_bloc.dart';
 import 'package:anah_luxury/features/home/ui/controllers/home_page_category_bloc/bloc/home_page_category_bloc_bloc.dart';
-import 'package:anah_luxury/features/home/ui/widgets/anah_search_bar.dart';
 import 'package:anah_luxury/features/home/ui/widgets/app_title_list_widget.dart';
 import 'package:anah_luxury/features/home/ui/widgets/category_list_widget.dart';
 import 'package:anah_luxury/features/home/ui/widgets/featured_car_list_widget.dart';

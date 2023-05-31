@@ -43,12 +43,24 @@ import 'package:anah_luxury/features/product_listing/data/repo/product_list_repo
 import 'package:anah_luxury/features/product_listing/domain/repo/product_list_repo.dart';
 import 'package:anah_luxury/features/product_listing/domain/usecases/product_list_usecase.dart';
 import 'package:anah_luxury/features/product_listing/ui/controllers/product_list/product_list_bloc.dart';
+import 'package:anah_luxury/features/saved/data/repo/buying_list_repo_impl.dart';
+import 'package:anah_luxury/features/saved/data/repo/user_testdrive_repo_impl.dart';
+import 'package:anah_luxury/features/saved/data/repo/user_wishlist_repo_impl.dart';
+import 'package:anah_luxury/features/saved/domain/repo/buying_list_repo.dart';
+import 'package:anah_luxury/features/saved/domain/repo/user_testdrives_repo.dart';
+import 'package:anah_luxury/features/saved/domain/repo/user_wishlist_repo.dart';
+import 'package:anah_luxury/features/saved/domain/usecases/testdrives_list_usecase.dart';
+import 'package:anah_luxury/features/saved/domain/usecases/user_buyinglist_usecase.dart';
+import 'package:anah_luxury/features/saved/domain/usecases/wishlist_usecase.dart';
+import 'package:anah_luxury/features/saved/ui/controllers/buyinglist/buying_list_bloc.dart';
+import 'package:anah_luxury/features/saved/ui/controllers/wishlist/wish_list_controller_bloc.dart';
 import 'package:get_it/get_it.dart';
 import '../../features/cars/ui/controllers/category_bloc/category_bloc.dart';
 import '../../features/home/domain/repo/featured_luxury_residence_repo.dart';
 import '../../features/product_details/data/repo/property_detail_repo_impl.dart';
 import '../../features/product_details/ui/controllers/car_detail_bloc/product_detail_bloc.dart';
 import '../../features/properties_tab/ui/controllers/properties_bloc/properties_category_bloc.dart';
+import '../../features/saved/ui/controllers/test_drive_tours/test_drive_tour_list_bloc.dart';
 
 GetIt getIt = GetIt.I;
 void setup() {
@@ -163,4 +175,27 @@ void setup() {
   getIt.registerFactory<ProductBookResUsecase>(
       () => ProductBookResUsecase(getIt()));
   getIt.registerFactory<BookProductCubit>(() => BookProductCubit(getIt()));
+
+  ///   Tours and TestDrive Bloc setUp  ////
+
+  getIt.registerFactory<UserTestDrivesRepo>(
+      () => UserTestDriveRepoImpl(getIt()));
+  getIt.registerFactory<TestDrivesListUsecase>(
+      () => TestDrivesListUsecase(userTestDrivesRepo: getIt()));
+  getIt.registerFactory<TestDriveTourListBloc>(
+      () => TestDriveTourListBloc(getIt()));
+
+  ///   WishList Bloc setUp  ////
+
+  getIt.registerFactory<UserWishListRepo>(() => WishListRepoImpl(getIt()));
+  getIt.registerFactory<WishListUsecase>(() => WishListUsecase(getIt()));
+  getIt.registerFactory<WishListControllerBloc>(
+      () => WishListControllerBloc(getIt()));
+
+  ///   BuyingList Bloc setUp  ////
+
+  getIt.registerFactory<BuyingListRepo>(() => BuyingListRepoImpl(getIt()));
+  getIt.registerFactory<ByuingListUsecase>(
+      () => ByuingListUsecase(buyingListRepo: getIt()));
+  getIt.registerFactory<BuyingListBloc>(() => BuyingListBloc(getIt()));
 }

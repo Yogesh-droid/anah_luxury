@@ -89,3 +89,6 @@ const String kPrivacyPolicy = "Privacy Policy";
 const String kLogout = "Logout";
 const String kSkip = "Skip";
 const String kBookYourDreams = "Book Your Dream Luxury";
+const String kTestDrive = "Test Drives";
+const String kBuyingList = "Buying List";
+const String kBookings = "Bookings";

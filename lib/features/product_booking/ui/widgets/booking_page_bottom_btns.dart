@@ -46,7 +46,6 @@ class BookingPageBottomBtns extends StatelessWidget {
             ),
             BlocBuilder<BookProductCubit, BookProductState>(
               builder: (context, state) {
-                print(state.toString());
                 if (state is ProductBookingInProgress) {
                   return AnahAuthButton(
                     borderColor: black,
