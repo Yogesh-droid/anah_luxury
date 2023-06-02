@@ -39,7 +39,7 @@ class ToursBuyingList extends StatelessWidget {
             ),
           );
         }
-        return SizedBox(child: Text("No Data"));
+        return const SizedBox();
       },
     );
   }

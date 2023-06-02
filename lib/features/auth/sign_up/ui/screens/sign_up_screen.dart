@@ -1,13 +1,12 @@
-import 'dart:ui';
-
-import 'package:flutter/cupertino.dart';
+import 'package:anah_luxury/features/auth/login/ui/controllers/login_bloc/login_bloc.dart';
+import 'package:anah_luxury/features/auth/sign_up/ui/screens/sign_up_background.dart';
+import 'package:anah_luxury/features/auth/sign_up/ui/screens/sign_up_foreground.dart';
 import 'package:flutter/material.dart';
-import '../../../../../core/constants/app_colors.dart';
-import '../../../../../core/constants/assets.dart';
-import '../../../../../core/constants/spaces.dart';
-import '../../../../../core/constants/strings.dart';
-import '../../../../../core/constants/text_tyles.dart';
-import '../widgets/sign_up_form.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import '../../../../../core/constants/hive/local_storage.dart';
+import '../../../../../core/routes/routes.dart';
+import '../../../../menu/ui/controllers/profile_bloc/profile_bloc.dart';
 
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
@@ -15,65 +14,28 @@ class SignUpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          Container(
-              decoration: const BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage(Assets.assetsLoginBg1),
-                      fit: BoxFit.fill)),
-              child: ClipRRect(
-                child: BackdropFilter(
-                  filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
-                  child: SizedBox(
-                    height: MediaQuery.of(context).size.height,
-                    width: MediaQuery.of(context).size.width,
-                  ),
-                ),
-              )),
-          SingleChildScrollView(
-            child: Padding(
-              padding: MediaQuery.of(context).viewInsets,
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: appPadding),
-                color: black.withOpacity(0.8),
-                height: MediaQuery.of(context).size.height,
-                width: double.maxFinite,
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const SizedBox(
-                        height: appWidgetGap * 2,
-                      ),
-                      InkWell(
-                        onTap: () {
-                          Navigator.pop(context);
-                        },
-                        child: const Icon(
-                          CupertinoIcons.back,
-                          color: white,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: appWidgetGap,
-                      ),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.5,
-                        child: Text(
-                          kCreateYourAccount,
-                          style: secMed32.copyWith(
-                              color: white,
-                              fontFamily: 'PlayfairDisplay',
-                              fontWeight: FontWeight.w700),
-                        ),
-                      ),
-                      const Spacer(),
-                      SignUpForm()
-                    ]),
-              ),
-            ),
-          )
-        ],
+      body: BlocConsumer<LoginBloc, LoginState>(
+        listener: (context, state) {
+          if (state is SignUpFailed) {
+            ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text(state.exception.toString())));
+          } else if (state is SignUpSuccess) {
+            debugPrint("token is =>=>=>=>  ${state.token}");
+            LocalStorage.instance.token = state.token;
+            debugPrint(
+                "token from local storage is =>=>=>=>  ${LocalStorage.instance.token}");
+            context.read<ProfileBloc>().add(GetProfileEvent());
+            context.push(dashBoardRoute);
+          }
+        },
+        builder: (context, state) {
+          return Stack(
+            children: const [
+              SignUpBackground(),
+              SignUpForeground(),
+            ],
+          );
+        },
       ),
     );
   }

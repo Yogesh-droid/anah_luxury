@@ -12,21 +12,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../../core/constants/app_colors.dart';
 import '../../../login/ui/controllers/password_visibility/password_visibility_cubit.dart';
+import '../../../login/ui/widgets/login_form.dart';
 import '../../../login/ui/widgets/login_textfield.dart';
-
-mixin InputValidationMixin {
-  bool isNameValid(String name) {
-    RegExp regex = RegExp('[a-zA-Z]');
-    return regex.hasMatch(name);
-  }
-
-  bool isPasswordValid(String password) => password.length == 6;
-  bool isEmailValid(String email) {
-    RegExp regex = RegExp(
-        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
-    return regex.hasMatch(email);
-  }
-}
 
 class SignUpForm extends StatelessWidget with InputValidationMixin {
   SignUpForm({super.key});
@@ -56,9 +43,6 @@ class SignUpForm extends StatelessWidget with InputValidationMixin {
                 return 'Name Should Containt Letters Only';
               }
             },
-            // onDone: (String value) {
-            //   if (_signUpformKey.currentState!.validate()) {}
-            // },
           ),
           const SizedBox(height: appFormFieldGap),
           LoginTextField(
@@ -74,9 +58,6 @@ class SignUpForm extends StatelessWidget with InputValidationMixin {
                 return 'Enter valid email address';
               }
             },
-            // onDone: (String value) {
-            //   if (_signUpformKey.currentState!.validate()) {}
-            // },
           ),
           const SizedBox(height: appFormFieldGap),
           BlocBuilder<PasswordVisibilityCubit, bool>(
@@ -91,14 +72,9 @@ class SignUpForm extends StatelessWidget with InputValidationMixin {
                   if (isPasswordValid(value!)) {
                     return null;
                   } else {
-                    return 'Valid password should have numbers only';
+                    return 'Valid password should at least 6 character';
                   }
                 },
-                // onDone: (String value) {
-                //   if (_signUpformKey.currentState!.validate()) {
-
-                //   }
-                // },
               );
             },
           ),
@@ -116,25 +92,34 @@ class SignUpForm extends StatelessWidget with InputValidationMixin {
                       SnackBar(content: Text(state.exception.toString())));
                 });
               }
-              return AnahAuthButton(
-                borderColor: white,
-                title: kSignUp.toUpperCase(),
-                width: double.maxFinite,
-                onTap: () {
-                  if (_signUpformKey.currentState!.validate()) {
-                    context.read<LoginBloc>().add(RequestSignUp(
-                            requestParams: RequestParams(
-                                url: "${baseUrl}auth/signup",
-                                apiMethods: ApiMethods.post,
-                                body: {
-                              "name": nameTextField.text,
-                              "last_name": 'Kr',
-                              "email": emailTextField.text,
-                              "password": passwordTextField.text
-                            })));
-                  } else {
-                    return;
-                  }
+              return BlocBuilder<LoginBloc, LoginState>(
+                builder: (context, state) {
+                  return AnahAuthButton(
+                    borderColor: white,
+                    title: state is SigningUp
+                        ? "Signin up ..".toUpperCase()
+                        : kSignUp.toUpperCase(),
+                    width: double.maxFinite,
+                    onTap: () {
+                      if (state is SigningUp) {
+                        return;
+                      }
+                      if (_signUpformKey.currentState!.validate()) {
+                        context.read<LoginBloc>().add(RequestSignUp(
+                                requestParams: RequestParams(
+                                    url: "${baseUrl}auth/signup",
+                                    apiMethods: ApiMethods.post,
+                                    body: {
+                                  "name": nameTextField.text,
+                                  "last_name": 'Kr',
+                                  "email": emailTextField.text,
+                                  "password": passwordTextField.text
+                                })));
+                      } else {
+                        return;
+                      }
+                    },
+                  );
                 },
               );
             },
@@ -165,22 +150,5 @@ class SignUpForm extends StatelessWidget with InputValidationMixin {
         ],
       ),
     );
-  }
-
-  ButtonStyle getLoginButtonStyle(BuildContext context) {
-    return Theme.of(context).textButtonTheme.style!.copyWith(
-        padding: const MaterialStatePropertyAll<EdgeInsets>(
-            EdgeInsets.symmetric(horizontal: 8)),
-        textStyle: MaterialStateProperty.all(
-            secMed12.copyWith(foreground: Paint()..color = white)),
-        overlayColor: MaterialStateProperty.resolveWith((states) =>
-            states.contains(MaterialState.pressed)
-                ? white.withOpacity(0.10)
-                : Colors.transparent),
-        backgroundColor: MaterialStateProperty.resolveWith((states) =>
-            states.contains(MaterialState.pressed)
-                ? white.withOpacity(0.10)
-                : Colors.transparent),
-        splashFactory: NoSplash.splashFactory);
   }
 }

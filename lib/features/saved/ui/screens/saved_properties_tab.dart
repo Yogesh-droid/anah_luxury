@@ -10,8 +10,8 @@ class SavedPropertyTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child:
-          Column(children: [ToursList(), ToursBuyingList(), ToursWishList()]),
+      child: Column(
+          children: const [ToursList(), ToursBuyingList(), ToursWishList()]),
     );
   }
 }

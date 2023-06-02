@@ -24,14 +24,15 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
             emit(LoginFailed(exception: Exception(dataState.exception)));
           }
         } else if (event is RequestSignUp) {
+          emit(SigningUp());
           DataState<LoginResponseEntity> dataState =
               await loginResponseUsecase.call(event.requestParams);
           if (dataState.data != null) {
             LocalStorage localStorage = LocalStorage();
             localStorage.saveToken(dataState.data!.token ?? '');
-            emit(LoginSuccess(token: dataState.data!.token ?? ''));
+            emit(SignUpSuccess(token: dataState.data!.token ?? ''));
           } else {
-            emit(LoginFailed(exception: Exception(dataState.exception)));
+            emit(SignUpFailed(exception: Exception(dataState.exception)));
           }
         }
       } on Exception catch (e) {
