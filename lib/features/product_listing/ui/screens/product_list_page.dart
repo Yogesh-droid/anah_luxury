@@ -3,6 +3,7 @@ import 'package:anah_luxury/core/constants/strings.dart';
 import 'package:anah_luxury/core/constants/text_tyles.dart';
 import 'package:anah_luxury/features/dashboard/ui/widgets/anah_app_bar.dart';
 import 'package:anah_luxury/features/home/ui/widgets/product_container.dart';
+import 'package:anah_luxury/features/product_listing/ui/controllers/cubit/range_slider_cubit.dart';
 import 'package:anah_luxury/features/product_listing/ui/widgets/filter_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -28,6 +29,9 @@ class ProductListPage extends StatefulWidget {
 class _ProductListPageState extends State<ProductListPage> {
   @override
   void initState() {
+    context.read<ProductListBloc>().filterQuery = '';
+    context.read<ProductListBloc>().selectedFilterList.clear();
+    context.read<RangeSliderCubit>().filterMap.clear();
     context
         .read<ProductListBloc>()
         .add(GetProductListEvent(query: widget.query));
@@ -123,7 +127,11 @@ class _ProductListPageState extends State<ProductListPage> {
                       builder: (_) {
                         return SizedBox(
                             height: MediaQuery.of(context).size.height * 0.8,
-                            child: const FilterScreen());
+                            child: FilterScreen(onApplyTap: () {
+                              context.read<ProductListBloc>().add(
+                                  GetProductListEvent(query: widget.query));
+                              Navigator.pop(context);
+                            }));
                       });
                 },
                 label: const Text(

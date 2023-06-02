@@ -5,7 +5,6 @@ import 'package:anah_luxury/features/product_details/domain/entities/car_detail_
 import 'package:anah_luxury/features/product_details/domain/usecases/car_details_usecase.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 part 'product_detail_event.dart';
 part 'product_detail_state.dart';
 

@@ -10,8 +10,10 @@ class FilterValues extends StatelessWidget {
       this.start,
       this.end,
       this.rangeValue,
-      this.filterList});
+      this.filterList,
+      required this.filterKey});
   final FilterType filterType;
+  final String? filterKey;
   final int? start;
   final int? end;
   final String? rangeValue;
@@ -20,8 +22,15 @@ class FilterValues extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return filterType == FilterType.list
-        ? ListFilter(filters: filterList!)
-        : RangeFilter(startValue: start!, endValue: end!);
+        ? ListFilter(
+            filters: filterList!,
+            filterKey: filterKey!,
+          )
+        : RangeFilter(
+            startValue: start!,
+            endValue: end!,
+            filterKey: filterKey,
+          );
   }
 }
 
