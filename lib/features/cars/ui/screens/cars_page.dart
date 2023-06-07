@@ -12,6 +12,7 @@ import '../../../../core/routes/routes.dart';
 import '../controllers/category_bloc/category_bloc.dart';
 import '../widgets/brands_list.dart';
 import '../widgets/category_list.dart';
+import 'featured_cars_list.dart';
 
 class CarsPage extends StatefulWidget {
   const CarsPage({super.key});

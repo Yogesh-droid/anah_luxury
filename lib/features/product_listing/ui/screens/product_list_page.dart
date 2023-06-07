@@ -10,6 +10,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/routes/routes.dart';
+import '../../../home/ui/controllers/add_to_wishlist/add_to_wishlist_cubit.dart';
+import '../../../menu/ui/controllers/profile_bloc/profile_bloc.dart';
+import '../../../saved/ui/controllers/wishlist/wish_list_controller_bloc.dart';
 import '../controllers/product_list/product_list_bloc.dart';
 
 class ProductListPage extends StatefulWidget {
@@ -65,25 +68,58 @@ class _ProductListPageState extends State<ProductListPage> {
                   itemCount: state.productList.length,
                   itemBuilder: (context, index) {
                     var product = state.productList[index];
-                    return ProductContainer(
-                      productName: product.title ?? '',
-                      onProductTapped: (category, slug) {
-                        if (category == kCars) {
-                          context.pushNamed(carDetailPageName,
-                              queryParams: {"slug": slug});
-                        } else {
-                          context.pushNamed(propertyDetailPageName,
-                              queryParams: {"slug": slug});
-                        }
+                    return BlocBuilder<ProfileBloc, ProfileState>(
+                      builder: (context, state) {
+                        return ProductContainer(
+                          productName: product.title ?? '',
+                          onProductTapped: (category, slug) {
+                            if (category == kCars) {
+                              context.pushNamed(carDetailPageName,
+                                  queryParams: {"slug": slug});
+                            } else {
+                              context.pushNamed(propertyDetailPageName,
+                                  queryParams: {"slug": slug});
+                            }
+                          },
+                          onWishListTapped: () async {
+                            if (state is ProfileFetchedState) {
+                              await context
+                                  .read<AddToWishlistCubit>()
+                                  .addToWishList(
+                                      productId: product.sId ?? '',
+                                      userId: context
+                                              .read<ProfileBloc>()
+                                              .profileEntity
+                                              .sId ??
+                                          '')
+                                  .then((value) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(content: Text(value)));
+
+                                // below is code to fetch wishlist //
+                                context.read<WishListControllerBloc>().add(
+                                    GetWishListEvent(
+                                        slug: widget.category,
+                                        userId: context
+                                            .read<ProfileBloc>()
+                                            .profileEntity
+                                            .sId));
+                              });
+                            } else {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                      content: Text("Please Login First")));
+                            }
+                          },
+                          backgroundImage: product.uploadedFiles![0].fileUrl,
+                          netPrice: product.price.toString(),
+                          currency: product.prodCurrency!.currencyName ?? '',
+                          height: MediaQuery.of(context).size.height * 0.182,
+                          width: MediaQuery.of(context).size.width / 2,
+                          category: widget.category,
+                          slug: product.slug,
+                        );
                       },
-                      onWishListTapped: (id) {},
-                      backgroundImage: product.uploadedFiles![0].fileUrl,
-                      netPrice: product.price.toString(),
-                      currency: product.prodCurrency!.currencyName ?? '',
-                      height: MediaQuery.of(context).size.height * 0.182,
-                      width: MediaQuery.of(context).size.width / 2,
-                      category: widget.category,
-                      slug: product.slug,
                     );
                   });
             } else if (state is ProductListError) {

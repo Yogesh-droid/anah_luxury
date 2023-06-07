@@ -9,3 +9,9 @@ class GetWishListEvent extends WishListControllerEvent {
 
   GetWishListEvent({this.slug, this.userId});
 }
+
+class AddToWishList extends WishListControllerEvent {
+  final List<String> productId;
+
+  AddToWishList({required this.productId});
+}

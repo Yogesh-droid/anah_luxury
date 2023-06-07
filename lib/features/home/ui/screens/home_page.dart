@@ -36,6 +36,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    print("Home page Build");
     return SafeArea(
       bottom: true,
       maintainBottomViewPadding: true,

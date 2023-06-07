@@ -12,6 +12,7 @@ class LocalStorage {
   LocalStorage._internal();
 
   String? token;
+  String? userId;
   final FlutterSecureStorage secureStorage =
       LocalStorageClient().flutterSecureStorage;
 
@@ -31,6 +32,17 @@ class LocalStorage {
     final enctriptedBox = await getEnctriptedBox();
     token = await enctriptedBox.get(dotenv.env['token_value']) ?? '';
     return token!;
+  }
+
+  Future<void> saveUserId(String userId) async {
+    final enctriptedBox = await getEnctriptedBox();
+    await enctriptedBox.put(dotenv.env['user_id'], userId);
+  }
+
+  Future<String> getUserId() async {
+    final enctriptedBox = await getEnctriptedBox();
+    userId = await enctriptedBox.get(dotenv.env['user_id']) ?? '';
+    return userId!;
   }
 
   Future<Box<E>> getEnctriptedBox<E>() async {

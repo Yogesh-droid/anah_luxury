@@ -14,6 +14,8 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   late ProfileEntity profileEntity;
   ProfileBloc({required this.profileUsecase}) : super(ProfileInitial()) {
     on<ProfileEvent>((event, emit) async {
+      debugPrint(
+          "Getting Profile .................................................................");
       final token = LocalStorage.instance.token;
       if (event is GetProfileEvent) {
         try {
@@ -25,6 +27,8 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
                     header: {"Authorization": "Bearer $token"}));
 
             profileEntity = dataState.data!;
+            LocalStorage.instance.userId = dataState.data!.sId ?? '';
+            LocalStorage.instance.saveUserId(dataState.data!.sId ?? '');
             emit(ProfileFetchedState(profileEntity: dataState.data!));
           } else {
             emit(ProfileFailedState(

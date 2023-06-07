@@ -16,6 +16,7 @@ class ProductCarousel extends StatelessWidget {
             list.add(element.fileUrl ?? '');
           }
           return HomeCarousel(
+            onTap: (value) {},
             bannerList: list,
             height: 250,
           );

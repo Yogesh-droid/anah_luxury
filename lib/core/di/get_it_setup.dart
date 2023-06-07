@@ -10,17 +10,21 @@ import 'package:anah_luxury/features/cars/domain/repo/category_repo.dart';
 import 'package:anah_luxury/features/cars/domain/usecases/brands_usecase.dart';
 import 'package:anah_luxury/features/cars/domain/usecases/category_usecase.dart';
 import 'package:anah_luxury/features/cars/ui/controllers/brands_bloc/brands_bloc.dart';
+import 'package:anah_luxury/features/home/data/repo/add_to_wishlist_repo_impl.dart';
 import 'package:anah_luxury/features/home/data/repo/featured_luxury_cars_repo_impl.dart';
 import 'package:anah_luxury/features/home/data/repo/featured_luxury_residence_repo_impl.dart';
 import 'package:anah_luxury/features/home/data/repo/home_page_banner_repo_impl.dart';
 import 'package:anah_luxury/features/home/data/repo/home_page_cat_repo_impl.dart';
+import 'package:anah_luxury/features/home/domain/repo/add_to_wishlist_repo.dart';
 import 'package:anah_luxury/features/home/domain/repo/featured_luxury_cars_repo.dart';
 import 'package:anah_luxury/features/home/domain/repo/home_page_banner_repo.dart';
 import 'package:anah_luxury/features/home/domain/repo/home_page_cat_repo.dart';
+import 'package:anah_luxury/features/home/domain/usecase/add_to_wishlist_usecase.dart';
 import 'package:anah_luxury/features/home/domain/usecase/featured_luxury_cars_usecase.dart';
 import 'package:anah_luxury/features/home/domain/usecase/featured_luxury_residence_usecase.dart';
 import 'package:anah_luxury/features/home/domain/usecase/home_page_banner_usecase.dart';
 import 'package:anah_luxury/features/home/domain/usecase/home_page_cat_usecase.dart';
+import 'package:anah_luxury/features/home/ui/controllers/add_to_wishlist/add_to_wishlist_cubit.dart';
 import 'package:anah_luxury/features/home/ui/controllers/featured_luxury_cars/featured_luxury_cars_bloc_bloc.dart';
 import 'package:anah_luxury/features/home/ui/controllers/featured_luxury_residence/featured_lusxury_residence_bloc_bloc.dart';
 import 'package:anah_luxury/features/home/ui/controllers/home_page_banners_bloc/bloc/home_page_banner_bloc_bloc.dart';
@@ -198,4 +202,13 @@ void setup() {
   getIt.registerFactory<ByuingListUsecase>(
       () => ByuingListUsecase(buyingListRepo: getIt()));
   getIt.registerFactory<BuyingListBloc>(() => BuyingListBloc(getIt()));
+
+  ///    Wishlist cubit setup   ////
+
+  getIt.registerFactory<AddToWishlistRepo>(
+      () => AddToWishlistRepoImpl(networkManager: getIt()));
+  getIt.registerFactory<AddToWishlistUsecase>(
+      () => AddToWishlistUsecase(addToWishlistRepo: getIt()));
+  getIt.registerFactory<AddToWishlistCubit>(
+      () => AddToWishlistCubit(addToWishlistUsecase: getIt()));
 }

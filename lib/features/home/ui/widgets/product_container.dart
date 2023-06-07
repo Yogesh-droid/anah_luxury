@@ -31,7 +31,7 @@ class ProductContainer extends StatelessWidget {
   final String? discount;
   final String? netPrice;
   final bool? wishListIcon;
-  final Function(String? id)? onWishListTapped;
+  final Function()? onWishListTapped;
   final String? category;
   final String? slug;
 
@@ -47,14 +47,31 @@ class ProductContainer extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             if (backgroundImage != null)
-              SizedBox(
-                width: width,
-                height: height,
-                child: FadeInImage(
-                    fit: BoxFit.cover,
-                    placeholder:
-                        const AssetImage(Assets.assetsHomePageImageLoading),
-                    image: NetworkImage(backgroundImage!)),
+              Stack(
+                children: [
+                  SizedBox(
+                    width: width,
+                    height: height,
+                    child: FadeInImage(
+                        fit: BoxFit.fill,
+                        alignment: Alignment.center,
+                        placeholder:
+                            const AssetImage(Assets.assetsHomePageImageLoading),
+                        image: NetworkImage(backgroundImage!)),
+                  ),
+                  if (onWishListTapped != null)
+                    Container(
+                      decoration: BoxDecoration(
+                          color: grey2.withOpacity(0.7),
+                          shape: BoxShape.circle),
+                      child: IconButton(
+                          onPressed: () {
+                            onWishListTapped!();
+                          },
+                          icon: const Icon(Icons.favorite_border,
+                              color: white, size: 35)),
+                    )
+                ],
               ),
             SizedBox(height: (MediaQuery.of(context).size.height * 0.01)),
             SizedBox(
@@ -63,7 +80,7 @@ class ProductContainer extends StatelessWidget {
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: secMed15.copyWith(
-                      fontFamily: 'PlayfairDIsplay',
+                      fontFamily: 'PlayfairDisplay',
                       fontWeight: FontWeight.w600)),
             ),
             SizedBox(height: (MediaQuery.of(context).size.height * 0.005)),
@@ -84,12 +101,10 @@ class ProductContainer extends StatelessWidget {
                   Text(currency!,
                       style:
                           const TextStyle(color: Colors.black, fontSize: 16)),
+                const SizedBox(width: 5),
                 if (netPrice != null)
                   Text(netPrice!,
-                      style: const TextStyle(
-                          color: Colors.grey,
-                          fontSize: 12,
-                          decoration: TextDecoration.lineThrough)),
+                      style: const TextStyle(color: Colors.grey, fontSize: 12)),
                 if (discount != null)
                   Text('${discount!}% off',
                       style: const TextStyle(color: Colors.green, fontSize: 12))

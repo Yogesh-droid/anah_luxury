@@ -5,6 +5,7 @@ import 'package:anah_luxury/features/auth/login/ui/controllers/login_bloc/login_
 import 'package:anah_luxury/features/auth/login/ui/controllers/password_visibility/password_visibility_cubit.dart';
 import 'package:anah_luxury/features/cars/ui/controllers/brands_bloc/brands_bloc.dart';
 import 'package:anah_luxury/features/dashboard/ui/controllers/cubit/bottom_nav_controller_cubit.dart';
+import 'package:anah_luxury/features/home/ui/controllers/add_to_wishlist/add_to_wishlist_cubit.dart';
 import 'package:anah_luxury/features/home/ui/controllers/featured_luxury_cars/featured_luxury_cars_bloc_bloc.dart';
 import 'package:anah_luxury/features/home/ui/controllers/featured_luxury_residence/featured_lusxury_residence_bloc_bloc.dart';
 import 'package:anah_luxury/features/home/ui/controllers/home_page_banners_bloc/bloc/home_page_banner_bloc_bloc.dart';
@@ -76,7 +77,10 @@ class MyApp extends StatelessWidget {
           BlocProvider<BuyingListBloc>(create: (context) => getIt()),
           BlocProvider<WishListControllerBloc>(create: (context) => getIt()),
           BlocProvider(
-              create: (context) => CountryCodeController(CountryCodeModel()))
+              create: (context) => CountryCodeController(CountryCodeModel())),
+          BlocProvider(
+              create: (context) =>
+                  AddToWishlistCubit(addToWishlistUsecase: getIt()))
         ],
         child: MaterialApp.router(
           title: 'Anah Luxury',

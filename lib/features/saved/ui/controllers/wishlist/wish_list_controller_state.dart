@@ -28,3 +28,15 @@ class ToursWishListFailedState extends WishListControllerState {
 
   ToursWishListFailedState(this.exception);
 }
+
+class ProductAddedToWishList extends WishListControllerState {
+  final String message;
+
+  ProductAddedToWishList({required this.message});
+}
+
+class ProductFailedToWishlist extends WishListControllerState {
+  final Exception exception;
+
+  ProductFailedToWishlist({required this.exception});
+}

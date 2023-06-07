@@ -33,23 +33,23 @@ class AuthButtonViews extends StatelessWidget {
           const SizedBox(
             height: 30,
           ),
-          const Text(
-            kContinueWith,
-            style: TextStyle(color: Colors.white),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: iconsList
-                .map((e) => IconButton(
-                      icon: Icon(
-                        e,
-                        color: Colors.white,
-                        size: 30,
-                      ),
-                      onPressed: () {},
-                    ))
-                .toList(),
-          ),
+          // const Text(
+          //   kContinueWith,
+          //   style: TextStyle(color: Colors.white),
+          // ),
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.spaceAround,
+          //   children: iconsList
+          //       .map((e) => IconButton(
+          //             icon: Icon(
+          //               e,
+          //               color: Colors.white,
+          //               size: 30,
+          //             ),
+          //             onPressed: () {},
+          //           ))
+          //       .toList(),
+          // ),
           const SizedBox(
             height: 30,
           )

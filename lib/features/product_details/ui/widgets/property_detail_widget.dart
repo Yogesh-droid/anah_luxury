@@ -6,10 +6,12 @@ import 'package:anah_luxury/features/product_details/ui/widgets/product_carousel
 import 'package:anah_luxury/features/product_details/ui/widgets/product_overview_widget.dart';
 import 'package:anah_luxury/features/product_details/ui/widgets/property_image_type_listview.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-
 import '../../../../core/constants/strings.dart';
 import '../../../../core/routes/routes.dart';
+import '../../../landing/ui/widgets/anah_auth_button.dart';
+import '../../../menu/ui/controllers/profile_bloc/profile_bloc.dart';
 import 'book_now_widget.dart';
 
 class PropertyDetailWidget extends StatelessWidget {
@@ -54,13 +56,7 @@ class PropertyDetailWidget extends StatelessWidget {
         appDivider(),
         BookNowWidget(
             bookingPrice: propertyDetailEntity.bookingPrice ?? 'Not Available',
-            onTap: () {
-              context.pushNamed(bookNowPageName, queryParams: {
-                "category": kProperties,
-                "categoryId": propertyDetailEntity.categoryId,
-                "productId": propertyDetailEntity.id
-              });
-            }),
+            onTap: () {}),
         appDivider(),
         const SizedBox(height: appWidgetGap),
         const Padding(
@@ -88,6 +84,45 @@ class PropertyDetailWidget extends StatelessWidget {
         ),
         //ProductOverviewWidget(overviews: carDetailEntity.carSpecification!)
       ]),
+    );
+  }
+
+  Widget getBottomButtons(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        children: [
+          Expanded(child: BlocBuilder<ProfileBloc, ProfileState>(
+            builder: (context, state) {
+              return AnahAuthButton(
+                borderColor: black,
+                title: kBookTestDrive,
+                isFilled: false,
+                onTap: () {
+                  if (state is ProfileFetchedState) {
+                    context.pushNamed(bookNowPageName, queryParams: {
+                      "category": kProperties,
+                      "categoryId": propertyDetailEntity.categoryId,
+                      "productId": propertyDetailEntity.id
+                    });
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text("Please Login First")));
+                  }
+                },
+              );
+            },
+          )),
+          const SizedBox(width: 15),
+          Expanded(
+              child: AnahAuthButton(
+            borderColor: black,
+            fillColor: black,
+            title: kBookNow,
+            onTap: () {},
+          )),
+        ],
+      ),
     );
   }
 }

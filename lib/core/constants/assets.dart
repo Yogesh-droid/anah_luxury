@@ -49,6 +49,10 @@ class Assets {
   /// assets/bottom_bar/Saved.svg
   static const String assetsBottomBarSaved = "assets/bottom_bar/Saved.svg";
 
+  /// Assets for assetsCountry
+  /// assets/country.json
+  static const String assetsCountry = "assets/country.json";
+
   /// Assets for assetsHomePageImageLoading
   /// assets/home_page/image_loading.png
   static const String assetsHomePageImageLoading = "assets/home_page/image_loading.png";
@@ -84,4 +88,8 @@ class Assets {
   /// Assets for assetsWelcomePageAnah
   /// assets/welcome_page/anah.png
   static const String assetsWelcomePageAnah = "assets/welcome_page/anah.png";
+
+  /// Assets for assetsWelcomePageEmptyList
+  /// assets/welcome_page/empty_list.png
+  static const String assetsWelcomePageEmptyList = "assets/welcome_page/empty_list.png";
 }

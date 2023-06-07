@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../data/models/product_list_model.dart';
 
+// ignore: must_be_immutable
 class ListFilter extends StatelessWidget {
   ListFilter({super.key, required this.filters, required this.filterKey});
   late ProductListBloc productListBloc;
